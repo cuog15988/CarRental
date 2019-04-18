@@ -3,7 +3,8 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
-  
+
+
 
 <section class="banner-area relative" id="home">
     <div class="overlay overlay-bg"></div>
@@ -22,38 +23,67 @@
             <div class="col-lg-5  col-md-6 header-right">
                 <h4 class="text-white pb-30">TÌM XE CHO THUÊ</h4>
                 <div class="form" role="form" autocomplete="off">
-                    <div class="form-group">
-                        <div class="default-select">
-                            <select>
-                                <option value="" disabled selected hidden>Chọn Loại Xe</option>
-                                <option value="1">BMW</option>
-                                <option value="1">Farrari</option>
-                                <option value="1">Toyota</option>
-                            </select>
-                        </div>
+                    <div class="form">
+                        <select class="custom-select custom-select mb-3" style="background:none !important; background-color:white !important">
+                            <option value="" disabled selected hidden>Chọn Loại Xe</option>
+                            <option value="1">BMW</option>
+                            <option value="1">Farrari</option>
+                            <option value="1">Toyota</option>
+                        </select>
 
                     </div>
 
-                    <div class="form-group">
-                        <div class="default-select">
-                            <select>
-                                <option value="" disabled selected hidden>Tỉnh</option>
-                                <option value="1">BMW</option>
-                                <option value="1">Farrari</option>
-                                <option value="1">Toyota</option>
-                            </select>
-                        </div>
+                    <div class="form">
+                        <select class="custom-select custom-select mb-3" style="background:none !important; background-color:white !important">
+                            <option value="" disabled selected hidden>Tỉnh</option>
+                            <option value="">Skills</option>
+                            <option value="angular">Angular</option>
+                            <option value="css">CSS</option>
+                            <option value="design">Graphic Design</option>
+                            <option value="ember">Ember</option>
+                            <option value="html">HTML</option>
+                            <option value="ia">Information Architecture</option>
+                            <option value="javascript">Javascript</option>
+                            <option value="mech">Mechanical Engineering</option>
+                            <option value="meteor">Meteor</option>
+                            <option value="node">NodeJS</option>
+                            <option value="plumbing">Plumbing</option>
+                            <option value="python">Python</option>
+                            <option value="rails">Rails</option>
+                            <option value="react">React</option>
+                            <option value="repair">Kitchen Repair</option>
+                            <option value="ruby">Ruby</option>
+                            <option value="ui">UI Design</option>
+                            <option value="ux">User Experience</option>
+                            <option value="">Skills</option>
+                            <option value="angular">Angular</option>
+                            <option value="css">CSS</option>
+                            <option value="design">Graphic Design</option>
+                            <option value="ember">Ember</option>
+                            <option value="html">HTML</option>
+                            <option value="ia">Information Architecture</option>
+                            <option value="javascript">Javascript</option>
+                            <option value="mech">Mechanical Engineering</option>
+                            <option value="meteor">Meteor</option>
+                            <option value="node">NodeJS</option>
+                            <option value="plumbing">Plumbing</option>
+                            <option value="python">Python</option>
+                            <option value="rails">Rails</option>
+                            <option value="react">React</option>
+                            <option value="repair">Kitchen Repair</option>
+                            <option value="ruby">Ruby</option>
+                            <option value="ui">UI Design</option>
+                            <option value="ux">User Experience</option>
+                        </select>
 
                     </div>
-                    <div class="form-group">
-                        <div class="default-select" id="default-select">
-                            <select>
-                                <option value="" disabled selected hidden>Vị Trí</option>
-                                <option value="1">BMW</option>
-                                <option value="1">Farrari</option>
-                                <option value="1">Toyota</option>
-                            </select>
-                        </div>
+                    <div class="form">
+                        <select class="custom-select custom-select mb-3" style="background:none !important; background-color:white !important">
+                            <option value="" disabled selected hidden>Quận/Huyện</option>
+                            <option value="1">BMW</option>
+                            <option value="1">Farrari</option>
+                            <option value="1">Toyota</option>
+                        </select>
 
                     </div>
 
@@ -67,22 +97,22 @@
                             </div>
                         </div>
                         <div class="col-md-6 wrap-right">
-                                <div class="input-group dates-wrap">
-                                    <input id="datepicker2" class="dates form-control" id="exampleAmount" placeholder="Ngày nhận xe" type="text">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
-                                    </div>
+                            <div class="input-group dates-wrap">
+                                <input id="datepicker2" class="dates form-control" id="exampleAmount" placeholder="Ngày nhận xe" type="text">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
                                 </div>
                             </div>
+                        </div>
 
                     </div>
                     <div class="from-group">
                         <input class="form-control txt-field" type="text" name="name" placeholder="Your name">
 
                     </div>
-                    <div class="form-group row"style="padding-top:20px">
+                    <div class="form-group row" style="padding-top:20px">
                         <div class="col-md-12" style="padding-top:20px">
-                            <button  type="reset" class="btn btn-default btn-lg btn-block text-center text-uppercase">Confirm Car Booking</button>
+                            <button type="reset" class="btn btn-default btn-lg btn-block text-center text-uppercase">Confirm Car Booking</button>
                         </div>
                     </div>
                 </div>
@@ -275,5 +305,6 @@
         </div>
     </div>
 </section>
+
 <!-- End blog Area -->
 <!-- start footer Area -->
