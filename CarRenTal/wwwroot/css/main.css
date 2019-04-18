@@ -9,11 +9,16 @@
 #img-Sanpham {
     width: 350px;
     height: 250px;
+    min-width: 100%;
+}
+.img-fluid
+{
+   
 }
 ::-moz-selection {
-  /* Code for Firefox */
-  background-color: #fab700;
-  color: #fff;
+    /* Code for Firefox */
+    background-color: #fab700;
+    color: #fff;
 }
 
 ::selection {
