@@ -3,111 +3,173 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
-    <section class="banner-area relative" id="home">
-        <div class="overlay overlay-bg"></div>
+
+
+
+    <header style=" background-color:black" id="header" id="home">
         <div class="container">
-            <div class="row fullscreen d-flex align-items-center justify-content-center">
-                <div class="banner-content col-lg-7 col-md-6 ">
-                    <h6 class="text-white ">the Royal Essence of Journey</h6>
-                    <h1 class="text-white text-uppercase">
-                        Thuê xe - Tìm kiếm, So sánh và Tiết kiệm
-                    </h1>
-                    <p class="pt-20 pb-20 text-white">
-                        So sánh 900 công ty tại hơn 60,000 địa điểm Bảo đảm giá thấp nhất
-                    </p>
-                    <a href="#" class="primary-btn text-uppercase">Xem Thêm</a>
+            <div class="row align-items-center justify-content-between d-flex">
+                <div id="logo">
+                    <a href="index.html"><img src="img/logo.png" alt="" title="" /></a>
                 </div>
-                <div class="col-lg-5  col-md-6 header-right">
-                    <h4 class="text-white pb-30">TÌM XE CHO THUÊ</h4>
-                    <div class="form" role="form" autocomplete="off">
-                        <div class="form-group">
-                            <div class="default-select">
-                                <select>
-                                    <option value="" disabled selected hidden>Chọn Loại Xe</option>
-                                    <option value="1">BMW</option>
-                                    <option value="1">Farrari</option>
-                                    <option value="1">Toyota</option>
-                                </select>
-                            </div>
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li class="menu-active"><a href="index.html">Home</a></li>
+                        <li><a href="about.html" style="color:black">About</a></li>
+                        <li><a href="cars.html">Cars</a></li>
+                        <li><a href="service.html">Service</a></li>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="blog-home.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li class="menu-has-children">
+                            <a href="">Pages</a>
+                            <ul>
+                                <li><a href="blog-single.html">Blog Single</a></li>
+                                <li><a href="elements.html">Elements</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav><!-- #nav-menu-container -->
+            </div>
+        </div>
+    </header><!-- #header -->
+    <!-- start banner Area -->
+    <!-- End banner Area -->
+    <!-- Start model Area -->
+    <section class="model-area section-gap" id="cars">
+        <div class="container">
+            <div class="row d-flex justify-content-center pb-40">
+                <div class="col-md-8 pb-40 header-text">
+                    <h1 class="text-center pb-10">Choose your Desired Car Model</h1>
+                    <p class="text-center">
+                        Who are in extremely love with eco friendly system.
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div class="row align-items single-model item">
+                    <div class="col-lg-2 model-left" style="padding-top:50px">
+                        <strong style="margin-bottom:5px">Bộ lọc</strong> </br>
+                        <input type="checkbox" name="vehicle1" value="Bike" checked> I have a bike<br>
+                        <input type="checkbox" name="vehicle2" value="Car"> I have a car<br>
+                        <input type="checkbox" name="vehicle3" value="Boat"> I have a boat<br>
+                        <input type="checkbox" name="vehicle3" value="Boat"> I have a boat<br>
+                        <input type="checkbox" name="vehicle3" value="Boat"> I have a boat<br>
+                        <input type="checkbox" name="vehicle3" value="Boat"> I have a boat<br>
+                        <input type="checkbox" name="vehicle3" value="Boat"> I have a boat<br>
+                        <input type="checkbox" name="vehicle3" value="Boat"> I have a boat<br>
+                    </div>
 
-                        </div>
+                    <div class="col-lg-10 model-right">
+                        <div class="" style="border-bottom: 1px solid black; padding-top:30px">
+                            <div class="row align-items-center single-model item">
 
-                        <div class="form-group">
-                            <div class="default-select">
-                                <select>
-                                    <option value="" disabled selected hidden>Tỉnh</option>
-                                    <option value="1">BMW</option>
-                                    <option value="1">Farrari</option>
-                                    <option value="1">Toyota</option>
-                                </select>
-                            </div>
+                                <div class="col-lg-4 model-left">
+                                    <img id="img-Sanpham" class="img-fluid" src="img/car.jpg" alt="">
 
-                        </div>
-
-                        <div class="form-group">
-                            <div class="default-select" id="default-select">
-                                <select>
-                                    <option value="" disabled selected hidden>Vị Trí</option>
-                                    <option value="1">BMW</option>
-                                    <option value="1">Farrari</option>
-                                    <option value="1">Toyota</option>
-                                </select>
-                            </div>
-
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 wrap-left">
-                                <div class="input-group dates-wrap">
-                                    <input id="datepicker" class="dates form-control" id="exampleAmount" placeholder="Ngày nhận xe" type="text">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
-                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6 wrap-right">
-                                <div class="form-group row">
-                                    <div class="col-md-6 wrap-left">
-                                        <select name="puHour"><option value="0">00</option><option value="1">01</option><option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10" selected="selected">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option></select>
+                                <div class="col-lg-8 model-right">
+                                    <div class="title justify-content-between d-flex">
+                                        <h4 class="mt-20">Audi 3000 msi</h4>
+                                        <h2>$149<span>/day</span></h2>
                                     </div>
-                                    <div class="col-md-6 wrap-left">
-                                        <select name="puMinute" id="puMinute" class="time-panel__min-select minute"><option value="0" selected="selected">00</option><option value="15">15</option><option value="30">30</option><option value="45">45</option></select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-6 wrap-left">
-                                <div class="input-group dates-wrap">
-                                    <input id="datepicker" class="dates form-control" id="exampleAmount" placeholder="Ngày trả xe" type="text">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 wrap-right">
-                                <div class="form-group row">
-                                    <div class="col-md-6 wrap-left">
-                                        <select name="puHour" id="timepicker" class="time-panel__hour-select hour"><option value="0">00</option><option value="1">01</option><option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10" selected="selected">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option></select>
-                                    </div>
-                                    <div class="col-md-6 wrap-left">
-                                        <select name="puMinute" id="puMinute" class="time-panel__min-select minute"><option value="0" selected="selected">00</option><option value="15">15</option><option value="30">30</option><option value="45">45</option></select>
-                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    </p>
+                                    <p>
+                                        Capacity         : 04 Person <br>
+                                        Doors            : 04 <br>
+                                        Air Condition    : Dual Zone <br>
+                                        Transmission     : Automatic
+                                    </p>
+                                    <a class="text-uppercase primary-btn" href="#">Book This Car Now</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="from-group">
-                            <input class="form-control txt-field" type="text" name="name" placeholder="Your name">
+                        <div class="" style="border-bottom: 1px solid black; padding-top:30px">
+                            <div class="row align-items-center single-model item">
 
+                                <div class="col-lg-4 model-left">
+                                    <img id="img-Sanpham" class="img-fluid" src="img/car.jpg" alt="">
+
+                                </div>
+                                <div class="col-lg-8 model-right">
+                                    <div class="title justify-content-between d-flex">
+                                        <h4 class="mt-20">Audi 3000 msi</h4>
+                                        <h2>$149<span>/day</span></h2>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    </p>
+                                    <p>
+                                        Capacity         : 04 Person <br>
+                                        Doors            : 04 <br>
+                                        Air Condition    : Dual Zone <br>
+                                        Transmission     : Automatic
+                                    </p>
+                                    <a class="text-uppercase primary-btn" href="#">Book This Car Now</a>
+                                    <a class="text-uppercase primary-btn" href="#">Save this car</a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group row">
-                            <div class="col-md-12">
-                                <button type="reset" class="btn btn-default btn-lg btn-block text-center text-uppercase">Confirm Car Booking</button>
+                        <div class="" style="border-bottom: 1px solid black; padding-top:30px">
+                            <div class="row align-items-center single-model item">
+
+                                <div class="col-lg-4 model-left">
+                                    <img id="img-Sanpham" class="img-fluid" src="img/car.jpg" alt="">
+
+                                </div>
+                                <div class="col-lg-8 model-right">
+                                    <div class="title justify-content-between d-flex">
+                                        <h4 class="mt-20">Audi 3000 msi</h4>
+                                        <h2>$149<span>/day</span></h2>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    </p>
+                                    <p>
+                                        Capacity         : 04 Person <br>
+                                        Doors            : 04 <br>
+                                        Air Condition    : Dual Zone <br>
+                                        Transmission     : Automatic
+                                    </p>
+                                    <a class="text-uppercase primary-btn" href="#">Book This Car Now</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="" style="border-bottom: 1px solid black; padding-top:30px">
+                            <div class="row align-items-center single-model item">
+
+                                <div class="col-lg-4 model-left">
+                                    <img id="img-Sanpham" class="img-fluid" src="img/car.jpg" alt="">
+
+                                </div>
+                                <div class="col-lg-8 model-right">
+                                    <div class="title justify-content-between d-flex">
+                                        <h4 class="mt-20">Audi 3000 msi</h4>
+                                        <h2>$149<span>/day</span></h2>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    </p>
+                                    <p>
+                                        Capacity         : 04 Person <br>
+                                        Doors            : 04 <br>
+                                        Air Condition    : Dual Zone <br>
+                                        Transmission     : Automatic
+                                    </p>
+                                    <a class="text-uppercase primary-btn" href="#">Book This Car Now</a>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </section>
+
+
+
 
