@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+    <section class="banner-area relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row fullscreen d-flex align-items-center justify-content-center">
+                <div class="banner-content col-lg-7 col-md-6 ">
+                    <h6 class="text-white ">the Royal Essence of Journey</h6>
+                    <h1 class="text-white text-uppercase">
+                        Thuê xe - Tìm kiếm, So sánh và Tiết kiệm
+                    </h1>
+                    <p class="pt-20 pb-20 text-white">
+                        So sánh 900 công ty tại hơn 60,000 địa điểm Bảo đảm giá thấp nhất
+                    </p>
+                    <a href="#" class="primary-btn text-uppercase">Xem Thêm</a>
+                </div>
+                <div class="col-lg-5  col-md-6 header-right">
+                    <h4 class="text-white pb-30">TÌM XE CHO THUÊ</h4>
+                    <div class="form" role="form" autocomplete="off">
+                        <div class="form-group">
+                            <div class="default-select">
+                                <select>
+                                    <option value="" disabled selected hidden>Chọn Loại Xe</option>
+                                    <option value="1">BMW</option>
+                                    <option value="1">Farrari</option>
+                                    <option value="1">Toyota</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="default-select">
+                                <select>
+                                    <option value="" disabled selected hidden>Tỉnh</option>
+                                    <option value="1">BMW</option>
+                                    <option value="1">Farrari</option>
+                                    <option value="1">Toyota</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="default-select" id="default-select">
+                                <select>
+                                    <option value="" disabled selected hidden>Vị Trí</option>
+                                    <option value="1">BMW</option>
+                                    <option value="1">Farrari</option>
+                                    <option value="1">Toyota</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6 wrap-left">
+                                <div class="input-group dates-wrap">
+                                    <input id="datepicker" class="dates form-control" id="exampleAmount" placeholder="Ngày nhận xe" type="text">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 wrap-right">
+                                <div class="form-group row">
+                                    <div class="col-md-6 wrap-left">
+                                        <select name="puHour"><option value="0">00</option><option value="1">01</option><option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10" selected="selected">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option></select>
+                                    </div>
+                                    <div class="col-md-6 wrap-left">
+                                        <select name="puMinute" id="puMinute" class="time-panel__min-select minute"><option value="0" selected="selected">00</option><option value="15">15</option><option value="30">30</option><option value="45">45</option></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6 wrap-left">
+                                <div class="input-group dates-wrap">
+                                    <input id="datepicker" class="dates form-control" id="exampleAmount" placeholder="Ngày trả xe" type="text">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 wrap-right">
+                                <div class="form-group row">
+                                    <div class="col-md-6 wrap-left">
+                                        <select name="puHour" id="timepicker" class="time-panel__hour-select hour"><option value="0">00</option><option value="1">01</option><option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10" selected="selected">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option></select>
+                                    </div>
+                                    <div class="col-md-6 wrap-left">
+                                        <select name="puMinute" id="puMinute" class="time-panel__min-select minute"><option value="0" selected="selected">00</option><option value="15">15</option><option value="30">30</option><option value="45">45</option></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="from-group">
+                            <input class="form-control txt-field" type="text" name="name" placeholder="Your name">
+
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <button type="reset" class="btn btn-default btn-lg btn-block text-center text-uppercase">Confirm Car Booking</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+

@@ -1,0 +1,397 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<script>
+    $(function() {
+  // Dropdown toggle
+  $('.dropdown-toggle').click(function() {
+    $(this).next('.dropdown').toggle(function() {
+      $('.dropdown').stop().animate({
+        top: '100%'
+      }, 'slow');
+    });
+  });
+
+  $(document).click(function(e) {
+    var target = e.target;
+    if (!$(target).is('.dropdown-toggle') && !$(target).parents().is('.dropdown-toggle')) {
+      $('.dropdown').toggle(function() {
+      $('.dropdown').stop().animate({
+        top: '-100px'
+      }, 'slow');
+    });
+    }
+  });
+});
+</script>
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row fullscreen d-flex align-items-center justify-content-center">
+            <div class="banner-content col-lg-7 col-md-6 ">
+                <h6 class="text-white ">the Royal Essence of Journey</h6>
+                <h1 class="text-white text-uppercase">
+                    Thuê xe - Tìm kiếm, So sánh và Tiết kiệm
+                </h1>
+                <p class="pt-20 pb-20 text-white">
+                    So sánh 900 công ty tại hơn 60,000 địa điểm Bảo đảm giá thấp nhất
+                </p>
+                <a href="#" class="primary-btn text-uppercase">Xem Thêm</a>
+            </div>
+            <div class="col-lg-5  col-md-6 header-right">
+                <h4 class="text-white pb-30">TÌM XE CHO THUÊ</h4>
+                <div class="form" role="form" autocomplete="off">
+                    <div class="form-group">
+                        <div class="default-select">
+                            <select>
+                                <option value="" disabled selected hidden>Chọn Loại Xe</option>
+                                <option value="1">BMW</option>
+                                <option value="1">Farrari</option>
+                                <option value="1">Toyota</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="default-select">
+                            <select>
+                                <option value="" disabled selected hidden>Tỉnh</option>
+                                <option value="1">BMW</option>
+                                <option value="1">Farrari</option>
+                                <option value="1">Toyota</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="default-select" id="default-select">
+                            <select>
+                                <option value="" disabled selected hidden>Vị Trí</option>
+                                <option value="1">BMW</option>
+                                <option value="1">Farrari</option>
+                                <option value="1">Toyota</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-6 wrap-left">
+                            <div class="input-group dates-wrap">
+                                <input id="datepicker" class="dates form-control" id="exampleAmount" placeholder="Ngày nhận xe" type="text">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 wrap-right">
+                            <div class="form-group row">
+                                <div class="col-md-6 wrap-left">
+                                    <select name="puHour"><option value="0">00</option><option value="1">01</option><option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10" selected="selected">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option></select>
+                                </div>
+                                <div class="col-md-6 wrap-left">
+                                    <select name="puMinute" id="puMinute" class="time-panel__min-select minute"><option value="0" selected="selected">00</option><option value="15">15</option><option value="30">30</option><option value="45">45</option></select>                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6 wrap-left">
+                            <div class="input-group dates-wrap">
+                                <input id="datepicker" class="dates form-control" id="exampleAmount" placeholder="Ngày trả xe" type="text">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 wrap-right">
+                            <div class="form-group row">
+                                <div class="col-md-6 wrap-left">
+                                    <select name="puHour" id="timepicker" class="time-panel__hour-select hour"><option value="0">00</option><option value="1">01</option><option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10" selected="selected">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option></select>
+                                </div>
+                                <div class="col-md-6 wrap-left">
+                                    <select name="puMinute" id="puMinute" class="time-panel__min-select minute"><option value="0" selected="selected">00</option><option value="15">15</option><option value="30">30</option><option value="45">45</option></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="from-group">
+                        <input class="form-control txt-field" type="text" name="name" placeholder="Your name">
+
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <button type="reset" class="btn btn-default btn-lg btn-block text-center text-uppercase">Confirm Car Booking</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start feature Area -->
+<section class="feature-area section-gap" id="service">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8 pb-40 header-text">
+                <h1>What Services we offer to our clients</h1>
+                <p>
+                    Who are in extremely love with eco friendly system.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-user"></span>8 triệu đăng ký mỗi năm          </h4>
+                    <br />
+                    <p>
+                        Mỗi ngày, hàng nghìn người tin tưởng chúng tôi để tìm cho họ chiếc xe thuê hoàn hảo với mức giá tốt nhất.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-license"></span>Dịch vụ cho thuê xe trực tuyến uy tính</h4>
+                    <p>
+                        Làm việc với hơn 900 công ty ở 160 quốc gia, chúng tôi có thể tìm chiếc xe phù hợp ở địa điểm phù hợp, với mức giá phù hợp.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-phone"></span>Quản lý đăng ký trực tuyến</h4>
+                    <br />
+                    <br />
+                    <p>
+                        Dễ dàng thay đổi đăng ký của bạn qua mạng
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-rocket"></span>Được hơn 3.5 triệu người đánh giá</h4>
+                    <p>
+                        Chúng tôi đề nghị từng khách hàng đánh giá công ty cung cấp xe. Kiểm tra điểm số - và có lựa chọn đúng.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-diamond"></span>Highly Recomended</h4>
+                    <br />
+                    <p>
+
+                        Việc sử dụng Internet đang trở nên phổ biến hơn do sự tiến bộ nhanh chóng của công nghệ và sức mạnh.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single-feature">
+                    <h4><span class="lnr lnr-bubble"></span>Rất được khách hàng của chúng tôi khuyến nghị</h4>
+                    <p>
+                        Chúng tôi được xếp loại 7.4 trong số 10 trên TRUSTPILOT dựa vào 92,028 đánh giá.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End feature Area -->
+<!-- Start home-about Area -->
+<!-- End home-about Area -->
+<!-- Start model Area -->
+
+<!-- End model Area -->
+<!-- Start fact Area -->
+<!-- end fact Area -->
+<!-- Start reviews Area -->
+<!-- End reviews Area -->
+<!-- Start callaction Area -->
+<section class="callaction-area relative section-gap">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h1 class="text-white">Experience Great Support</h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+                </p>
+                <a class="callaction-btn text-uppercase" href="#">Reach Our Support Team</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End callaction Area -->
+<!-- Start blog Area -->
+<section class="blog-area section-gap" id="blog">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-70 col-lg-8">
+                <div class="title text-center">
+                    <h1 class="mb-10">Latest From Our Blog</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 single-blog">
+                <div class="thumb">
+                    <img class="img-fluid" src="img/b1.jpg" alt="">
+                </div>
+                <p class="date">10 Jan 2018</p>
+                <a href="blog-single.html">
+                    <h4>
+                        Addiction When Gambling
+                        Becomes A Problem
+                    </h4>
+                </a>
+                <p>
+                    inappropriate behavior ipsum dolor sit amet, consectetur.
+                </p>
+                <div class="meta-bottom d-flex justify-content-between">
+                    <p><span class="lnr lnr-heart"></span> 15 Likes</p>
+                    <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 single-blog">
+                <div class="thumb">
+                    <img class="img-fluid" src="img/b2.jpg" alt="">
+                </div>
+                <p class="date">10 Jan 2018</p>
+                <a href="blog-single.html">
+                    <h4>
+                        Addiction When Gambling
+                        Becomes A Problem
+                    </h4>
+                </a>
+                <p>
+                    inappropriate behavior ipsum dolor sit amet, consectetur.
+                </p>
+                <div class="meta-bottom d-flex justify-content-between">
+                    <p><span class="lnr lnr-heart"></span> 15 Likes</p>
+                    <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 single-blog">
+                <div class="thumb">
+                    <img class="img-fluid" src="img/b3.jpg" alt="">
+                </div>
+                <p class="date">10 Jan 2018</p>
+                <a href="blog-single.html">
+                    <h4>
+                        Addiction When Gambling
+                        Becomes A Problem
+                    </h4>
+                </a>
+                <p>
+                    inappropriate behavior ipsum dolor sit amet, consectetur.
+                </p>
+                <div class="meta-bottom d-flex justify-content-between">
+                    <p><span class="lnr lnr-heart"></span> 15 Likes</p>
+                    <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 single-blog">
+                <div class="thumb">
+                    <img class="img-fluid" src="img/b4.jpg" alt="">
+                </div>
+                <p class="date">10 Jan 2018</p>
+                <a href="blog-single.html">
+                    <h4>
+                        Addiction When Gambling
+                        Becomes A Problem
+                    </h4>
+                </a>
+                <p>
+                    inappropriate behavior ipsum dolor sit amet, consectetur.
+                </p>
+                <div class="meta-bottom d-flex justify-content-between">
+                    <p><span class="lnr lnr-heart"></span> 15 Likes</p>
+                    <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End blog Area -->
+<!-- start footer Area -->
+<footer class="footer-area section-gap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 col-md-6 col-sm-6">
+                <div class="single-footer-widget">
+                    <h6>Quick links</h6>
+                    <ul>
+                        <li><a href="#">Jobs</a></li>
+                        <li><a href="#">Brand Assets</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-6">
+                <div class="single-footer-widget">
+                    <h6>Features</h6>
+                    <ul>
+                        <li><a href="#">Jobs</a></li>
+                        <li><a href="#">Brand Assets</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-6">
+                <div class="single-footer-widget">
+                    <h6>Resources</h6>
+                    <ul>
+                        <li><a href="#">Jobs</a></li>
+                        <li><a href="#">Brand Assets</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
+                <div class="single-footer-widget">
+                    <h6>Follow Us</h6>
+                    <p>Let us be social</p>
+                    <div class="footer-social d-flex align-items-center">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-dribbble"></i></a>
+                        <a href="#"><i class="fa fa-behance"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4  col-md-6 col-sm-6">
+                <div class="single-footer-widget">
+                    <h6>Newsletter</h6>
+                    <p>Stay update with our latest</p>
+                    <div class="" id="mc_embed_signup">
+                        <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
+                            <input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email">
+                            <button class="click-btn btn btn-default"><span class="lnr lnr-arrow-right"></span></button>
+                            <div style="position: absolute; left: -5000px;">
+                                <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                            </div>
+
+                            <div class="info"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-50 mx-auto footer-text col-lg-12">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+        </div>
+    </div>
+</footer>
