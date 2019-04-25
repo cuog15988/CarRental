@@ -24,10 +24,12 @@ namespace CarRenTal.Models
         public virtual DbSet<HinhThucThanhToan> HinhThucThanhToan { get; set; }
         public virtual DbSet<HomThuLienHe> HomThuLienHe { get; set; }
         public virtual DbSet<HopThu> HopThu { get; set; }
+        public virtual DbSet<Huyen> Huyen { get; set; }
         public virtual DbSet<LienHe> LienHe { get; set; }
         public virtual DbSet<LoaiXe> LoaiXe { get; set; }
         public virtual DbSet<PhuongThucThanhToan> PhuongThucThanhToan { get; set; }
         public virtual DbSet<TenXe> TenXe { get; set; }
+        public virtual DbSet<Tinh> Tinh { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Xe> Xe { get; set; }
 
@@ -173,9 +175,14 @@ namespace CarRenTal.Models
             {
                 entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.Property(e => e.Email)
+                    .HasColumnName("email")
+                    .HasMaxLength(300)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.NgayGui).HasColumnType("datetime");
 
-                entity.Property(e => e.TieuDe).HasMaxLength(3000);
+                entity.Property(e => e.NguoiGui).HasMaxLength(51);
             });
 
             modelBuilder.Entity<HopThu>(entity =>
@@ -192,6 +199,18 @@ namespace CarRenTal.Models
                     .WithMany(p => p.HopThu)
                     .HasForeignKey(d => d.MaUs)
                     .HasConstraintName("FK_Mail_Users");
+            });
+
+            modelBuilder.Entity<Huyen>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.TenHuyen).HasMaxLength(100);
+
+                entity.HasOne(d => d.MaTinhNavigation)
+                    .WithMany(p => p.Huyen)
+                    .HasForeignKey(d => d.MaTinh)
+                    .HasConstraintName("Tinh_Huyen");
             });
 
             modelBuilder.Entity<LienHe>(entity =>
@@ -237,6 +256,18 @@ namespace CarRenTal.Models
                     .HasConstraintName("FK_TenXe_hangXe");
             });
 
+            modelBuilder.Entity<Tinh>(entity =>
+            {
+                entity.HasKey(e => e.Ma)
+                    .HasName("PK__Tinh__3213C8B711E58E41");
+
+                entity.Property(e => e.Ma)
+                    .HasColumnName("ma")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.TenTinh).HasMaxLength(100);
+            });
+
             modelBuilder.Entity<Users>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -264,7 +295,33 @@ namespace CarRenTal.Models
             {
                 entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.Property(e => e.Doi)
+                    .HasColumnName("doi")
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Gia).HasColumnName("gia");
+
+                entity.Property(e => e.Hinh)
+                    .HasColumnName("hinh")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Huyen).HasMaxLength(100);
+
+                entity.Property(e => e.Mota).HasColumnName("mota");
+
                 entity.Property(e => e.NgayNhap).HasColumnType("datetime");
+
+                entity.Property(e => e.TenHang).HasMaxLength(300);
+
+                entity.Property(e => e.TenLoai).HasMaxLength(300);
+
+                entity.Property(e => e.TenNguoiDang).HasMaxLength(100);
+
+                entity.Property(e => e.Tenxe)
+                    .HasColumnName("tenxe")
+                    .HasMaxLength(300);
+
+                entity.Property(e => e.Tinh).HasMaxLength(100);
 
                 entity.HasOne(d => d.MaNguoiDangNavigation)
                     .WithMany(p => p.Xe)

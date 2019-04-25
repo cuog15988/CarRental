@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CarRenTal.EF
+namespace CarRenTal.Models
 {
     public partial class Tinh
     {
@@ -10,7 +10,7 @@ namespace CarRenTal.EF
             Huyen = new HashSet<Huyen>();
         }
 
-        public string Ma { get; set; }
+        public int Ma { get; set; }
         public string TenTinh { get; set; }
 
         public virtual ICollection<Huyen> Huyen { get; set; }

@@ -9,23 +9,23 @@ using CarRenTal.Models;
 
 namespace CarRenTal.Controllers
 {
-    public class HangXeController : Controller
+    public class XesController : Controller
     {
         private readonly RentalCarContext _context;
 
-        public HangXeController(RentalCarContext context)
+        public XesController(RentalCarContext context)
         {
             _context = context;
         }
 
-        // GET: HangXe
+        // GET: Xes
         public async Task<IActionResult> Index()
         {
-            var rentalCarContext = _context.HangXe.Include(h => h.MaLoaiXeNavigation);
+            var rentalCarContext = _context.Xe.Include(x => x.MaNguoiDangNavigation).Include(x => x.MaTenXeNavigation);
             return View(await rentalCarContext.ToListAsync());
         }
 
-        // GET: HangXe/Details/5
+        // GET: Xes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,42 +33,45 @@ namespace CarRenTal.Controllers
                 return NotFound();
             }
 
-            var hangXe = await _context.HangXe
-                .Include(h => h.MaLoaiXeNavigation)
+            var xe = await _context.Xe
+                .Include(x => x.MaNguoiDangNavigation)
+                .Include(x => x.MaTenXeNavigation)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (hangXe == null)
+            if (xe == null)
             {
                 return NotFound();
             }
 
-            return View(hangXe);
+            return View(xe);
         }
 
-        // GET: HangXe/Create
+        // GET: Xes/Create
         public IActionResult Create()
         {
-            ViewData["MaLoaiXe"] = new SelectList(_context.LoaiXe, "Id", "MaLoai");
+            ViewData["MaNguoiDang"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["MaTenXe"] = new SelectList(_context.TenXe, "Id", "Id");
             return View();
         }
 
-        // POST: HangXe/Create
+        // POST: Xes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TenHang,MaLoaiXe")] HangXe hangXe)
+        public async Task<IActionResult> Create([Bind("Id,MaTenXe,NgayNhap,MaNguoiDang,Tinh,Huyen")] Xe xe)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(hangXe);
+                _context.Add(xe);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MaLoaiXe"] = new SelectList(_context.LoaiXe, "Id", "Id", hangXe.MaLoaiXe);
-            return View(hangXe);
+            ViewData["MaNguoiDang"] = new SelectList(_context.Users, "Id", "Id", xe.MaNguoiDang);
+            ViewData["MaTenXe"] = new SelectList(_context.TenXe, "Id", "Id", xe.MaTenXe);
+            return View(xe);
         }
 
-        // GET: HangXe/Edit/5
+        // GET: Xes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -76,23 +79,24 @@ namespace CarRenTal.Controllers
                 return NotFound();
             }
 
-            var hangXe = await _context.HangXe.FindAsync(id);
-            if (hangXe == null)
+            var xe = await _context.Xe.FindAsync(id);
+            if (xe == null)
             {
                 return NotFound();
             }
-            ViewData["MaLoaiXe"] = new SelectList(_context.LoaiXe, "Id", "Id", hangXe.MaLoaiXe);
-            return View(hangXe);
+            ViewData["MaNguoiDang"] = new SelectList(_context.Users, "Id", "Id", xe.MaNguoiDang);
+            ViewData["MaTenXe"] = new SelectList(_context.TenXe, "Id", "Id", xe.MaTenXe);
+            return View(xe);
         }
 
-        // POST: HangXe/Edit/5
+        // POST: Xes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,TenHang,MaLoaiXe")] HangXe hangXe)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,MaTenXe,NgayNhap,MaNguoiDang,Tinh,Huyen")] Xe xe)
         {
-            if (id != hangXe.Id)
+            if (id != xe.Id)
             {
                 return NotFound();
             }
@@ -101,12 +105,12 @@ namespace CarRenTal.Controllers
             {
                 try
                 {
-                    _context.Update(hangXe);
+                    _context.Update(xe);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!HangXeExists(hangXe.Id))
+                    if (!XeExists(xe.Id))
                     {
                         return NotFound();
                     }
@@ -117,11 +121,12 @@ namespace CarRenTal.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MaLoaiXe"] = new SelectList(_context.LoaiXe, "Id", "Id", hangXe.MaLoaiXe);
-            return View(hangXe);
+            ViewData["MaNguoiDang"] = new SelectList(_context.Users, "Id", "Id", xe.MaNguoiDang);
+            ViewData["MaTenXe"] = new SelectList(_context.TenXe, "Id", "Id", xe.MaTenXe);
+            return View(xe);
         }
 
-        // GET: HangXe/Delete/5
+        // GET: Xes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -129,31 +134,32 @@ namespace CarRenTal.Controllers
                 return NotFound();
             }
 
-            var hangXe = await _context.HangXe
-                .Include(h => h.MaLoaiXeNavigation)
+            var xe = await _context.Xe
+                .Include(x => x.MaNguoiDangNavigation)
+                .Include(x => x.MaTenXeNavigation)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (hangXe == null)
+            if (xe == null)
             {
                 return NotFound();
             }
 
-            return View(hangXe);
+            return View(xe);
         }
 
-        // POST: HangXe/Delete/5
+        // POST: Xes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var hangXe = await _context.HangXe.FindAsync(id);
-            _context.HangXe.Remove(hangXe);
+            var xe = await _context.Xe.FindAsync(id);
+            _context.Xe.Remove(xe);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool HangXeExists(int id)
+        private bool XeExists(int id)
         {
-            return _context.HangXe.Any(e => e.Id == id);
+            return _context.Xe.Any(e => e.Id == id);
         }
     }
 }

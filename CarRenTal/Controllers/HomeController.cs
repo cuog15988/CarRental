@@ -1,19 +1,83 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using CarRenTal.Models;
+using System.Diagnostics;
+using CarRenTal.wwwroot.DAO;
 
 namespace CarRenTal.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly RentalCarContext _context;
+
+        public HomeController(RentalCarContext context)
+        {
+            _context = context;
+        }
+        [HttpGet]
         public IActionResult Index()
         {
+            ViewData["MaLoaiXe"] = new SelectList(_context.LoaiXe, "Id", "TenLoai");
+            ViewBag.Tinh = _context.Tinh.ToList();
             return View();
         }
+       
+        public JsonResult getHuyenbyID (int id)
+        {
+            var citylist = new SelectList(_context.Huyen.Where(c => c.MaTinh == id), "Id", "TenHuyen");
+            return Json(citylist);
+
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Index([Bind("TenLoai,Tinh,Huyen")] Xe hangXe)
+        {
+            if (ModelState.IsValid)
+            {
+                Seacrch.Huyen = hangXe.Huyen;
+                Seacrch.Tinh = hangXe.Tinh;
+                Seacrch.LoaiXe = hangXe.TenLoai;
+                if (string.IsNullOrEmpty(hangXe.TenLoai))
+                {
+                    ViewData["Loi1"] = "Không được để trống mục này";
+                }
+                else
+                  if (string.IsNullOrEmpty(hangXe.Tinh))
+                {
+                    ViewData["loi2"] = "Không được để trống số điện thoại!";
+                }
+                else
+                     if (string.IsNullOrEmpty(hangXe.Huyen))
+                {
+                    ViewData["Loi3"] = "Không được để trống mục này";
+                }
+                else
+                {
+                    return RedirectToAction("index", "DichVu");
+                }
+            }
+            return this.View();
+        }
+
+
+
+        public JsonResult GetStateList(int CountryId)
+        {
+            List<Huyen> StateList = _context.Huyen.Where(x => x.MaTinh == CountryId).ToList();
+            return Json(StateList);
+
+        }
+
+
+
+
+
+
 
         public IActionResult Privacy()
         {
@@ -25,5 +89,7 @@ namespace CarRenTal.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
     }
 }
