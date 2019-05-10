@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CarRenTal.Models
+namespace CarRenTal.EF
 {
     public partial class Xe
     {

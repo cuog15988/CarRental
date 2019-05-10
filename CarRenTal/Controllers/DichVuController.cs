@@ -68,5 +68,7 @@ namespace CarRenTal.Controllers
             var tinh = _context.Tinh.Where(x => x.Ma == Convert.ToInt32(Seacrch.Tinh)).FirstOrDefault();
             return PartialView();
         }
+
+        
     }
 }

@@ -4,8 +4,10 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
-
-
+@section top
+{
+    <link href="~/css/admin-2.css" rel="stylesheet" />
+}
 
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3&appId=272023073698062&autoLogAppEvents=1"></script>
@@ -26,7 +28,7 @@
                                     <input type="text" class="form-control form-control-user" name="TenDN" aria-describedby="Email" placeholder="Email hoặc số điện thoại..." required="">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-user" name="Matkhau" placeholder="Mật khẩu"  required="">
+                                    <input type="password" class="form-control form-control-user" name="Matkhau" placeholder="Mật khẩu" required="">
                                 </div>
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox small">
@@ -43,7 +45,8 @@
                                     <i class="fab fa-google fa-fw"></i> Đăng Nhập Bằng Google
                                 </a>
                                 <a href="#" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Đăng Nhập Bằng Facebook</a>
+                                    <i class="fab fa-facebook-f fa-fw"></i> Đăng Nhập Bằng Facebook
+                                </a>
                             </form>
 
                             <hr>
