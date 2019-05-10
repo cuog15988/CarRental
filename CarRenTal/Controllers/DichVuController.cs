@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using CarRenTal.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using CarRenTal.Migrations;
 using CarRenTal.wwwroot.DAO;
+using Syncfusion.EJ2.Navigations;
 
 namespace CarRenTal.Controllers
 {
@@ -38,8 +38,8 @@ namespace CarRenTal.Controllers
             else
                 return View("error");
         }
-
-     public async Task<IActionResult> Detail(int? id, string s)
+        //chi tiết xe
+     public async Task<IActionResult> Detail(int? id)
         {
             if (id == null)
             {
@@ -54,10 +54,17 @@ namespace CarRenTal.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.headerTextOne = new TabHeader { Text = "Twitter", IconCss = "e-twitter" };
+            ViewBag.headerTextTwo = new TabHeader { Text = "Facebook", IconCss = "e-facebook" };
+            ViewBag.headerTextThree = new TabHeader { Text = "Whatsapp", IconCss = "e-whatsapp" };
             return View(xe);
+
+
+
+            //return View(xe);
         }
 
+        //load ds sắp xếp
         public PartialViewResult SXTenXe()
         {
             return PartialView();
