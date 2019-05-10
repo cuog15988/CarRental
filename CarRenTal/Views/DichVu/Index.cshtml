@@ -4,8 +4,9 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
+@{ 
 
-
+}
 <!-- Start model Area -->
 <section class="model-area section-gap" id="cars">
     <div class="container">
@@ -21,14 +22,18 @@
             <div class="row align-items single-model item">
 
                 <div class="col-lg-2 model-left" style="padding-top:50px">
-                    <h4 class="mt-20">Sắp xếp</h4> <br />
+                    <h4 class="mt-20">Hãng xe</h4> <br />
                     <!-- Material unchecked -->
                     <div>
+                            @Html.Partial("SXTenXe", null)
+                      
                     </div>
                     <h4 class="mt-20">Sắp xếp</h4> <br />
                     <!-- Material unchecked -->
                     <div>
                     </div>
+                  
+                        @Html.Partial("SXTinh", null)
 
 
                     <h4 class="mt-20">Sắp xếp</h4> <br />

@@ -39,16 +39,34 @@ namespace CarRenTal.Controllers
                 return View("error");
         }
 
+     public async Task<IActionResult> Detail(int? id, string s)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var xe = await _context.Xe
+                .Include(x => x.MaNguoiDangNavigation)
+                .Include(x => x.MaTenXeNavigation)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (xe == null)
+            {
+                return NotFound();
+            }
+
+            return View(xe);
+        }
+
         public PartialViewResult SXTenXe()
         {
-            var result = _context.HangXe.Where(x => x.MaLoaiXe == Convert.ToInt32(Seacrch.LoaiXe)).ToList();
-            return PartialView(result);
+            return PartialView();
         }
 
         public PartialViewResult SXTinh()
         {
-            var result = _context.Huyen.Where(x => x.MaTinh == Convert.ToInt32(Seacrch.Tinh)).ToList();
-            return PartialView(result);
+            var tinh = _context.Tinh.Where(x => x.Ma == Convert.ToInt32(Seacrch.Tinh)).FirstOrDefault();
+            return PartialView();
         }
     }
 }

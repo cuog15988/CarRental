@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace CarRenTal.Models
+namespace CarRenTal.EF
 {
     public partial class RentalCarContext : DbContext
     {
@@ -274,6 +274,10 @@ namespace CarRenTal.Models
 
                 entity.Property(e => e.DiaChi).HasMaxLength(301);
 
+                entity.Property(e => e.Email)
+                    .HasMaxLength(300)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Gioitinh).HasColumnName("gioitinh");
 
                 entity.Property(e => e.GroudId).HasColumnName("GroudID");
@@ -306,6 +310,8 @@ namespace CarRenTal.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Huyen).HasMaxLength(100);
+
+                entity.Property(e => e.LoaiXe).HasMaxLength(300);
 
                 entity.Property(e => e.Mota).HasColumnName("mota");
 
