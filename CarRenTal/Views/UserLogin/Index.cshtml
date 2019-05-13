@@ -1,5 +1,4 @@
-﻿@model CarRenTal.Models.Users
-
+﻿@model CarRenTal.UserLoginModel
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
@@ -12,7 +11,7 @@
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3&appId=272023073698062&autoLogAppEvents=1"></script>
 
-<div class="container">
+<div class="container" style="padding-top:60px">
     <div class="card o-hidden border-0 shadow-lg my-5">
         <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
@@ -23,32 +22,36 @@
                         <div class="text-center">
 
                             <h1 class="h4 text-gray-900 mb-4" style="text-align:center">Đăng nhập</h1>
-                            <form class="user">
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" name="TenDN" aria-describedby="Email" placeholder="Email hoặc số điện thoại..." required="">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control form-control-user" name="Matkhau" placeholder="Mật khẩu" required="">
-                                </div>
-                                <div class="form-group">
-                                    <div class="custom-control custom-checkbox small">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                                        <label class="custom-control-label" for="customCheck">
-                                            Ghi Nhớ Đăng Nhập
-                                        </label>
+                            @using (Html.BeginForm("Login", "UserLogin", FormMethod.Post))
+                            {
+                                @Html.ValidationSummary(false, "", new { @class = "text-danger" });
+                                <div class="user">
+                                    <div class="form-group">
+                                        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @autofocus = "autofocus" ,@placeholder="Email hoặc số điện thoại..." ,@required="",@describedby="Email"})
+
                                     </div>
+                                    <div class="form-group">
+                                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Nhập mật khẩu." })
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox small">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck">
+                                            <label class="custom-control-label" for="customCheck">
+                                                Ghi Nhớ Đăng Nhập
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-primary btn-user btn-block" type="submit">Đăng Nhập</button>
+                                    <hr>
+                                    <a href="#" class="btn btn-google btn-user btn-block">
+                                        <i class="fab fa-google fa-fw"></i> Đăng Nhập Bằng Google
+                                    </a>
+                                    <a href="#" class="btn btn-facebook btn-user btn-block">
+                                        <i class="fab fa-facebook-f fa-fw"></i> Đăng Nhập Bằng Facebook
+                                    </a>
                                 </div>
-
-                                <button class="btn btn-primary btn-user btn-block" type="submit">Đăng Nhập</button>
-                                <hr>
-                                <a href="#" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Đăng Nhập Bằng Google
-                                </a>
-                                <a href="#" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Đăng Nhập Bằng Facebook
-                                </a>
-                            </form>
-
+                            }
                             <hr>
                             <div class="text-center">
                                 <a class="small" href="#">Quên mật khẩu?</a>

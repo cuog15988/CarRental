@@ -4,11 +4,7 @@
     Layout = "~/Views/Shared/_UserLayout.cshtml";
     var contentOne = "#Thongtin";
 
-    var contentTwo = "Facebook is an online social networking service headquartered in Menlo Park, California. Its website was" +
-                "launched on February 4, 2004, by Mark Zuckerberg with his Harvard College roommates and fellow students Eduardo" +
-                "Saverin, Andrew McCollum, Dustin Moskovitz and Chris Hughes.The founders had initially limited the websites" +
-                "membership to Harvard students, but later expanded it to colleges in the Boston area, the Ivy League, and Stanford" +
-                "University.It gradually added support for students at various other universities and later to high - school students.";
+    var contentTwo = "#Thongtinquantrong";
 
     var contentThree = "WhatsApp Messenger is a proprietary cross-platform instant messaging client for smartphones that operates" +
             "under a subscription business model.It uses the Internet to send text messages, images, video, user location and" +
@@ -17,54 +13,176 @@
             "Mountain View, California, was acquired by Facebook Inc.on February 19, 2014, for approximately US$19.3 billion.";
 }
 
+
+
 @section Scripts{
 
-    <div class="" style="border-bottom: 1px solid black; padding-top:30px">
-       
 
-        <div id="Thongtin">
-            <div class="row align-items-center single-model item">
-                <div class="col-lg-3 model-left">
-                    <img id="img-Sanpham" class="img-fluid" src="/img/b1.jpg" alt="" style="min-width:100%" />
-                </div>
-                <div class="col-lg-6 model-right">
-                    <div class="title justify-content-between d-flex">
-                        <h4 class="mt-20">@Model.Tenxe</h4>
-                        <h2>@Model.Gia VNĐ<span>/day</span></h2>
-                    </div>
-                    <p>
-                        @Model.Mota
-                    </p>
-                    <p>
-                        hãng xe          : @Model.TenHang <br>
-                        Ngày đăng        : @Model.NgayNhap <br>
-                        Người đăng       : @Model.TenNguoiDang <br>
-                        Giá thuê         : @Model.Gia <br>
-                    </p>
+    @* tab thông tin sản phẩm *@
+    <div id="Thongtin" class="container">
 
+        <br />
+        <div class="row align-items-center single-model item">
+            <div class="col-lg-4 model-left" style="border-right:solid 1px;border-color:#ccc">
+                <h5 class="mt-20">@Model.Tenxe</h5>
+
+                <img id="img-Sanpham" class="img-fluid" src="/img/b1.jpg" alt="" style="min-width:100%" />
+
+                <div class="ab-CarDetails_ImageArea_PoliciesCta ab-CarDetails_AdditionalInfo">
+                    <img src="https://cdn2.rcstatic.com/images/site_graphics/newsite/information-sml.gif" alt="">
+                    <a href="javascript:void(0);" class="supplier-policy-btn" data-name="IIPCarTile">Những thông tin chính của việc thuê xe của bạn</a>
                 </div>
-               </div>
+            </div>
+            <div class="col-lg-7 model-right">
+                <div class="title justify-content-between d-flex">
+                    <h2>@Model.Gia VNĐ<span>/day</span></h2>
+                </div>
+                <p>
+                    @Model.Mota
+                </p>
+                <p>
+                    hãng xe          : @Model.TenHang <br>
+                    Ngày đăng        : @Model.NgayNhap <br>
+                    Người đăng       : @Model.TenNguoiDang <br>
+                    Giá thuê         : @Model.Gia <br>
+                </p>
+
             </div>
         </div>
+    </div>
+    @* Tab thông tin quan trọng *@
+    <div id="Thongtinquantrong" style="display:none">
+        <div class="box">
+            <br />
+            <div class="table-wrap">
+                <table class="border-bottom-0">
+                    <thead></thead>
+                    <tbody>
+                        <tr>
+                            <td class="title">Phụ Phí</td>
+                            <td>
+                                Chiếc xe có phụ phí hư hỏng là £ 1,000.00  bao gồm thuế.<br>
+                                Chiếc xe có phụ phí trộm cắp là £ 1,000.00  bao gồm thuế.<br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title">Đặt cọc tại quầy thanh toán</td>
+                            <td>
+                                Công ty cho thuê xe sẽ yêu cầu khoản tiền đặt cọc bảo đảm là £ 200.00  khi bạn nhận xe. Tiền đặt cọc sẽ được trả lại sau khi thuê xong, với điều kiện là tất cả các điều khoản đều đã được đáp ứng.<br>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="title">Số dặm / ki-lô-mét</td>
+                            <td>
+                                Thuê xe của bạn bao gồm số kilômét không giới hạn miễn phí.<br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title">Yêu cầu về tuổi</td>
+                            <td>
+                                Giới hạn tuổi tối thiểu cho chiếc xe này là 25.<br>
+                                Phí và những hạn chế liên quan đến tuổi của công ty cho thuê xe sẽ áp dụng cho tất cả các lái xe bổ sung.<br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title">Những yêu cầu cho việc lấy xe</td>
+                            <td>
+                                Cần hai hình thức nhận dạng và có thể là: sao kê ngân hàng, hóa đơn thanh toán tiện ích, sao kê thẻ tín dụng, hoặc một bức thư chính thức khác trong đó nêu địa chỉ nhà, gửi đến địa chỉ hiện tại của khách hàng trong khoảng thời gian 3 tháng qua.<br>
+                                Cần phải có hộ chiếu<br>
+                                Một bằng lái xe quốc tế phải CHỈ được phát hành từ các quốc gia trong danh sách theo Công ước về Giao thông Đường bộ, Geneva 1949. Không cần có một bằng lái xe quốc tế khác.<br>
+                                Cần một bằng lái xe quốc tế nếu bằng lái xe được in bằng chữ cái không phải chữ Roman.<br>
+                                Cần một bằng lái xe quốc tế đối với những lái xe ở ngoài Liên minh Châu Âu.<br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title">Qua biên giới</td>
+                            <td>
+                                Hãy lưu ý rằng bạn không được phép đi vượt qua biên giới với công ty cho thuê xe này.<br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="title">Các phương tiện thanh toán</td>
+                            <td>
+                                <h3>Thẻ tín dụng</h3>
+                                Người lái xe chính phải có một thẻ tín dụng mang đúng tên của người đó khi lấy xe. Thẻ thanh toán phải có đủ tiền để trang trải phụ phí / tiền đặt cọc (mà sẽ được phong tỏa trên thẻ trong thời gian thuê xe). Thẻ cũng sẽ cần để thanh toán các khoản phí địa phương, các thiết bị bổ sung và bất kỳ thứ gì mua thêm tại quầy thuê xe.<br>
+                                Công ty này không thể chấp nhận thẻ trả trước, thẻ nạp tiền hoặc thẻ tín dụng ảo hoặc bất kỳ loại thẻ nào mà các ký tự liên quan không được làm nổi (‘rập nổi’).<br>
+                                <img src="https://cdn2.rcstatic.com/images/site_graphics/newsite/cards/dark/64/american_express.png" class="payment-type" alt="American Express" title="American Express">
+                                <img src="https://cdn2.rcstatic.com/images/site_graphics/newsite/cards/dark/64/mastercard.png" class="payment-type" alt="MasterCard" title="MasterCard">
+                                <img src="https://cdn2.rcstatic.com/images/site_graphics/newsite/cards/dark/64/visa.png" class="payment-type" alt="Visa" title="Visa">
+                                <img src="https://cdn2.rcstatic.com/images/site_graphics/newsite/cards/dark/64/diners_club.png" class="payment-type" alt="Diners Club" title="Diners Club">
+
+                                <h3></h3>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <div>
+    </div>
     <div class="row align-items single-model item">
 
         <div class="col-lg-3 model-left">
         </div>
+        <div class="col-lg-7 model-right" style="padding-top:80px">
+            <div class="card">
 
-        <div class="col-lg-8 model-right" style="padding-top:120px">
-            <div class="e-sample-resize-container" style="">
-                <ejs-tab id="defaultTab" animation="ViewBag.animation">
-                    <e-tab-tabitems>
-                        <e-tab-tabitem header="ViewBag.headerTextOne" content="@contentOne">
+                <div class="card-body">
+                    <div class="e-sample-resize-container" style="">
+                        <ejs-tab id="defaultTab" animation="ViewBag.animation">
+                            <e-tab-tabitems>
+                                <e-tab-tabitem header="ViewBag.headerTextOne" content="@contentOne">
 
-                        </e-tab-tabitem>
-                        <e-tab-tabitem header="ViewBag.headerTextTwo" content="@contentTwo"></e-tab-tabitem>
-                        <e-tab-tabitem header="ViewBag.headerTextThree" content="@contentThree"></e-tab-tabitem>
-                    </e-tab-tabitems>
-                </ejs-tab>
+                                </e-tab-tabitem>
+                                <e-tab-tabitem header="ViewBag.headerTextTwo" content="@contentTwo"></e-tab-tabitem>
+                                <e-tab-tabitem header="ViewBag.headerTextThree" content="@contentTwo"></e-tab-tabitem>
+                            </e-tab-tabitems>
+                        </ejs-tab>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="inline-message positive below-average-price">
+                <h4>
+                    Chi phí của chiếc xe này chỉ là 25,000 Đồng - một lựa chọn tốt!
+                </h4>
+                <p>
+                    Ở bất kỳ thời gian nào trong năm, giá trung bình của xe từ Budget tại Sân Bay Blackpool là 208,38 €.
+                </p>
+            </div>
+
+
+            <div class="side-section">
+                <div class="side-section__content">
+                    <div class="side-section__head">
+                        <h4 class="side-section__title">
+                            Lựa chọn đúng!
+                        </h4>
+                        <div class="side-section__body">
+                            <div class="good-list">
+                                <ul class="good-list">
+                                    <li class="good-list__item"><i class="fa fa-cloud" style="font-size:40px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i><span class="good-list__text">Quầy này nằm bên trong nhà ga sân bay.</span></li>
+                                    <li class="good-list__item"><i class="good-list__icon good-list__icon--fuel"></i><span class="good-list__text">Xe này có chính sách nhiên liệu phổ biến nhất: Đầy đến Đầy (Nhận xe đầy xăng, trả xe xăng đầy)</span></li>
+                                    <li class="good-list__item"><i class="good-list__icon good-list__icon--clock"></i><span class="good-list__text">Thời gian chờ ngắn</span></li>
+                                    <li class="good-list__item"><i class="good-list__icon good-list__icon--map"></i><span class="good-list__text">Quầy cho thuê xe nằm ở vị trí dễ tìm</span></li>
+                                    <li class="good-list__item"><i class="good-list__icon good-list__icon--watch"></i><span class="good-list__text">Nhân viên tại quầy cho thuê xe làm việc hiệu quả</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div style="float:left">
+                <a class="btn btn-warning" href="#">Book This Car Now</a>
+                <a class="btn btn-secondary" href="#">Save this car</a>
             </div>
         </div>
     </div>
+    <br />
 }
 
 
@@ -74,6 +192,121 @@
 
 
 <style>
+    .ab-CarDetails_ImageArea_PoliciesCta img {
+        height: 16px;
+        left: 8px;
+        position: absolute;
+        top: 7px;
+        width: 16px;
+    }
+
+    .ab-CarDetails_ImageArea-supplier img {
+        float: left;
+        padding-bottom: 10px;
+        width: 60px;
+    }
+
+    .ab-CarDetails_ImageArea_PoliciesCta {
+        border: 1px solid #eee;
+        clear: both;
+        font-size: 12px;
+        line-height: 15px;
+        padding: 8px 8px 8px 28px;
+        position: relative;
+        text-align: left;
+        zoom: 1;
+        padding-top: 2px;
+    }
+
+    .side-section {
+        font-size: 14px;
+        color: #222;
+        line-height: 1.4;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    .side-section__content {
+        padding: 16px;
+        font-size: 16px;
+        overflow: hidden;
+        background-color: #fff;
+        border: 1px solid #ddd;
+    }
+
+    .good-list__item {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: 50%;
+        margin-top: 16px;
+    }
+
+    .good-list {
+        margin: 0;
+        overflow: hidden;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        font-size: 14px;
+    }
+
+    .good-list__icon {
+        background-position: 50% 50%;
+    }
+
+    .inline-message.below-average-price {
+        background-image: url(https://cdn2.rcstatic.com/images/site_graphics/newsite/dollar-tag.png);
+        background-image: url(https://cdn2.rcstatic.com/images/site_graphics/newsite/dollar-tag.svg), none;
+        line-height: 1.4;
+    }
+
+    .inline-message {
+        margin: 0px 0px 15px 0px;
+        padding: 10px 10px 10px 52px;
+        font-size: 14px;
+        line-height: 16px;
+        background: url(/images/site_graphics/newsite/icons/ico-generic.png) no-repeat 10px center #ccc;
+        color: #444;
+        border-left: 5px solid #ccc;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        background-repeat: no-repeat;
+        background-position: 1% center;
+    }
+
+        .inline-message.positive {
+            background-color: #e3edd8;
+            border-color: #5A9854;
+        }
+
+    .box table tbody tr td {
+        border-bottom: 1px dashed #cccccc;
+    }
+
+    .box table tbody tr td, .box table tfoot tr td {
+        padding: 15px 5px;
+        line-height: 22px;
+    }
+
+    #Thongtinquantrong {
+        font: inherit;
+        font-size: 15px;
+    }
+
+        #Thongtinquantrong .title {
+            width: 20%;
+            padding: 15px 15px 15px 5px;
+            text-align: left;
+            font-weight: bold;
+        }
+
     .e-content .e-item {
         font-size: 12px;
         padding: 10px;

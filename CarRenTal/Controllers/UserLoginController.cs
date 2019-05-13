@@ -4,6 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CarRenTal.Models;
+using Newtonsoft.Json;
+using CarRenTal.DAO;
+
+using CarRenTal.DAO.Common;
 
 namespace CarRenTal.Controllers
 {
@@ -17,9 +21,81 @@ namespace CarRenTal.Controllers
         }
         public IActionResult Index()
         {
+            Link._link = Request.Headers["Referer"].ToString();
             return View();
         }
+        public int LoginDAO(string userName, string passWord)
+        {
+            var result = _context.Users.SingleOrDefault(x => x.UserName == userName);
+            if (result == null)
+            {
+                return 0;
+            }
+            else
+            {
+                if (result.Status == false)
+                {
+                    return -1;
+                }
+                else
+                {
+                    if (result.PassWord == passWord)
+                        return 1;
+                    else
+                        return -2;
+                }
+            }
+        }
 
+        //login
+        public IActionResult Login(UserLoginModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = LoginDAO(model.UserName, Encryptor.MD5Hash(model.Password));
+                if (result == 1)
+                {
+                    var user = _context.Users.SingleOrDefault(x => x.UserName == model.UserName);
+                    var userSession = new UserLogin();
+                    userSession.UserName = user.UserName;
+                    userSession.UserID = user.Id;
+                    CommonConstants.UserName = user.UserName;
+                    CommonConstants.UserID = user.Id;
+                    return Redirect(Link._link);
+                   
+                }
+                else if (result == 0)
+                {
+                    ModelState.AddModelError("", "Tài khoản không tồn tại.");
+                }
+                else if (result == -1)
+                {
+                    ModelState.AddModelError("", "Tài khoản đang bị khoá.");
+                }
+                else if (result == -2)
+                {
+                    ModelState.AddModelError("", "Mật khẩu không đúng.");
+                }
+                else if (result == -3)
+                {
+                    ModelState.AddModelError("", "Tài khoản của bạn không có quyền đăng nhập.");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "đăng nhập không đúng.");
+                }
+            }
+            return View("Index");
+        }
+
+        //logout
+        public ActionResult Logout()
+        {
+            CommonConstants.UserName = null;
+            CommonConstants.UserID = 0;
+            string referer1 = Request.Headers["Referer"].ToString();
+            return Redirect(referer1);
+        }
 
         // GET: Users/Create
         public IActionResult Create()

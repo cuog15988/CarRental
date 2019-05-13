@@ -34,7 +34,6 @@
     <link href="~/css/owl.carousel.css" rel="stylesheet" />
     <link href="~/css/main.css" rel="stylesheet" />
     <link href="~/css/bootstrap.css" rel="stylesheet" />
-    <link href="~/css/admin-2.css" rel="stylesheet" />
     <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js"></script>
 
     @RenderSection("Top", required: false)
@@ -50,10 +49,21 @@
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
                         <li class="menu-active"><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="blog-home.html">Blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="contact.html">Login</a></li>
+                        <li><a href="@Url.Action("Index","Home")">About</a></li>
+                        <li><a href="./?id=3">Blog</a></li>
+                        <li><a href="@Url.Action("Detail","DichVu", new { id = 3 })">Contact</a></li>
+                        @if (CarRenTal.DAO.Common.CommonConstants.UserName == null)
+                        {
+                            
+                                <li><a href="@Url.Action("index","UserLogin")">Đăng nhập</a></li>
+
+
+                        }
+                        else
+                        {
+                                <li><a href="#">@CarRenTal.DAO.Common.CommonConstants.UserName</a></li>
+                               <li>@Html.ActionLink("Thoát", "Logout", "UserLogin")</li>
+                        }
                     </ul>
                 </nav><!-- #nav-menu-container -->
             </div>
