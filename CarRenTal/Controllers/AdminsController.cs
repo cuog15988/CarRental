@@ -9,22 +9,22 @@ using CarRenTal.Models;
 
 namespace CarRenTal.Controllers
 {
-    public class UsersController : Controller
+    public class AdminsController : Controller
     {
         private readonly RentalCarContext _context;
 
-        public UsersController(RentalCarContext context)
+        public AdminsController(RentalCarContext context)
         {
             _context = context;
         }
 
-        // GET: Users
+        // GET: Admins
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Users.ToListAsync());
+            return View(await _context.Admin.ToListAsync());
         }
 
-        // GET: Users/Details/5
+        // GET: Admins/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +32,39 @@ namespace CarRenTal.Controllers
                 return NotFound();
             }
 
-            var users = await _context.Users
+            var admin = await _context.Admin
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (users == null)
+            if (admin == null)
             {
                 return NotFound();
             }
 
-            return View(users);
+            return View(admin);
         }
 
-        // GET: Users/Create
+        // GET: Admins/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Users/Create
+        // POST: Admins/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserName,PassWord,HoTen,NgaySinh,NgayNhap,DiaChi,Gioitinh,Status,GroudId")] Users users)
+        public async Task<IActionResult> Create([Bind("Id,UserName,PassWord,HoTen,NgaySinh,NgayNhap,DiaChi,Status,GroudId")] Admin admin)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(users);
+                _context.Add(admin);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(users);
+            return View(admin);
         }
 
-        // GET: Users/Edit/5
+        // GET: Admins/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +72,22 @@ namespace CarRenTal.Controllers
                 return NotFound();
             }
 
-            var users = await _context.Users.FindAsync(id);
-            if (users == null)
+            var admin = await _context.Admin.FindAsync(id);
+            if (admin == null)
             {
                 return NotFound();
             }
-            return View(users);
+            return View(admin);
         }
 
-        // POST: Users/Edit/5
+        // POST: Admins/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,PassWord,HoTen,NgaySinh,NgayNhap,DiaChi,Gioitinh,Status,GroudId")] Users users)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,PassWord,HoTen,NgaySinh,NgayNhap,DiaChi,Status,GroudId")] Admin admin)
         {
-            if (id != users.Id)
+            if (id != admin.Id)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace CarRenTal.Controllers
             {
                 try
                 {
-                    _context.Update(users);
+                    _context.Update(admin);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UsersExists(users.Id))
+                    if (!AdminExists(admin.Id))
                     {
                         return NotFound();
                     }
@@ -112,10 +112,10 @@ namespace CarRenTal.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(users);
+            return View(admin);
         }
 
-        // GET: Users/Delete/5
+        // GET: Admins/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +123,30 @@ namespace CarRenTal.Controllers
                 return NotFound();
             }
 
-            var users = await _context.Users
+            var admin = await _context.Admin
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (users == null)
+            if (admin == null)
             {
                 return NotFound();
             }
 
-            return View(users);
+            return View(admin);
         }
 
-        // POST: Users/Delete/5
+        // POST: Admins/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var users = await _context.Users.FindAsync(id);
-            _context.Users.Remove(users);
+            var admin = await _context.Admin.FindAsync(id);
+            _context.Admin.Remove(admin);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UsersExists(int id)
+        private bool AdminExists(int id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return _context.Admin.Any(e => e.Id == id);
         }
     }
 }

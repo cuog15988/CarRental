@@ -1,0 +1,201 @@
+﻿@model CarRenTal.Models.Users
+
+
+
+@{
+    ViewData["Title"] = "Chỉnh sửa";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@section top
+{
+    <link href="~/css/usercss.css" rel="stylesheet" />
+
+
+}
+@section jsFooter{
+    <script>
+        window.onload = function () {
+            var span = document.getElementsByClassName('clear'), i;
+            for (i = 0; i < span.length; i++) {
+                (function (i) {
+                    span[i].onclick = function () {
+                        span[i].parentNode.getElementsByTagName('INPUT')[0].value = '';
+                    };
+                })(i);
+            }
+        };
+    </script>
+    <script>
+        $(function () {
+            $('#date').combodate();
+        });
+
+        function checkTextField(field) {
+    document.getElementById("error").innerText =
+    (field.value === "") ? "Field is empty." : "";
+    }
+    </script>
+
+    
+}
+
+
+<div class="container" style="margin-bottom: 100px;">
+
+    <div class="row align-items single-model item">
+
+        <div class="col-XL-2 model-left" style="padding-top:120px">
+            <p style="font-size:14px;font-family:Roboto-Regular; color:#424242">xin chào, @Model.UserName</p>
+            <ul class="nav-container">
+                <li class="item" id="My-Orders">
+                    <ul class="nav-container">
+                        <li class="item" id="Manage-My-Account">
+                            <a class="" href="#" data-spm="Manage-My-Account"><span>Quản lý tài khoản</span></a>
+                            <ul class="item-container">
+                                <li id="My-profile" class="sub sub-active"><a href="#" style="">Thông tin cá nhân</a></li>
+                                <li id="Address-book" class="sub"><a href="#" data-spm="Address-book">Sổ địa chỉ</a></li>
+                                <li id="Payment-methods" class="sub"><a href="#" data-spm="Payment-methods">Tùy chọn thanh toán</a></li>
+                                <li id="Vouchers" class="sub"><a href="#" data-spm="Vouchers">Mã giảm giá</a></li>
+                            </ul>
+                            <br />
+                        </li>
+
+                        <li class="item" id="My-Orders">
+                            <a href="#"><span>Đơn hàng của tôi</span></a>
+                            <ul class="item-container">
+                                <li id="Returns" class="sub"><a href="#" data-spm="Returns">Đơn hàng đổi trả</a></li>
+                                <li id="Cancellations" class="sub"><a href="#" data-spm="Cancellations">Đơn hàng hủy</a></li>
+                            </ul>
+                            <br />
+
+                        </li>
+                        <li class="item" id="Sell-On-Lazada">
+                            <a href="#" data-spm="Sell-On-Lazada"><span>Cho thuê xe</span></a>
+                            <ul class="item-container"></ul>
+                        </li>
+                    </ul>
+
+            </ul>
+        </div>
+        <div class="col-xl-10 model-right" style="padding-top:92px;padding-bottom:40px ">
+            <a class="breadcrumb">Chỉnh sửa</a>
+            <div class="card">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="my-profile">
+                        <div class="my-profile-bd">
+
+                            <div class="my-profile-item">
+                                <h3 class="my-profile-item-title">Tên</h3>
+                                <div class="wrapper">
+                                    <input asp-for="HoTen" name="HoTen" class="textbox" onblur="checkTextField(this);" />
+                                    <p style="color:red; font-size:12px" id="error"></p>
+                                    <span class="clear">x</span>
+                                </div>
+                            </div>
+                            <div class="my-profile-item">
+                                <h3 class="my-profile-item-title">
+                                    <span>Địa chỉ email</span>
+                                    <span class="gray">|</span>
+                                    <a data-spm="demail_change">Thay đổi</a>
+                                </h3>
+                                <div class="wrapper">
+                                    <input asp-for="Email" name="Email" class="textbox" onblur="checkTextField(this);" />
+                                    <p style="color:red; font-size:12px" id="error"></p>
+
+                                    <span class="clear">x</span>
+                                </div>
+                            </div>
+                            <div class="my-profile-item">
+                                <h3 class="my-profile-item-title">Số điên thoại <span class="gray">|</span> <a data-spm="dmobile_add">Thêm</a></h3>
+                                <div class="wrapper">
+                                    <input asp-for="Phone" class="textbox" onblur="checkTextField(this);" />
+                                    <p style="color:red; font-size:12px" id="error"></p>
+                                    <span class="clear">x</span>
+                                </div>
+
+                            </div>
+                            <div class="my-profile-item">
+                                <h3 class="my-profile-item-title">Ngày sinh</h3>
+                                <input asp-for="NgaySinh" type="date" class="form-control" id="ngaysinh" />
+
+                            </div><div class="my-profile-item">
+                                <h3 class="my-profile-item-title">Giới tính</h3>
+                                <div class="form-group">
+                                    <select style="height:40px ; width:200px" class="textbox">
+                                        @if (Model.Gioitinh == true)
+                                        {
+                                            <option value="1" selected>Nam</option>
+
+                                            <option value="0">Nữ</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="1" selected>Nữ</option>
+
+                                            <option value="0">Nam</option>
+                                        }
+
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="my-profile-item">
+                                <h3 class="my-profile-item-title">Mã số thuế</h3>
+                                <div class="my-profile-item-info">
+                                    <input style="width: 205px;" class="textbox" type="text" data-meta="Field" placeholder="Nhập mã số thuế của bạn" />
+                                </div>
+                            </div>
+                        </div>
+                        <a class="my-profile-subscribed" href="#" style="font-size:12px">Đăng ký nhận bản tin</a>
+                        <div class="my-profile-ft" style="margin-top: 10px !important;">
+                            <input id="btnProfile" style="background-color: #f57224 !important;   border-color: transparent;border-style: solid" type="submit" value="Lưu thay đổi" class="btn btn-lg btn-primary" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<style>
+    #ngaysinh {
+        width: 77%;
+        border-radius: 0rem;
+    }
+
+    .clear {
+        position: absolute;
+        top: 2px;
+        right: 10px;
+        cursor: pointer;
+        color: #e9e2e2;
+        font-size: 23px;
+    }
+
+    .textbox {
+        font-size: 14px;
+        width: 100%;
+        height: 40px;
+        box-sizing: border-box;
+        border: 1px solid #ddd;
+        margin-bottom: 2px;
+        outline: none;
+        padding: 0 35px 0 10px;
+    }
+
+    .wrapper {
+        width: 200px;
+        position: relative;
+    }
+</style>
+
+
+
+

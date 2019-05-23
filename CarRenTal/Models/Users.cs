@@ -24,6 +24,7 @@ namespace CarRenTal.Models
         public bool? Status { get; set; }
         public int? GroudId { get; set; }
         public string Email { get; set; }
+        public string Phone { get; set; }
 
         public virtual ICollection<ChiTietThanhToan> ChiTietThanhToan { get; set; }
         public virtual ICollection<DonHang> DonHang { get; set; }

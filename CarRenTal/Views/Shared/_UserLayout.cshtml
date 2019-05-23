@@ -16,29 +16,30 @@
     <!-- meta character set -->
     <meta charset="UTF-8">
     <!-- Site Title -->
-    <title>Car Rentals</title>
+    <title>@ViewData["Title"]</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
-    <!--
-    CSS
 
-    ============================================= -->
-    <link rel="stylesheet" href="/css/linearicons.css">
-    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/magnific-popup.css">
-    <link rel="stylesheet" href="/css/nice-select.css">
-    <link rel="stylesheet" href="/css/animate.min.css">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/material.css" />
+        <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+        <!--
+        CSS
 
-    <link href="~/css/owl.carousel.css" rel="stylesheet" />
-    <link href="~/css/main.css" rel="stylesheet" />
-    <link href="~/css/bootstrap.css" rel="stylesheet" />
-    <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js"></script>
+        ============================================= -->
+        <link rel="stylesheet" href="/css/linearicons.css">
+        <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="/css/magnific-popup.css">
+        <link rel="stylesheet" href="/css/nice-select.css">
+        <link rel="stylesheet" href="/css/animate.min.css">
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/material.css" />
 
-    @RenderSection("Top", required: false)
-</head>
-<body>
+        <link href="~/css/owl.carousel.css" rel="stylesheet" />
+        <link href="~/css/main.css" rel="stylesheet" />
+        <link href="~/css/bootstrap.css" rel="stylesheet" />
+        <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js"></script>
+
+        @RenderSection("Top", required: false)
+    </head>
+<body style="background-color:#eff0f4">
 
     <header style=" background-color:black" id="header" id="home">
         <div class="container">
@@ -48,21 +49,36 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-active"><a href="index.html">Home</a></li>
+                        <li class="menu-active"><a href="@Url.Action("Index","Home")">Home</a></li>
                         <li><a href="@Url.Action("Index","Home")">About</a></li>
                         <li><a href="./?id=3">Blog</a></li>
-                        <li><a href="@Url.Action("Detail","DichVu", new { id = 3 })">Contact</a></li>
+
+                        <li><a href="@Url.Action("index","HomThuLienHes")">Contact</a></li>
+                        <li><a href="@Url.Action("Detail","DichVu", new { id = 3 })">Cart</a></li>
+
+
                         @if (CarRenTal.DAO.Common.CommonConstants.UserName == null)
                         {
-                            
-                                <li><a href="@Url.Action("index","UserLogin")">Đăng nhập</a></li>
 
+                            <li><a href="@Url.Action("index","UserLogin")">Đăng nhập</a></li>
 
                         }
                         else
                         {
-                                <li><a href="#">@CarRenTal.DAO.Common.CommonConstants.UserName</a></li>
-                               <li>@Html.ActionLink("Thoát", "Logout", "UserLogin")</li>
+                    <li>
+                        <a href="#">@CarRenTal.DAO.Common.CommonConstants.UserName</a>
+                        <ul class="sub-menu-m" style="font-size:16px">
+                            <li class="ti-face-smile"><a href="~/User/Profile/Details?id=@CarRenTal.DAO.Common.CommonConstants.UserID">Quản lý tài khoản</a></li>
+                            <li><a href="category-02.html">Đơn hàng của tôi</a></li>
+                            <li><a href="blog-grid.html">Xe đã lưu</a></li>
+                            <li>@Html.ActionLink("Thoát", "Logout", "UserLogin")</li>
+                        </ul>
+
+                        <span class="arrow-main-menu-m">
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </span>
+                    </li>
+                            
                         }
                     </ul>
                 </nav><!-- #nav-menu-container -->
@@ -75,7 +91,7 @@
     @RenderBody()
 
     <!-- End footer Area -->
-    <footer class="footer-area section-gap">
+    <footer class="footer-area section-gap" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-2 col-md-6 col-sm-6">
@@ -168,6 +184,8 @@
     <script src="/js/parallax.min.js"></script>
     <script src="/js/mail-script.js"></script>
     <script src="/js/main.js"></script>
+    <script src="~/js/moment.js"></script>
+    <script src="~/js/combodate.js"></script>
     @RenderSection("jsFooter", required: false)
 
     <ejs-scripts></ejs-scripts>

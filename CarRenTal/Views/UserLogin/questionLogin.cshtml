@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "questionLogin";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+
+<div class="row align-items single-model item">
+
+    <div class="col-lg-2 model-left">
+    </div>
+    <div class="col-lg-8 model-right" style="padding-top:80px; padding-bottom:80px">
+        <div class="card">
+
+            <div class="card-body">
+                <div class="e-sample-resize-container" style="text-align:center">
+                    <h1>bạn chưa đăng nhập vào hệ thống! <br /> </h1>
+                    <h3>bạn có muốn đăng nhập?</h3>
+                    <div style="padding-top:40px; padding-bottom:30px">
+
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <a href="@Url.Action("index","UserLogin",new { type=1})" type="button" class="btn btn-primary">Đi đến trang đăng nhập</a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

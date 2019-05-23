@@ -16,6 +16,7 @@ namespace CarRenTal.Models
         }
 
         public virtual DbSet<Admin> Admin { get; set; }
+        public virtual DbSet<Cart> Cart { get; set; }
         public virtual DbSet<ChiTietThanhToan> ChiTietThanhToan { get; set; }
         public virtual DbSet<DonHang> DonHang { get; set; }
         public virtual DbSet<Footer> Footer { get; set; }
@@ -65,6 +66,27 @@ namespace CarRenTal.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.UserName).HasMaxLength(51);
+            });
+
+            modelBuilder.Entity<Cart>(entity =>
+            {
+                entity.ToTable("cart");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Gia).HasColumnName("gia");
+
+                entity.Property(e => e.Ma).HasColumnName("ma");
+
+                entity.Property(e => e.Manguoidang).HasColumnName("manguoidang");
+
+                entity.Property(e => e.Maxe).HasColumnName("maxe");
+
+                entity.Property(e => e.Tennguoidang).HasMaxLength(300);
+
+                entity.Property(e => e.Tenxe)
+                    .HasColumnName("tenxe")
+                    .HasMaxLength(300);
             });
 
             modelBuilder.Entity<ChiTietThanhToan>(entity =>
@@ -290,6 +312,10 @@ namespace CarRenTal.Models
 
                 entity.Property(e => e.PassWord)
                     .HasMaxLength(51)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Phone)
+                    .HasMaxLength(13)
                     .IsUnicode(false);
 
                 entity.Property(e => e.UserName).HasMaxLength(51);

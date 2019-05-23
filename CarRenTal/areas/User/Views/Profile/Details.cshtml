@@ -1,0 +1,159 @@
+﻿@model CarRenTal.Models.Users
+
+@{
+    ViewData["Title"] = "Thông tin tài khoản";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@section top
+{
+    <link href="~/css/usercss.css" rel="stylesheet" />
+}
+
+<div class="container" style="    margin-bottom: 100px;">
+
+    <div class="row align-items single-model item">
+
+        <div class="col-XL-2 model-left" style="padding-top:120px">
+            <p style="font-size:14px;font-family:Roboto-Regular; color:#424242">xin chào, @Model.HoTen</p>
+            <ul class="nav-container">
+                <li class="item" id="My-Orders">
+                    <ul class="nav-container">
+                        <li class="item" id="Manage-My-Account">
+                            <a class="" href="#" data-spm="Manage-My-Account"><span>Quản lý tài khoản</span></a>
+                            <ul class="item-container">
+                                <li id="My-profile" class="sub sub-active"><a href="#" style="">Thông tin cá nhân</a></li>
+                                <li id="Address-book" class="sub"><a href="#" data-spm="Address-book">Sổ địa chỉ</a></li>
+                                <li id="Payment-methods" class="sub"><a href="#" data-spm="Payment-methods">Tùy chọn thanh toán</a></li>
+                                <li id="Vouchers" class="sub"><a href="#" data-spm="Vouchers">Mã giảm giá</a></li>
+                            </ul>
+                            <br />
+                        </li>
+
+                        <li class="item" id="My-Orders">
+                            <a href="#"><span>Đơn hàng của tôi</span></a>
+                            <ul class="item-container">
+                                <li id="Returns" class="sub"><a href="#" data-spm="Returns">Đơn hàng đổi trả</a></li>
+                                <li id="Cancellations" class="sub"><a href="#" data-spm="Cancellations">Đơn hàng hủy</a></li>
+                            </ul>
+                            <br />
+
+                        </li>
+                        <li class="item" id="Sell-On-Lazada">
+                            <a href="#" data-spm="Sell-On-Lazada"><span>Cho thuê xe</span></a>
+                            <ul class="item-container"></ul>
+                        </li>
+                    </ul>
+
+            </ul>
+        </div>
+        <div class="col-xl-10 model-right" style="padding-top:100px;padding-bottom:40px ">
+            <a class="breadcrumb">Thông tin cá nhân</a>
+            <div class="card">
+                <div class="my-profile" data-spm="1">
+                    <div class="my-profile-bd">
+                        <div class="my-profile-item" data-spm-anchor-id="a2o4n.my_profile.1.i0.adb51786200NPb">
+                            <h3 class="my-profile-item-title">Tên</h3><div class="my-profile-item-info">cường nguyễn</div>
+                        </div>
+                        <div class="my-profile-item">
+                            <h3 class="my-profile-item-title">
+                                <span>Địa chỉ email</span>
+                            </h3>
+                            @if (string.IsNullOrEmpty(Model.Phone))
+                            {
+                                <div class="my-profile-item-info">hãy thêm email của bạn</div>
+                            }
+                            else
+                            {
+                                <div class="my-profile-item-info">boy_thix_pe_khoc_f1@yahoo.com.vn</div>
+
+                            }
+                        </div>
+                        <div class="my-profile-item">
+                            <h3 class="my-profile-item-title">Số điên thoại <span class="gray"></span></h3>
+                            @if (string.IsNullOrEmpty(Model.Phone))
+                            {
+                                <div class="my-profile-item-info">
+                                    <span class="gray">Vui lòng nhập số điện thoại của bạn</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <span class="gray">@Model.Phone</span>
+                            }
+                        </div>
+                        <div class="my-profile-item">
+                            <h3 class="my-profile-item-title">Ngày sinh</h3>
+                            @if (Model.NgaySinh == null)
+                            {
+                                <div class="my-profile-item-info">
+                                    hãy nhập ngày sinh của bạn
+                                </div>
+                            }
+                            else
+                            {
+
+                        <div class="my-profile-item-info">
+                            @String.Format("{0:M-d-yyyy}", Model.NgaySinh)
+                        </div>
+                            }
+                        </div><div class="my-profile-item">
+    <h3 class="my-profile-item-title">Giới tính</h3>
+    @if (Model.Gioitinh == true)
+    {
+        <div class="my-profile-item-info">
+            nam
+        </div>
+    }
+    else
+    {
+        <div class="my-profile-item-info">
+            nữ
+        </div>
+    }
+</div>
+                        <div class="my-profile-item">
+                            <h3 class="my-profile-item-title">Mã số thuế</h3>
+                            <div class="my-profile-item-info">
+                                <span class="gray">Nhập mã số thuế của bạn</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="my-profile-ft">
+                        <a class="my-profile-subscribed" href="#" style="font-size:12px">Đăng ký nhận bản tin</a>
+                        <a href="/User/Profile/edit?id=@Model.Id">
+                            <input id="btnProfile" type="button" class="btn btn-lg btn-primary" value="SỬA THÔNG TIN" />
+                        </a>
+                        <a href="#">
+                            <input type="button" id="btnProfile" class="btn btn-lg btn-primary" value="THAY ĐỔI MẬT KHẨU" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+@*<span class="combodate" style="display:inline;">
+    <input style="display:none" type="text" id="date" data-format="DD-MM-YYYY" data-template="D MMM YYYY" name="date" value="@String.Format("{0:dd-MM-yyyy}", Model.NgaySinh)">
+</span>
+
+
+@section jsFooter  {
+    <script>
+        $(function () {
+            $('#date').combodate();
+        });
+    </script>
+}*@
+
+
+
+
+
+
+
+
+

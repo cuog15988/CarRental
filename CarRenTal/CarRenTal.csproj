@@ -36,4 +36,10 @@
     </Content>
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="areas\User\Data\" />
+    <Folder Include="areas\User\Models\" />
+  </ItemGroup>
+
 </Project>

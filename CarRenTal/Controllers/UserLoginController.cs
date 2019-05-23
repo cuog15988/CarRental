@@ -19,9 +19,16 @@ namespace CarRenTal.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(int? type)
         {
-            Link._link = Request.Headers["Referer"].ToString();
+            if (type == null)
+            {
+                Link._link = Request.Headers["Referer"].ToString();
+            }
+            else
+            {
+                Link._link = "~/Home";
+            }
             return View();
         }
         public int LoginDAO(string userName, string passWord)
@@ -47,21 +54,36 @@ namespace CarRenTal.Controllers
             }
         }
 
+        //trang hỏi đăng nhập
+        
+        public IActionResult questionLogin()
+        {
+            return View();
+        }
+
         //login
-        public IActionResult Login(UserLoginModel model)
+        public IActionResult Login(UserLoginModel model, int? type )
         {
             if (ModelState.IsValid)
             {
                 var result = LoginDAO(model.UserName, Encryptor.MD5Hash(model.Password));
                 if (result == 1)
                 {
-                    var user = _context.Users.SingleOrDefault(x => x.UserName == model.UserName);
-                    var userSession = new UserLogin();
-                    userSession.UserName = user.UserName;
-                    userSession.UserID = user.Id;
-                    CommonConstants.UserName = user.UserName;
-                    CommonConstants.UserID = user.Id;
-                    return Redirect(Link._link);
+                   
+                        var user = _context.Users.SingleOrDefault(x => x.UserName == model.UserName);
+                        var userSession = new UserLogin();
+                        userSession.UserName = user.UserName;
+                        userSession.UserID = user.Id;
+                        CommonConstants.UserName = user.UserName;
+                        CommonConstants.UserID = user.Id;
+                    if (type == null)
+                    {
+                        return Redirect(Link._link);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                    
                 }
                 else if (result == 0)

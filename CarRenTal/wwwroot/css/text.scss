@@ -1,0 +1,56 @@
+﻿body {
+    font-family: sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.wrap {
+    width: 400px;
+    margin: 0 auto;
+}
+
+form {
+    width: 400px;
+}
+
+.field-wrap {
+    position: relative;
+    margin-bottom: 1em;
+}
+
+.text-box {
+    width: 100%;
+    padding: 10px 35px 10px 15px;
+    font-size: 14px;
+    border-radius: 20px;
+    border: 1px solid #aaa;
+
+    &:focus {
+        outline: 0;
+        box-shadow: 0 0 4px #39f;
+    }
+}
+
+.text-clear {
+    position: absolute;
+    top: 7px;
+    right: 8px;
+    width: 25px;
+    height: 25px;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 15px;
+    border: none;
+    background: #c00;
+    cursor: pointer;
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+.text-box:not(:valid) ~ .text-clear {
+    display: none;
+}
