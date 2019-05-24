@@ -82,11 +82,15 @@ namespace CarRenTal.EF
 
                 entity.Property(e => e.Maxe).HasColumnName("maxe");
 
-                entity.Property(e => e.Tennguoidang).HasMaxLength(300);
-
                 entity.Property(e => e.Tenxe)
                     .HasColumnName("tenxe")
                     .HasMaxLength(300);
+
+                entity.HasOne(d => d.MaxeNavigation)
+                    .WithMany(p => p.Cart)
+                    .HasForeignKey(d => d.Maxe)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_cart_xe");
             });
 
             modelBuilder.Entity<ChiTietThanhToan>(entity =>

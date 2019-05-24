@@ -7,6 +7,7 @@ namespace CarRenTal.EF
     {
         public Xe()
         {
+            Cart = new HashSet<Cart>();
             DonHang = new HashSet<DonHang>();
         }
 
@@ -28,6 +29,7 @@ namespace CarRenTal.EF
 
         public virtual Users MaNguoiDangNavigation { get; set; }
         public virtual TenXe MaTenXeNavigation { get; set; }
+        public virtual ICollection<Cart> Cart { get; set; }
         public virtual ICollection<DonHang> DonHang { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace CarRenTal.EF
         public string Tenxe { get; set; }
         public int? Gia { get; set; }
         public int? Manguoidang { get; set; }
-        public string Tennguoidang { get; set; }
+
+        public virtual Xe MaxeNavigation { get; set; }
     }
 }

@@ -7,24 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CarRenTal.Models;
 
-namespace CarRenTal.areas.User.Controllers
+namespace CarRenTal.Areas.admin.Controllers
 {
-    public class UsersController : Controller
+    [Area("admin")]
+    public class caController : Controller
     {
         private readonly RentalCarContext _context;
 
-        public UsersController(RentalCarContext context)
+        public caController(RentalCarContext context)
         {
             _context = context;
         }
 
-        // GET: Users
+        // GET: admin/ca
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Users.ToListAsync());
+            var rentalCarContext = _context.Cart.Include(c => c.MaxeNavigation);
+            return View(await rentalCarContext.ToListAsync());
         }
 
-        // GET: Users/Details/5
+        // GET: admin/ca/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +34,42 @@ namespace CarRenTal.areas.User.Controllers
                 return NotFound();
             }
 
-            var users = await _context.Users
+            var cart = await _context.Cart
+                .Include(c => c.MaxeNavigation)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (users == null)
+            if (cart == null)
             {
                 return NotFound();
             }
 
-            return View(users);
+            return View(cart);
         }
 
-        // GET: Users/Create
+        // GET: admin/ca/Create
         public IActionResult Create()
         {
+            ViewData["Maxe"] = new SelectList(_context.Xe, "Id", "Id");
             return View();
         }
 
-        // POST: Users/Create
+        // POST: admin/ca/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserName,PassWord,HoTen,NgaySinh,NgayNhap,DiaChi,Gioitinh,Status,GroudId,Email,Phone")] Users users)
+        public async Task<IActionResult> Create([Bind("Id,Ma,Maxe,Tenxe,Gia,Manguoidang")] Cart cart)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(users);
+                _context.Add(cart);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(users);
+            ViewData["Maxe"] = new SelectList(_context.Xe, "Id", "Id", cart.Maxe);
+            return View(cart);
         }
 
-        // GET: Users/Edit/5
+        // GET: admin/ca/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +77,23 @@ namespace CarRenTal.areas.User.Controllers
                 return NotFound();
             }
 
-            var users = await _context.Users.FindAsync(id);
-            if (users == null)
+            var cart = await _context.Cart.FindAsync(id);
+            if (cart == null)
             {
                 return NotFound();
             }
-            return View(users);
+            ViewData["Maxe"] = new SelectList(_context.Xe, "Id", "Id", cart.Maxe);
+            return View(cart);
         }
 
-        // POST: Users/Edit/5
+        // POST: admin/ca/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,PassWord,HoTen,NgaySinh,NgayNhap,DiaChi,Gioitinh,Status,GroudId,Email,Phone")] Users users)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Ma,Maxe,Tenxe,Gia,Manguoidang")] Cart cart)
         {
-            if (id != users.Id)
+            if (id != cart.Id)
             {
                 return NotFound();
             }
@@ -96,12 +102,12 @@ namespace CarRenTal.areas.User.Controllers
             {
                 try
                 {
-                    _context.Update(users);
+                    _context.Update(cart);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UsersExists(users.Id))
+                    if (!CartExists(cart.Id))
                     {
                         return NotFound();
                     }
@@ -112,10 +118,11 @@ namespace CarRenTal.areas.User.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(users);
+            ViewData["Maxe"] = new SelectList(_context.Xe, "Id", "Id", cart.Maxe);
+            return View(cart);
         }
 
-        // GET: Users/Delete/5
+        // GET: admin/ca/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +130,31 @@ namespace CarRenTal.areas.User.Controllers
                 return NotFound();
             }
 
-            var users = await _context.Users
+            var cart = await _context.Cart
+                .Include(c => c.MaxeNavigation)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (users == null)
+            if (cart == null)
             {
                 return NotFound();
             }
 
-            return View(users);
+            return View(cart);
         }
 
-        // POST: Users/Delete/5
+        // POST: admin/ca/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var users = await _context.Users.FindAsync(id);
-            _context.Users.Remove(users);
+            var cart = await _context.Cart.FindAsync(id);
+            _context.Cart.Remove(cart);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UsersExists(int id)
+        private bool CartExists(int id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return _context.Cart.Any(e => e.Id == id);
         }
     }
 }

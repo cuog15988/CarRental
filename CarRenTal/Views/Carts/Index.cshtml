@@ -1,11 +1,227 @@
 ﻿@model IEnumerable<CarRenTal.Models.Cart>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "xe đã lưu";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
 
+<style>
+    body{
+        font-family: Arial;
+    }
+    .phukien {
+           margin: 10px;
+    }
+
+    .soluong input {
+        width: 50px;
+        margin: 15px;
+    }
+
+    .sanpham p {
+        font-size: 30px;
+    }
+
+    .form {
+        position: relative;
+    }
+
+    .chon input {
+        position: absolute;
+        align-items: center;
+        top: 0;
+        left: 0;
+    }
+
+    .input-group-text h6 {
+        padding: 5px 0px 0px 5px;
+    }
+
+    .input-group-text {
+        background-color: #ffffff;
+        border: none;
+        padding: 0px;
+    }
+
+    #gia{
+    font-size: 22px;
+    line-height: 28px;
+    color: #f57224;
+    font-weight: 500;
+    margin-bottom: 4px;}
+
+    #mota{
+         display: block;
+    width: 100%;
+    max-height: 32px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 0;
+    font-size: 14px;
+    color: #212121;
+    line-height: 16px;
+    }
+    #mota2{
+    font-size: 12px;
+    color: #757575;
+    padding-left:8px
+    }
+    #thongbao{
+            font-size: 12px;
+    color: rgb(255, 51, 12);
+    margin-bottom: 4px;
+     padding-left:8px
+    }
+</style>
+<div class="container" style="padding-top:120px">
+    @foreach (var item in Model)
+    {
+        <div class="card o-hidden border-0 shadow-lg col-lg-11 my-4" >
+            <div class="card-body" >
+                <!-- Nested Row within Card Body -->
+
+                <div class="container">
+                    <div class="phukien row">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <h6 style="font-size:14px;color: #212121;;margin-right:8px">Người đăng , @item.MaxeNavigation.MaNguoiDangNavigation.HoTen</h6>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <hr />
+
+                    <div class="col-lg-11">
+                        <div class="form row">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                </div>
+                            </div>
+                            <div class="sanpham d-flex col-8">
+                                <a href="/DichVu/Detail?id=@item.Maxe" style="    text-decoration: none;">
+                                    <img src="@item.MaxeNavigation.Hinh" alt="" width="80" height="80">
+                                </a>
+                                <div>
+                                    <a href="/DichVu/Detail?id=@item.Maxe" style="    text-decoration: none;">
+                                        <p id="mota" style="margin:5px;padding-left:8px">@item.MaxeNavigation.Tenxe</p>
+                                        <p id="mota2">@item.MaxeNavigation.Mota</p>
+                                    </a>
+
+                                    <p id="thongbao">đang sẵn sàng cho thuê</p>
+                                </div>
+
+                            </div>
+
+                                <div class="gia col-3" style=" padding:15px;text-align:left; padding-left:100px">
+                                    <p id="gia">@String.Format("{0:N0}", item.MaxeNavigation.Gia) đ</p>
+                                    <button class="btn btn-info btn-sm"><i class="fa fa-heart-o"></i></button>
+                                    <button onclick="location.href='@Url.Action("Delete","Carts",new { id=item.Id})'" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                                </div>
+
+                        </div>
+                        <br />
+
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+    }
+    </div>
+
+<section class="blog-area section-gap" id="blog" style="background-color:rgb(239, 240, 244) !important;">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-70 col-lg-8">
+                <div class="title text-center">
+                    <h1 class="mb-10">Latest From Our Blog</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 single-blog">
+                <div class="thumb">
+                    <img class="img-fluid" src="/img/b1.jpg" alt="">
+                </div>
+                <p class="date">10 Jan 2018</p>
+                <a href="blog-single.html">
+                    <h4>
+                        Addiction When Gambling
+                        Becomes A Problem
+                    </h4>
+                </a>
+                <p>
+                    inappropriate behavior ipsum dolor sit amet, consectetur.
+                </p>
+                <div class="meta-bottom d-flex justify-content-between">
+                    <p><span class="lnr lnr-heart"></span> 15 Likes</p>
+                    <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 single-blog">
+                <div class="thumb">
+                    <img class="img-fluid" src="/img/b2.jpg" alt="">
+                </div>
+                <p class="date">10 Jan 2018</p>
+                <a href="blog-single.html">
+                    <h4>
+                        Addiction When Gambling
+                        Becomes A Problem
+                    </h4>
+                </a>
+                <p>
+                    inappropriate behavior ipsum dolor sit amet, consectetur.
+                </p>
+                <div class="meta-bottom d-flex justify-content-between">
+                    <p><span class="lnr lnr-heart"></span> 15 Likes</p>
+                    <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 single-blog">
+                <div class="thumb">
+                    <img class="img-fluid" src="/img/b3.jpg" alt="">
+                </div>
+                <p class="date">10 Jan 2018</p>
+                <a href="blog-single.html">
+                    <h4>
+                        Addiction When Gambling
+                        Becomes A Problem
+                    </h4>
+                </a>
+                <p>
+                    inappropriate behavior ipsum dolor sit amet, consectetur.
+                </p>
+                <div class="meta-bottom d-flex justify-content-between">
+                    <p><span class="lnr lnr-heart"></span> 15 Likes</p>
+                    <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 single-blog">
+                <div class="thumb">
+                    <img class="img-fluid" src="/img/b4.jpg" alt="">
+                </div>
+                <p class="date">10 Jan 2018</p>
+                <a href="blog-single.html">
+                    <h4>
+                        Addiction When Gambling
+                        Becomes A Problem
+                    </h4>
+                </a>
+                <p>
+                    inappropriate behavior ipsum dolor sit amet, consectetur.
+                </p>
+                <div class="meta-bottom d-flex justify-content-between">
+                    <p><span class="lnr lnr-heart"></span> 15 Likes</p>
+                    <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 
@@ -19,58 +235,3 @@
 
 
 
-
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Ma)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Maxe)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tenxe)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Gia)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Manguoidang)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tennguoidang)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ma)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Maxe)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tenxe)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Manguoidang)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tennguoidang)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>

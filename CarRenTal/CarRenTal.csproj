@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="areas\User\Data\**" />
+    <Content Remove="areas\User\Data\**" />
+    <EmbeddedResource Remove="areas\User\Data\**" />
+    <None Remove="areas\User\Data\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="wwwroot\DAO\Seacrch.cs" />
   </ItemGroup>
 
@@ -38,8 +45,8 @@
 
 
   <ItemGroup>
-    <Folder Include="areas\User\Data\" />
-    <Folder Include="areas\User\Models\" />
+    <Folder Include="Areas\admin\Data\" />
+    <Folder Include="Areas\admin\Models\" />
   </ItemGroup>
 
 </Project>
