@@ -1,0 +1,350 @@
+﻿@model CarRenTal.Models.DonHang
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+@section top
+{
+<link href="~/css/usercss.css" rel="stylesheet" />
+}
+
+<style>
+    .card {
+        border-radius: 0rem;
+    }
+
+    .mt-4, .my-4 {
+        margin-top: 0rem !important;
+    }
+
+    .detail-info {
+        padding: 8px 12px;
+        min-height: 50px;
+        background-color: #fff;
+    }
+
+    body {
+        font-family: Arial;
+    }
+
+    .phukien {
+        margin: -15px;
+    }
+
+    .soluong input {
+        width: 50px;
+        margin: 15px;
+    }
+
+    .sanpham p {
+        font-size: 30px;
+    }
+
+    .form {
+        position: relative;
+    }
+
+    .chon input {
+        position: absolute;
+        align-items: center;
+        top: 0;
+        left: 0;
+    }
+
+    .input-group-text h6 {
+        padding: 5px 0px 0px 5px;
+    }
+
+    .input-group-text {
+        background-color: #ffffff;
+        border: none;
+        padding: 0px;
+    }
+
+    #gia {
+        font-size: 22px;
+        line-height: 28px;
+        color: #f57224;
+        font-weight: 500;
+        margin-bottom: 4px;
+    }
+
+    #mota {
+        display: block;
+        width: 100%;
+        max-height: 32px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-left: 20px;
+        font-size: 14px;
+        color: #212121;
+        line-height: 16px;
+    }
+
+    #mota2 {
+        font-size: 12px;
+        color: #757575;
+        padding-left: 20px
+    }
+
+    #thongbao {
+        font-size: 12px;
+        color: rgb(255, 51, 12);
+        margin-bottom: 4px;
+        padding-left: 8px
+    }
+
+    #capsule {
+        font-size: 12px;
+        padding: 4px 12px;
+        display: inline-block;
+        border-radius: 24px;
+        background-color: #eff0f5;
+        max-width: 150px;
+    }
+
+    .detail-info .detail-info-left {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .detail-info .order-number {
+        margin-bottom: 4px;
+        height: 16px;
+        line-height: 16px;
+    }
+
+    .text.light-gray {
+        color: #9e9e9e;
+    }
+
+    .text.desc {
+        font-size: 12px;
+    }
+
+    .detail-info .detail-right-info {
+        height: 32px;
+        line-height: 32px;
+    }
+
+    .detail-info .detail-info-total-title {
+        color: #9e9e9e;
+    }
+
+    .detail-info .detail-info-total-title, .detail-info .detail-info-total-value {
+        font-size: 18px;
+    }
+
+    .detail-info .detail-info-total-value {
+        font-weight: 500;
+    }
+   
+    .card-title{
+        font-size:15px;
+    }
+    .card-text{
+        font-size:12px;
+        margin-bottom:0rem;
+    }
+</style>
+
+
+<div class="container" style="">
+
+    <div class="row align-items single-model item">
+
+        <div class="col-XL-2 model-left" style="padding-top:80px">
+            <p style="font-size:14px;font-family:Roboto-Regular; color:#424242">xin chào, @CarRenTal.DAO.Common.CommonConstants.UserName</p>
+            <ul class="nav-container">
+                <li class="item" id="My-Orders">
+                    <ul class="nav-container">
+                        <li class="item" id="Manage-My-Account">
+                            <a class="" href="#" data-spm="Manage-My-Account"><span>Quản lý tài khoản</span></a>
+                            <ul class="item-container">
+                                <li id="My-profile" class="sub "><a href="#" style="">Thông tin cá nhân</a></li>
+                                <li id="Address-book" class="sub"><a href="#" data-spm="Address-book">Sổ địa chỉ</a></li>
+                                <li id="Payment-methods" class="sub"><a href="#" data-spm="Payment-methods">Tùy chọn thanh toán</a></li>
+                                <li id="Vouchers" class="sub"><a href="#" data-spm="Vouchers">Mã giảm giá</a></li>
+                            </ul>
+                            <br />
+                        </li>
+
+                        <li class="item" id="My-Orders">
+                            <a class="sub sub-active" style="color:#1a9cb7;" href="#"><span>Đơn hàng của tôi</span></a>
+                            <ul class="item-container">
+                                <li id="Returns" class="sub"><a href="#" data-spm="Returns">Đơn hàng đổi trả</a></li>
+                                <li id="Cancellations" class="sub"><a href="#" data-spm="Cancellations">Đơn hàng hủy</a></li>
+                            </ul>
+                            <br />
+
+                        </li>
+                        <li class="item" id="Sell-On-Lazada">
+                            <a href="#" data-spm="Sell-On-Lazada"><span>Cho thuê xe</span></a>
+                            <ul class="item-container"></ul>
+                        </li>
+                    </ul>
+
+            </ul>
+        </div>
+        <div class="col-xl-10 model-right" style="padding-top:60px;padding-bottom:40px ">
+
+            <a class="breadcrumb">Đơn hàng của tôi</a>
+            <div class="detail-info" data-spm-anchor-id="a2o4n.order_details.0.i2.3cff705bBDecpr">
+                <div class="pull-left detail-info-left">
+                    <div>
+                        <p class="order-number" data-spm-anchor-id="a2o4n.order_details.0.i3.3cff705bBDecpr">Đơn hàng&nbsp;#@Model.Id</p>
+                        <p class="text desc light-gray">Đặt ngày @Model.NgayLap</p>
+                    </div>
+                </div>
+                <div class="detail-right-info pull-right">
+                    <span class="detail-info-total-title">Tổng cộng:&nbsp;</span>
+                    <span class="detail-info-total-value">2.190.000 ₫</span>
+                </div>
+            </div>
+
+
+
+            <div class="card o-hidden border-0 shadow-lg col-lg-12 my-4">
+                <div class="card-body" style="padding-left:0px">
+                    <!-- Nested Row within Card Body -->
+
+                    <div class="container">
+                        <div class="phukien row">
+                            <div class="input-group-prepend">
+                                <div class="">
+                                    <p style="font-size:14px;color: #212121;margin-right:8px; margin-bottom: -4px !important;padding-top: 1px">Đơn hàng #@Model.Id</p>
+                                    <span class="text desc light-gray">Đăng bởi </span>
+                                    <span class="text desc light-gray" style="color:#1a9cb7!important;">@Model.MaXeNavigation.MaNguoiDangNavigation.HoTen</span>
+
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+                        <hr />
+
+                        <div class="col-lg-11">
+                            <div class="form row">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                    </div>
+                                </div>
+                                <div class="sanpham d-flex col-8" style="padding-left: 0px;">
+                                    <img src="@Model.MaXeNavigation.Hinh" alt="" width="80" height="80">
+                                    <div>
+                                        <p id="mota" style="margin:5px;padding-left:18px">Xe @Model.MaXeNavigation.Tenxe</p>
+                                        <p id="mota2">@Model.MaXeNavigation.Mota</p>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="gia col-4" style=" padding:15px;text-align:left; padding-left:100px">
+
+
+                                    @if (Model.Status == false)
+                                    {
+                                        <p id="capsule">Đã huỷ đơn hàng</p>
+
+                                    }
+                                    else
+                                 if (DateTime.Now > Model.DenNgay)
+                                    {
+                                        <p id="capsule">Đã hoàn thành</p>
+
+                                    }
+
+                                    else
+                                    {
+                                        <p id="capsule">Đang tiến hành</p>
+
+                                    }
+                                </div>
+
+                            </div>
+                            <br />
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-XL-10 model-right" style="margin-top: -12px;">
+                <div class="" style="width:455px;float:left">
+                    <div class="card" style="width:100%">
+                        <div class="card-body">
+                            <h5 class="card-title">Địa chỉ nhận xe</h5>
+                            <h6 class="card-text">@Model.MaXeNavigation.MaNguoiDangNavigation.HoTen</h6>
+                            <span class="card-text">@Model.MaXeNavigation.Huyen</span>
+                            <span class="card-text">@Model.MaXeNavigation.Tinh</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="" style="width:460px; padding-left:10px;float:right">
+                    <div class="card" style="width:100%;padding-right:0px">
+                        <div class="card-body">
+                            <h5 class="card-title">Tổng cộng</h5>
+                            <span class="card-text"> Giá thuê </span>
+                            <span class="card-text" style="float:right">@String.Format("{0:N0}", Model.MaXeNavigation.Gia) đ</span>
+                            <br />
+                            <span class="card-text">tiền cọc</span>
+                            <span class="card-text" style="float:right">1.500.000 đ</span>
+                            <br />
+                            <span class="card-text">Số ngày</span>
+                            <span class="card-text" style="float:right">7 ngày</span>
+                            <hr />
+                            <span class="card-text">Tổng cộng</span>
+                            <span class="card-text" style="float:right">@String.Format("{0:N0}", Model.MaXeNavigation.Gia * 7 + 1500000) đ</span>
+                            <p class="card-text">thanh toán bằng hình thức sau khi nhận xe</p>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="" style="width:455px;float:left; padding-top:10px">
+                    <div class="card" style="width:100%">
+                        <div class="card-body">
+                            <h5 class="card-title">Địa chỉ người thuê</h5>
+                            <h6 class="card-text">@Model.MaUsNavigation.HoTen</h6>
+                            <span class="card-text">@Model.MaUsNavigation.DiaChi</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

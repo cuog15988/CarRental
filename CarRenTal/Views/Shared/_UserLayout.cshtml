@@ -68,7 +68,7 @@
                         <a href="#">@CarRenTal.DAO.Common.CommonConstants.UserName</a>
                         <ul class="sub-menu-m" style="font-size:16px">
                             <li class="ti-face-smile"><a href="~/User/Profile/Details?id=@CarRenTal.DAO.Common.CommonConstants.UserID">Quản lý tài khoản</a></li>
-                            <li><a href="category-02.html">Đơn hàng của tôi</a></li>
+                            <li><a href="/User/Customer/oders?id=@CarRenTal.DAO.Common.CommonConstants.UserID">Đơn hàng của tôi</a></li>
                             <li><a href="@Url.Action("Index","Carts", new { id = CarRenTal.DAO.Common.CommonConstants.UserID })">Xe đã lưu</a></li>
                             <li>@Html.ActionLink("Thoát", "Logout", "UserLogin")</li>
                         </ul>
