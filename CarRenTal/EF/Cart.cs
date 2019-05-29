@@ -12,6 +12,7 @@ namespace CarRenTal.EF
         public int? Gia { get; set; }
         public int? Manguoidang { get; set; }
 
+        public virtual Users MaNavigation { get; set; }
         public virtual Xe MaxeNavigation { get; set; }
     }
 }

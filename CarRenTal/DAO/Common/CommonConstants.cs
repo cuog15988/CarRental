@@ -13,5 +13,7 @@ namespace CarRenTal.DAO.Common
         public static string UserName { set; get; }
         public static int UserID { set; get; }
         public static string CurrentCulture { set; get; }
+
+        public static int maxe { set; get; }
     }
 }

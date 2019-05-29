@@ -130,10 +130,20 @@
             </ul>
         </div>
         <div class="col-xl-10 model-right" style="padding-top:100px;padding-bottom:40px ">
-            <a class="breadcrumb">Xe đã lưu</a>
+            @if (Model == null)
+            {
+                <a class="breadcrumb">
+                    Danh sách hiện đang trống
+                </a>
+            }
+            else
+            {
+                <a class="breadcrumb">Xe đã lưu</a>
 
+            }
             @foreach (var item in Model)
             {
+
                 <div class="card o-hidden border-0 shadow-lg col-lg-12 my-4">
                     <div class="card-body">
                         <!-- Nested Row within Card Body -->

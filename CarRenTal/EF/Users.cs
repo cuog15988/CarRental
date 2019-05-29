@@ -7,6 +7,7 @@ namespace CarRenTal.EF
     {
         public Users()
         {
+            Cart = new HashSet<Cart>();
             ChiTietThanhToan = new HashSet<ChiTietThanhToan>();
             DonHang = new HashSet<DonHang>();
             HopThu = new HashSet<HopThu>();
@@ -25,7 +26,9 @@ namespace CarRenTal.EF
         public int? GroudId { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+        public bool? Xacthuc { get; set; }
 
+        public virtual ICollection<Cart> Cart { get; set; }
         public virtual ICollection<ChiTietThanhToan> ChiTietThanhToan { get; set; }
         public virtual ICollection<DonHang> DonHang { get; set; }
         public virtual ICollection<HopThu> HopThu { get; set; }

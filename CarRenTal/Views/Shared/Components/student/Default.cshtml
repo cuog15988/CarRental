@@ -1,0 +1,78 @@
+﻿
+@model CarRenTal.Models.Users
+
+
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <a href="" id="notme">Không phải tôi!</a>
+
+                    <h5 class="card-title">User Details</h5>
+                    <hr />
+                    <span>Họ tên :</span>
+                    <span style="float:right" class="card-text">@Model.HoTen</span>
+                    <br />
+                    <span>Địa chỉ :</span>
+                    <span style="float:right" class="card-text">@Model.DiaChi</span>
+                    <br />
+                    <span>Điện thoại :</span>
+                    <span style="float:right" class="card-text">@Model.Phone</span>
+                    <br />
+                    <span>email :</span>
+                    <span style="float:right" class="card-text">@Model.Email</span>
+                    <hr />
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Flight Details</h5>
+                    <hr />
+                    <span>Giá thuê :</span>
+                    <span style="float:right">@String.Format("{0:N0}", ViewBag.xe.Gia) đ</span>
+                    <br />
+                    <span>Tiền cọc : </span>
+                    <span style="float:right"> @String.Format("{0:N0}", 2500000) đ</span>
+                    <br />
+                    <span>Số ngày thuê :</span>
+                    <span style="float:right">@CarRenTal.wwwroot.DAO.Seacrch.daydiff Ngày</span>
+                    <hr />
+                    <span>TỔNG CỘNG:</span>
+                    <span style="float:right">@String.Format("{0:N0}", @ViewBag.Tongtien) đ</span>
+                </div>
+            </div>
+        </div>
+    </div>
+<style>
+    #commnettitile{
+        font-size:11px;
+        color:gainsboro;
+        float:right;
+    }
+    .card-body p{
+        margin-bottom:0.25rem;
+    }
+    .card-body label{
+        margin-bottom:0;
+    }
+    #label{
+        font-weight:600;
+    }
+    .card-text{
+        font-size: 14px;
+    margin-bottom: 0rem;
+    }
+    .card-title{
+        font-size:15px;
+        font-weight:500;
+    }
+    #notme{
+        font-size:14px;
+        color: #007bff;
+        text-decoration: underline;
+        float:right;
+    }
+</style>

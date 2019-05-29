@@ -86,6 +86,12 @@ namespace CarRenTal.Models
                     .HasColumnName("tenxe")
                     .HasMaxLength(300);
 
+                entity.HasOne(d => d.MaNavigation)
+                    .WithMany(p => p.Cart)
+                    .HasForeignKey(d => d.Ma)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__cart__ma__4D5F7D71");
+
                 entity.HasOne(d => d.MaxeNavigation)
                     .WithMany(p => p.Cart)
                     .HasForeignKey(d => d.Maxe)
@@ -128,9 +134,13 @@ namespace CarRenTal.Models
 
                 entity.Property(e => e.DenNgay).HasColumnType("datetime");
 
+                entity.Property(e => e.Giamgia).HasColumnName("giamgia");
+
                 entity.Property(e => e.MaUs).HasColumnName("MaUS");
 
                 entity.Property(e => e.NgayLap).HasColumnType("datetime");
+
+                entity.Property(e => e.Songay).HasColumnName("songay");
 
                 entity.Property(e => e.TuNgay).HasColumnType("datetime");
 

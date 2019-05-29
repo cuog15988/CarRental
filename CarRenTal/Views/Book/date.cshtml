@@ -1,0 +1,47 @@
+﻿@model CarRenTal.DAO.Search
+
+@using (Html.BeginForm("savedate", "Book", FormMethod.Post))
+{
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" });
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Change Date / Time</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div>
+                        <p style="font-weight:bold;margin-top:0rem !important;margin-bottom:0rem">Pick-up </p>
+
+                    </div>
+                    <div class="input-group-append">
+                        <input asp-for="ngaynhan" ng-model="select" id="datepicker2" class="dates form-control" type="text" value=" @String.Format("{0:MM/dd/yyyy}", CarRenTal.wwwroot.DAO.Seacrch.ngaynhan)">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
+                        </div>
+                    </div>
+                    <div>
+                        <p style="font-weight:bold;margin-top:0rem !important;margin-bottom:0rem">Drop-off </p>
+
+                    </div>
+                    <div class="input-group-append">
+                        <input asp-for="ngaytra" id="datepicker" class="dates form-control" type="text" value=" @String.Format("{0:MM/dd/yyyy}", CarRenTal.wwwroot.DAO.Seacrch.ngaytra)">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit"  class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

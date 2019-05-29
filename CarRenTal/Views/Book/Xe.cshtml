@@ -1,0 +1,31 @@
+﻿<div id="Thongtin" class="container">
+
+    <br />
+    <div class="row align-items-center single-model item">
+        <div class="col-lg-4 model-left" style="border-right:solid 1px;border-color:#ccc">
+            <h5 class="mt-20">@Model.TenLoai</h5>
+
+            <img id="img-Sanpham" class="img-fluid" src="/img/b1.jpg" alt="" style="min-width:100%" />
+
+            <div class="ab-CarDetails_ImageArea_PoliciesCta ab-CarDetails_AdditionalInfo">
+                <img src="https://cdn2.rcstatic.com/images/site_graphics/newsite/information-sml.gif" alt="">
+                <a href="javascript:void(0);" class="supplier-policy-btn" data-name="IIPCarTile">Những thông tin chính của việc thuê xe của bạn</a>
+            </div>
+        </div>
+        <div class="col-lg-7 model-right">
+            <div class="title justify-content-between d-flex">
+                <h2>@Model.Gia VNĐ<span>/day</span></h2>
+            </div>
+            <p>
+                @Model.Mota
+            </p>
+            <p>
+                hãng xe          : @Model.TenHang <br>
+                Ngày đăng        : @Model.NgayNhap <br>
+                Người đăng       : @Model.TenNguoiDang <br>
+                Giá thuê         : @Model.Gia <br>
+            </p>
+
+        </div>
+    </div>
+</div>

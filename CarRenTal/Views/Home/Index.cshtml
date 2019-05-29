@@ -1,13 +1,13 @@
-﻿@model CarRenTal.Models.Xe
+﻿@model CarRenTal.DAO.Search
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_UserLayout.cshtml";
-}
+        ViewData["Title"] = "Index";
+        Layout = "~/Views/Shared/_UserLayout.cshtml";
+    }
 
 
-@section jsFooter
+    @section jsFooter
 {
-    <script type="text/javascript">
+        <script type="text/javascript">
         //Insert default item "Select" in dropdownlist on load
         $(document).ready(function () {
             var items = "<option value='0'>Select</option>";
@@ -31,39 +31,39 @@
         {
 
         })
-    </script>
+        </script>
 
-}
+    }
 
 
-<section class="banner-area relative" id="home">
-    <div class="overlay overlay-bg"></div>
-    <div class="container">
-        <div class="row fullscreen d-flex align-items-center justify-content-center">
-            <div class="banner-content col-lg-7 col-md-6 ">
-                <h6 class="text-white ">the Royal Essence of Journey</h6>
-                <h1 class="text-white text-uppercase">
-                    Thuê xe - Tìm kiếm, So sánh và Tiết kiệm
-                </h1>
-                <p class="pt-20 pb-20 text-white">
-                    So sánh 900 công ty tại hơn 60,000 địa điểm Bảo đảm giá thấp nhất
-                </p>
-                <a href="#" class="primary-btn text-uppercase">Xem Thêm</a>
-            </div>
-            <form asp-action="Create" class="col-lg-5  col-md-6 header-right">
+    <section class="banner-area relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row fullscreen d-flex align-items-center justify-content-center">
+                <div class="banner-content col-lg-7 col-md-6 ">
+                    <h6 class="text-white ">the Royal Essence of Journey</h6>
+                    <h1 class="text-white text-uppercase">
+                        Thuê xe - Tìm kiếm, So sánh và Tiết kiệm
+                    </h1>
+                    <p class="pt-20 pb-20 text-white">
+                        So sánh 900 công ty tại hơn 60,000 địa điểm Bảo đảm giá thấp nhất
+                    </p>
+                    <a href="#" class="primary-btn text-uppercase">Xem Thêm</a>
+                </div>
+                <form asp-action="Create" class="col-lg-5  col-md-6 header-right">
                     <h4 class="text-white pb-30">TÌM XE CHO THUÊ</h4>
                     <div class="form" role="form" autocomplete="off">
                         <div class="form">
-                            
-                            <select asp-for="TenLoai"  class="custom-select custom-select mb-3" required="" type="text" style="background:none !important; background-color:white !important"   asp-items="ViewBag.MaLoaiXe">
+
+                            <select asp-for="TenLoai" class="custom-select custom-select mb-3" required="" type="text" style="background:none !important; background-color:white !important" asp-items="ViewBag.MaLoaiXe">
                                 <option value="" disabled selected hidden>Chọn loại xe</option>
 
                             </select>
-                            
+
                         </div>
 
                         <div class="form">
-                            <select asp-for="Tinh" id="countrylist" class="custom-select custom-select mb-3" style="background:none !important; background-color:white !important"  required=""  asp-items='@(new SelectList(ViewBag.Tinh,"Ma","TenTinh"))'>
+                            <select asp-for="Tinh" id="countrylist" class="custom-select custom-select mb-3" style="background:none !important; background-color:white !important" required="" asp-items='@(new SelectList(ViewBag.Tinh,"Ma","TenTinh"))'>
                                 <option value="" disabled selected hidden>Chọn Tỉnh</option>
                             </select>
                             <span asp-validation-for="Tinh" class="text-danger"></span>
@@ -79,7 +79,7 @@
                         <div class="form-group row">
                             <div class="col-md-6 ">
                                 <div class="input-group dates-wrap">
-                                    <input id="datepicker" class="dates form-control" placeholder="Ngày nhận xe" type="text">
+                                    <input asp-for="ngaynhan" id="datepicker" class="dates form-control" placeholder="Ngày nhận xe" type="text">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
                                     </div>
@@ -87,7 +87,7 @@
                             </div>
                             <div class="col-md-6 wrap-right">
                                 <div class="input-group dates-wrap">
-                                    <input id="datepicker2" class="dates form-control" placeholder="Ngày nhận xe" type="text">
+                                    <input asp-for="ngaytra" id="datepicker2" class="dates form-control" placeholder="Ngày nhận xe" type="text">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
                                     </div>
@@ -105,195 +105,198 @@
                             </div>
                         </div>
                     </div>
-            </form>
-        </div>
-    </div>
-</section>
-<!-- End banner Area -->
-<!-- Start feature Area -->
-<section class="feature-area section-gap" id="service">
-    <div class="container">
-        <div class="row d-flex justify-content-center">
-            <div class="col-md-8 pb-40 header-text">
-                <h1>What Services we offer to our clients</h1>
-                <p>
-                    Who are in extremely love with eco friendly system.
-                </p>
+                </form>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-6">
-                <div class="single-feature">
-                    <h4><span class="lnr lnr-user"></span>8 triệu đăng ký mỗi năm          </h4>
-                    <br />
+    </section>
+    <!-- End banner Area -->
+    <!-- Start feature Area -->
+    <section class="feature-area section-gap" id="service">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-8 pb-40 header-text">
+                    <h1>What Services we offer to our clients</h1>
                     <p>
-                        Mỗi ngày, hàng nghìn người tin tưởng chúng tôi để tìm cho họ chiếc xe thuê hoàn hảo với mức giá tốt nhất.
+                        Who are in extremely love with eco friendly system.
                     </p>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-feature">
-                    <h4><span class="lnr lnr-license"></span>Dịch vụ cho thuê xe trực tuyến uy tính</h4>
-                    <p>
-                        Làm việc với hơn 900 công ty ở 160 quốc gia, chúng tôi có thể tìm chiếc xe phù hợp ở địa điểm phù hợp, với mức giá phù hợp.
-                    </p>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-feature">
+                        <h4><span class="lnr lnr-user"></span>8 triệu đăng ký mỗi năm          </h4>
+                        <br />
+                        <p>
+                            Mỗi ngày, hàng nghìn người tin tưởng chúng tôi để tìm cho họ chiếc xe thuê hoàn hảo với mức giá tốt nhất.
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-feature">
-                    <h4><span class="lnr lnr-phone"></span>Quản lý đăng ký trực tuyến</h4>
-                    <br />
-                    <br />
-                    <p>
-                        Dễ dàng thay đổi đăng ký của bạn qua mạng
-                    </p>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-feature">
+                        <h4><span class="lnr lnr-license"></span>Dịch vụ cho thuê xe trực tuyến uy tính</h4>
+                        <p>
+                            Làm việc với hơn 900 công ty ở 160 quốc gia, chúng tôi có thể tìm chiếc xe phù hợp ở địa điểm phù hợp, với mức giá phù hợp.
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-feature">
-                    <h4><span class="lnr lnr-rocket"></span>Được hơn 3.5 triệu người đánh giá</h4>
-                    <p>
-                        Chúng tôi đề nghị từng khách hàng đánh giá công ty cung cấp xe. Kiểm tra điểm số - và có lựa chọn đúng.
-                    </p>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-feature">
+                        <h4><span class="lnr lnr-phone"></span>Quản lý đăng ký trực tuyến</h4>
+                        <br />
+                        <br />
+                        <p>
+                            Dễ dàng thay đổi đăng ký của bạn qua mạng
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-feature">
-                    <h4><span class="lnr lnr-diamond"></span>Highly Recomended</h4>
-                    <br />
-                    <p>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-feature">
+                        <h4><span class="lnr lnr-rocket"></span>Được hơn 3.5 triệu người đánh giá</h4>
+                        <p>
+                            Chúng tôi đề nghị từng khách hàng đánh giá công ty cung cấp xe. Kiểm tra điểm số - và có lựa chọn đúng.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-feature">
+                        <h4><span class="lnr lnr-diamond"></span>Highly Recomended</h4>
+                        <br />
+                        <p>
 
-                        Việc sử dụng Internet đang trở nên phổ biến hơn do sự tiến bộ nhanh chóng của công nghệ và sức mạnh.
-                    </p>
+                            Việc sử dụng Internet đang trở nên phổ biến hơn do sự tiến bộ nhanh chóng của công nghệ và sức mạnh.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-feature">
+                        <h4><span class="lnr lnr-bubble"></span>Rất được khách hàng của chúng tôi khuyến nghị</h4>
+                        <p>
+                            Chúng tôi được xếp loại 7.4 trong số 10 trên TRUSTPILOT dựa vào 92,028 đánh giá.
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-feature">
-                    <h4><span class="lnr lnr-bubble"></span>Rất được khách hàng của chúng tôi khuyến nghị</h4>
+        </div>
+    </section>
+    <!-- End feature Area -->
+    <!-- Start home-about Area -->
+    <!-- End home-about Area -->
+    <!-- Start model Area -->
+    <!-- End model Area -->
+    <!-- Start fact Area -->
+    <!-- end fact Area -->
+    <!-- Start reviews Area -->
+    <!-- End reviews Area -->
+    <!-- Start callaction Area -->
+    <section class="callaction-area relative section-gap">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h1 class="text-white">Experience Great Support</h1>
                     <p>
-                        Chúng tôi được xếp loại 7.4 trong số 10 trên TRUSTPILOT dựa vào 92,028 đánh giá.
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
                     </p>
+                    <a class="callaction-btn text-uppercase" href="#">Reach Our Support Team</a>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- End feature Area -->
-<!-- Start home-about Area -->
-<!-- End home-about Area -->
-<!-- Start model Area -->
-<!-- End model Area -->
-<!-- Start fact Area -->
-<!-- end fact Area -->
-<!-- Start reviews Area -->
-<!-- End reviews Area -->
-<!-- Start callaction Area -->
-<section class="callaction-area relative section-gap">
-    <div class="overlay overlay-bg"></div>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <h1 class="text-white">Experience Great Support</h1>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-                </p>
-                <a class="callaction-btn text-uppercase" href="#">Reach Our Support Team</a>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End callaction Area -->
-<!-- Start blog Area -->
-<section class="blog-area section-gap" id="blog">
-    <div class="container">
-        <div class="row d-flex justify-content-center">
-            <div class="menu-content pb-70 col-lg-8">
-                <div class="title text-center">
-                    <h1 class="mb-10">Latest From Our Blog</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua.</p>
+    </section>
+    <!-- End callaction Area -->
+    <!-- Start blog Area -->
+    <section class="blog-area section-gap" id="blog">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="menu-content pb-70 col-lg-8">
+                    <div class="title text-center">
+                        <h1 class="mb-10">Latest From Our Blog</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3 col-md-6 single-blog">
-                <div class="thumb">
-                    <img class="img-fluid" src="img/b1.jpg" alt="">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 single-blog">
+                    <div class="thumb">
+                        <img class="img-fluid" src="img/b1.jpg" alt="">
+                    </div>
+                    <p class="date">10 Jan 2018</p>
+                    <a href="blog-single.html">
+                        <h4>
+                            Addiction When Gambling
+                            Becomes A Problem
+                        </h4>
+                    </a>
+                    <p>
+                        inappropriate behavior ipsum dolor sit amet, consectetur.
+                    </p>
+                    <div class="meta-bottom d-flex justify-content-between">
+                        <p><span class="lnr lnr-heart"></span> 15 Likes</p>
+                        <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
+                    </div>
                 </div>
-                <p class="date">10 Jan 2018</p>
-                <a href="blog-single.html">
-                    <h4>
-                        Addiction When Gambling
-                        Becomes A Problem
-                    </h4>
-                </a>
-                <p>
-                    inappropriate behavior ipsum dolor sit amet, consectetur.
-                </p>
-                <div class="meta-bottom d-flex justify-content-between">
-                    <p><span class="lnr lnr-heart"></span> 15 Likes</p>
-                    <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
+                <div class="col-lg-3 col-md-6 single-blog">
+                    <div class="thumb">
+                        <img class="img-fluid" src="img/b2.jpg" alt="">
+                    </div>
+                    <p class="date">10 Jan 2018</p>
+                    <a href="blog-single.html">
+                        <h4>
+                            Addiction When Gambling
+                            Becomes A Problem
+                        </h4>
+                    </a>
+                    <p>
+                        inappropriate behavior ipsum dolor sit amet, consectetur.
+                    </p>
+                    <div class="meta-bottom d-flex justify-content-between">
+                        <p><span class="lnr lnr-heart"></span> 15 Likes</p>
+                        <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 single-blog">
-                <div class="thumb">
-                    <img class="img-fluid" src="img/b2.jpg" alt="">
+                <div class="col-lg-3 col-md-6 single-blog">
+                    <div class="thumb">
+                        <img class="img-fluid" src="img/b3.jpg" alt="">
+                    </div>
+                    <p class="date">10 Jan 2018</p>
+                    <a href="blog-single.html">
+                        <h4>
+                            Addiction When Gambling
+                            Becomes A Problem
+                        </h4>
+                    </a>
+                    <p>
+                        inappropriate behavior ipsum dolor sit amet, consectetur.
+                    </p>
+                    <div class="meta-bottom d-flex justify-content-between">
+                        <p><span class="lnr lnr-heart"></span> 15 Likes</p>
+                        <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
+                    </div>
                 </div>
-                <p class="date">10 Jan 2018</p>
-                <a href="blog-single.html">
-                    <h4>
-                        Addiction When Gambling
-                        Becomes A Problem
-                    </h4>
-                </a>
-                <p>
-                    inappropriate behavior ipsum dolor sit amet, consectetur.
-                </p>
-                <div class="meta-bottom d-flex justify-content-between">
-                    <p><span class="lnr lnr-heart"></span> 15 Likes</p>
-                    <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 single-blog">
-                <div class="thumb">
-                    <img class="img-fluid" src="img/b3.jpg" alt="">
-                </div>
-                <p class="date">10 Jan 2018</p>
-                <a href="blog-single.html">
-                    <h4>
-                        Addiction When Gambling
-                        Becomes A Problem
-                    </h4>
-                </a>
-                <p>
-                    inappropriate behavior ipsum dolor sit amet, consectetur.
-                </p>
-                <div class="meta-bottom d-flex justify-content-between">
-                    <p><span class="lnr lnr-heart"></span> 15 Likes</p>
-                    <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 single-blog">
-                <div class="thumb">
-                    <img class="img-fluid" src="img/b4.jpg" alt="">
-                </div>
-                <p class="date">10 Jan 2018</p>
-                <a href="blog-single.html">
-                    <h4>
-                        Addiction When Gambling
-                        Becomes A Problem
-                    </h4>
-                </a>
-                <p>
-                    inappropriate behavior ipsum dolor sit amet, consectetur.
-                </p>
-                <div class="meta-bottom d-flex justify-content-between">
-                    <p><span class="lnr lnr-heart"></span> 15 Likes</p>
-                    <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
+                <div class="col-lg-3 col-md-6 single-blog">
+                    <div class="thumb">
+                        <img class="img-fluid" src="img/b4.jpg" alt="">
+                    </div>
+                    <p class="date">10 Jan 2018</p>
+                    <a href="blog-single.html">
+                        <h4>
+                            Addiction When Gambling
+                            Becomes A Problem
+                        </h4>
+                    </a>
+                    <p>
+                        inappropriate behavior ipsum dolor sit amet, consectetur.
+                    </p>
+                    <div class="meta-bottom d-flex justify-content-between">
+                        <p><span class="lnr lnr-heart"></span> 15 Likes</p>
+                        <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- End blog Area -->
-<!-- start footer Area -->
+    <!-- End blog Area -->
+    <!-- start footer Area -->
+    <div>
+
+    </div>

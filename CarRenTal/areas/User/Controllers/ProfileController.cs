@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CarRenTal.Models;
+using CarRenTal.Controllers;
+using CarRenTal.DAO.Common;
 
 namespace CarRenTal.Areas.User.Controllers
 {
     [Area("User")]
-    public class ProfileController : Controller
+    public class ProfileController : BaseUserController
     {
         private readonly RentalCarContext _context;
 
@@ -28,6 +30,12 @@ namespace CarRenTal.Areas.User.Controllers
             {
                 return NotFound();
             }
+
+            if(id!= CommonConstants.UserID)
+            {
+                return NotFound();
+            }
+
 
             var users = await _context.Users
                 .FirstOrDefaultAsync(m => m.Id == id);

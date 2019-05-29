@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using CarRenTal.Models;
 using System.Diagnostics;
 using CarRenTal.wwwroot.DAO;
+using CarRenTal.DAO.Common;
+using CarRenTal.DAO;
 
 namespace CarRenTal.Controllers
 {
@@ -35,13 +37,17 @@ namespace CarRenTal.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Index([Bind("TenLoai,Tinh,Huyen")] Xe hangXe)
+        public IActionResult Index(Search hangXe)
         {
+            List<DateTime> AuthorList = new List<DateTime>();
+            
             if (ModelState.IsValid)
             {
                 Seacrch.Huyen = hangXe.Huyen;
                 Seacrch.Tinh = hangXe.Tinh;
                 Seacrch.LoaiXe = hangXe.TenLoai;
+                Seacrch.ngaytra = hangXe.ngaytra;
+                Seacrch.ngaynhan = hangXe.ngaynhan;
                 if (string.IsNullOrEmpty(hangXe.TenLoai))
                 {
                     ViewData["Loi1"] = "Không được để trống mục này";
@@ -49,7 +55,7 @@ namespace CarRenTal.Controllers
                 else
                   if (string.IsNullOrEmpty(hangXe.Tinh))
                 {
-                    ViewData["loi2"] = "Không được để trống số điện thoại!";
+                    ViewData["loi2"] = "Không được để trống mục này";
                 }
                 else
                      if (string.IsNullOrEmpty(hangXe.Huyen))
@@ -58,6 +64,7 @@ namespace CarRenTal.Controllers
                 }
                 else
                 {
+                    Seacrch.daydiff = (hangXe.ngaytra - hangXe.ngaynhan).TotalDays;
                     return RedirectToAction("index", "DichVu");
                 }
             }
@@ -72,10 +79,6 @@ namespace CarRenTal.Controllers
             return Json(StateList);
 
         }
-
-
-
-
 
 
 

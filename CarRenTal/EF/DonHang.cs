@@ -14,6 +14,9 @@ namespace CarRenTal.EF
         public DateTime? DenNgay { get; set; }
         public bool? TinhTrangThanhToan { get; set; }
         public bool? Status { get; set; }
+        public int? Songay { get; set; }
+        public int? TongTien { get; set; }
+        public int? Giamgia { get; set; }
 
         public virtual HinhThucThanhToan MaLoaiThanhToanNavigation { get; set; }
         public virtual Users MaUsNavigation { get; set; }

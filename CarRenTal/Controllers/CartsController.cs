@@ -78,7 +78,7 @@ namespace CarRenTal.Controllers
                 return NotFound();
             }
 
-            var cart = _context.Cart.SingleOrDefault(x => x.Maxe == id);
+            var cart = _context.Cart.SingleOrDefault(x => x.Maxe == id && x.Ma==CommonConstants.UserID);
             if (cart == null)
             {
 
