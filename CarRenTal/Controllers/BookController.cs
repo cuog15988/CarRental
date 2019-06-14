@@ -102,6 +102,7 @@ namespace CarRenTal.Controllers
                 donHang.Songay = Convert.ToInt32(Seacrch.daydiff);
                 donHang.TongTien = Convert.ToInt32(Seacrch.daydiff * xe.Gia + 2500000);
                 donHang.Status = false;
+                donHang.Huy = false;
 
                 _context.Add(donHang);
                 _context.SaveChanges();

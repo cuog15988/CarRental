@@ -134,6 +134,7 @@ namespace CarRenTal.Controllers
         {
             if (ModelState.IsValid)
             {
+                users.PassWord = Encryptor.MD5Hash(users.PassWord);
                 users.NgayNhap = DateTime.Now;
                 _context.Add(users);
                 await _context.SaveChangesAsync();

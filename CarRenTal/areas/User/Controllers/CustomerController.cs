@@ -21,6 +21,25 @@ namespace CarRenTal.Areas.User.Controllers
             _context = context;
         }
 
+        public IActionResult huyyeucau(int? id)
+        {
+            if(id==null)
+            {
+                return NotFound();
+            }
+
+            if(ModelState.IsValid)
+            {
+                var s = _context.DonHang.Find(id);
+                s.Huy = true;
+                _context.DonHang.Update(s);
+                _context.SaveChanges();
+                string referer1 = Request.Headers["Referer"].ToString();
+                return Redirect(referer1);
+            }
+            return Redirect(Request.Headers["Referer"].ToString());
+
+        }
         // GET: User/Customer
         public async Task<IActionResult> oders(int? id)
         {

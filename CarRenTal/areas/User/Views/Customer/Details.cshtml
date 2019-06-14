@@ -202,7 +202,7 @@
                 </div>
                 <div class="detail-right-info pull-right">
                     <span class="detail-info-total-title">Tổng cộng:&nbsp;</span>
-                    <span class="detail-info-total-value">2.190.000 ₫</span>
+                    <span class="detail-info-total-value">@String.Format("{0:N0}", Model.TongTien) ₫</span>
                 </div>
             </div>
 
@@ -221,10 +221,10 @@
                                     <span class="text desc light-gray" style="color:#1a9cb7!important;">@Model.MaXeNavigation.MaNguoiDangNavigation.HoTen</span>
 
                                 </div>
-
+                               
                             </div>
 
-
+                            
 
                         </div>
 
@@ -239,9 +239,54 @@
                                 <div class="sanpham d-flex col-8" style="padding-left: 0px;">
                                     <img src="@Model.MaXeNavigation.Hinh" alt="" width="80" height="80">
                                     <div>
-                                        <p id="mota" style="margin:5px;padding-left:18px">Xe @Model.MaXeNavigation.Tenxe</p>
-                                        <p id="mota2">@Model.MaXeNavigation.Mota</p>
+                                        <span id="mota" style="margin:5px;padding-left:18px">Xe @Model.MaXeNavigation.Tenxe</span>
 
+                                        <p id="mota2">@Model.MaXeNavigation.Mota</p>
+                                        <p id="mota2">từ ngày : @Model.TuNgay</p>
+                                        <p id="mota2">Đến ngày : @Model.DenNgay</p>
+
+                                        @if (Model.TuNgay > DateTime.Now && Model.Huy == false)
+                                        {
+                                            <a href="#">
+                                                <p id="mota2" data-toggle="modal" data-target="#staticModal" style="text-decoration:underline; color:#1a9cb7">Huỷ yêu cầu</p>
+                                            </a>
+
+
+
+                                            //mediumModal
+                                            <div class="modal fade" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="mediumModalLabel">Bạn có chắc muốn huỷ đơn hàng #@Model.Id</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            
+                                                            <div class="container">
+                                                                <select class="browser-default custom-select">
+                                                                    <option hidden selected>Lý do bạn muốn huỷ đơn hàng</option>
+                                                                    <option value="1">tôi có lựa chọn khác</option>
+                                                                    <option value="2">tôi không muốn lựa chọn xe này nữa</option>
+                                                                    <option value="3">tôi vấn đề lớn với xe này</option>
+                                                                </select>
+                                                                <br />
+                                                                <br />
+                                                                <textarea class="form-control" placeholder="lý do khác" rows="5"></textarea>
+
+                                                            </div>
+                                                          
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                            <a href="@Url.Action("huyyeucau","Customer", new { id = Model.Id })" type="button" class="btn btn-primary">Xác nhận</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
                                     </div>
 
                                 </div>
@@ -249,22 +294,37 @@
                                 <div class="gia col-4" style=" padding:15px;text-align:left; padding-left:100px">
 
 
-                                    @if (Model.Status == false)
+                                    @if (Model.Huy == true)
                                     {
-                                        <p id="capsule">Đã huỷ đơn hàng</p>
+                                        <p id="capsule">Đã huỷ yêu cầu</p>
 
                                     }
                                     else
-                               if (DateTime.Now > Model.DenNgay)
+                                 if (Model.Status == true)
                                     {
-                                        <p id="capsule">Đã hoàn thành</p>
+                                        if (DateTime.Now > Model.DenNgay)
+                                        {
+                                            <p id="capsule">Đã hoàn thành</p>
 
+                                        }
+
+                                        else
+                                        if (DateTime.Now <= Model.DenNgay && DateTime.Now >= Model.TuNgay)
+                                        {
+                                            <p id="capsule">Đang tiến hành</p>
+
+                                        }
+                                        else
+                                        {
+                                            <p id="capsule">Sắp diễn ra</p>
+                                        }
                                     }
-
                                     else
                                     {
-                                        <p id="capsule">Đang tiến hành</p>
-
+                                        if (DateTime.Now >= Model.TuNgay)
+                                        {
+                                            <p id="capsule">Yêu cầu hết hạn</p>
+                                        }
                                     }
                                 </div>
 
@@ -301,13 +361,13 @@
                             <span class="card-text" style="float:right">@String.Format("{0:N0}", Model.MaXeNavigation.Gia) đ</span>
                             <br />
                             <span class="card-text">tiền cọc</span>
-                            <span class="card-text" style="float:right">1.500.000 đ</span>
+                            <span class="card-text" style="float:right">2.500.000 đ</span>
                             <br />
                             <span class="card-text">Số ngày</span>
-                            <span class="card-text" style="float:right">7 ngày</span>
+                            <span class="card-text" style="float:right">@Model.Songay</span>
                             <hr />
                             <span class="card-text">Tổng cộng</span>
-                            <span class="card-text" style="float:right">@String.Format("{0:N0}", Model.MaXeNavigation.Gia * 7 + 1500000) đ</span>
+                            <span class="card-text" style="float:right">@String.Format("{0:N0}", Model.MaXeNavigation.Gia * Model.Songay + 2500000) đ</span>
                             <p class="card-text">thanh toán bằng hình thức sau khi nhận xe</p>
 
                         </div>

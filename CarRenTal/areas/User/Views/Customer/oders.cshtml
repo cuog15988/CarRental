@@ -150,8 +150,9 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <p style="float:right ;color: rgb(26, 156, 183); font-size:14px;padding-top:3px">QUẢN LÝ</p>
-
+                                    <a href="/User/Customer/Details?id=@item.Id" style="    text-decoration: none;">
+                                        <p style="float:right ;color: rgb(26, 156, 183); font-size:14px;padding-top:3px">QUẢN LÝ</p>
+                                    </a>
                                 </div>
 
                             </div>
@@ -174,19 +175,49 @@
                                                 <p id="mota2">@item.MaXeNavigation.Mota</p>
                                             </a>
 
-                                            <p id="thongbao">đang sẵn sàng cho thuê</p>
+                                            <p id="thongbao"></p>
                                         </div>
 
                                     </div>
 
                                     <div class="gia col-4" style=" padding:15px;text-align:left; padding-left:100px">
-                                        @if (DateTime.Now > item.DenNgay)
+                                        @if (item.Huy == true)
                                         {
-                                            <p id="capsule">Đã hoàn thành</p>
+                                            <p id="capsule">Đã huỷ đơn hàng</p>
+
+                                        }
+                                        else
+                              if (item.Status == true)
+                                        {
+                                            if (DateTime.Now > item.DenNgay)
+                                            {
+                                                <p id="capsule">Đã hoàn thành</p>
+
+                                            }
+                                            else
+                                    if (DateTime.Now >= item.TuNgay && DateTime.Now <= item.DenNgay)
+                                            {
+                                                <p id="capsule">
+                                                    đơn hàng đang tiến hành
+                                                </p>
+                                            }
+                                            else
+                                    if (DateTime.Now <= item.DenNgay && DateTime.Now >= item.TuNgay)
+                                            {
+                                                <p id="capsule">Đang tiến hành</p>
+
+                                            }
+                                            else
+                                            {
+                                                <p id="capsule">Sắp tiến hành</p>
+                                            }
                                         }
                                         else
                                         {
-                                            <p id="capsule">Đang tiến hành</p>
+                                            if (DateTime.Now >= item.TuNgay)
+                                            {
+                                                <p id="capsule">Yêu cầu hết hạn</p>
+                                            }
                                         }
                                     </div>
 
@@ -201,7 +232,7 @@
                 </div>
             }
         </div>
-        </div>
+    </div>
 
 </div>
 

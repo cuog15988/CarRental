@@ -78,7 +78,7 @@
                         <div class="form-group row">
                             <div class="col-md-6 ">
                                 <div class="input-group dates-wrap">
-                                    <input asp-for="ngaynhan" id="datepicker" class="dates form-control" value="@String.Format("{0:MM/dd/yyyy}",DateTime.Now)" placeholder="Ngày nhận xe" type="text">
+                                    <input asp-for="ngaynhan" id="datepicker" class="dates form-control" value="@String.Format("{0:MM/dd/yyyy}",DateTime.Now.AddDays(1))" placeholder="Ngày nhận xe" type="text">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
                                     </div>
@@ -86,7 +86,7 @@
                             </div>
                             <div class="col-md-6 wrap-right">
                                 <div class="input-group dates-wrap">
-                                    <input asp-for="ngaytra" id="datepicker2" class="dates form-control" value="@String.Format("{0:MM/dd/yyyy}",DateTime.Now.AddDays(3))"  placeholder="Ngày nhận xe" type="text">
+                                    <input asp-for="ngaytra" id="datepicker2" class="dates form-control" value="@String.Format("{0:MM/dd/yyyy}",DateTime.Now.AddDays(4))"  placeholder="Ngày nhận xe" type="text">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
                                     </div>

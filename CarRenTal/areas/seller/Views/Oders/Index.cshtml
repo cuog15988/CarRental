@@ -31,7 +31,7 @@
     <!-- ============================================================== -->
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="card">
-            <h5 class="card-header" style="font-size:18px">Sản phẩm của bạn</h5>
+            <h5 class="card-header" style="font-size:18px">@ViewBag.content</h5>
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table id="example" class="table table-bordered table-condensed" style="width:100%">
@@ -40,8 +40,6 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.NgayLap)
                                 </th>
-
-
 
                                 <th>
                                     @Html.DisplayNameFor(model => model.Songay)
@@ -78,7 +76,7 @@
                                         <label style="color:orangered">Khách hàng đã huỷ</label>
                                     }
                                     else
-                                     if (item.Status == true)
+                                   if (item.Status == true)
                                     {
                                         if (DateTime.Now > item.DenNgay)
                                         {
@@ -96,7 +94,15 @@
                                     }
                                     else
                                     {
-                                        <label style="color:#ae627c">chưa xác nhận đơn hàng</label>
+                                        if (DateTime.Now >= item.TuNgay)
+                                        {
+                                            <label style="color:#ae627c">yêu cầu đã hết hạn</label>
+                                        }
+                                        else
+                                        {
+                                            <label style="color:#ae627c">chưa xác nhận đơn hàng</label>
+
+                                        }
                                     }
                                 </td>
 

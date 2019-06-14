@@ -21,11 +21,45 @@ namespace CarRenTal.Areas.seller.Controllers
         }
 
         // GET: seller/Oders
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? showdo)
         {
-            var rentalCarContext = _context.DonHang.Include(d => d.MaLoaiThanhToanNavigation).Include(d => d.MaUsNavigation).Include(d => d.MaXeNavigation)
-                .Where(x=>x.MaXeNavigation.MaNguoiDang== UserDao.UserId);
-            return View(await rentalCarContext.ToListAsync());
+            if(showdo==null)
+            {
+                ViewData["content"] = "Tất cả yêu cầu ";
+                return View(await _context.DonHang.Include(d => d.MaLoaiThanhToanNavigation).Include(d => d.MaUsNavigation).Include(d => d.MaXeNavigation)
+                                .Where(x => x.MaXeNavigation.MaNguoiDang == UserDao.UserId).ToListAsync());
+            }
+            else
+                if(showdo==1)
+            {
+                ViewData["content"] = "yêu cầu bị huỷ";
+                return View(await _context.DonHang.Include(d => d.MaLoaiThanhToanNavigation).Include(d => d.MaUsNavigation).Include(d => d.MaXeNavigation)
+                                    .Where(x => x.MaXeNavigation.MaNguoiDang == UserDao.UserId && x.Huy==true).ToListAsync());
+            }
+            else
+                if (showdo == 2)
+            {
+                ViewData["content"] = "yêu cầu chưa xấc nhận";
+                return View(await _context.DonHang.Include(d => d.MaLoaiThanhToanNavigation).Include(d => d.MaUsNavigation).Include(d => d.MaXeNavigation)
+                                    .Where(x => x.MaXeNavigation.MaNguoiDang == UserDao.UserId && x.Huy == false && x.TuNgay>DateTime.Now && x.Status==false).ToListAsync());
+            }
+            else
+                if (showdo == 3)
+            {
+                ViewData["content"] = "yêu cầu hết hạn";
+                return View(await _context.DonHang.Include(d => d.MaLoaiThanhToanNavigation).Include(d => d.MaUsNavigation).Include(d => d.MaXeNavigation)
+                                    .Where(x => x.MaXeNavigation.MaNguoiDang == UserDao.UserId && x.Huy == false && x.Status==false && x.TuNgay <= DateTime.Now).ToListAsync());
+            }
+            if (showdo == 4)
+            {
+                ViewData["content"] = "yêu cầu đã hoàn thành";
+                return View(await _context.DonHang.Include(d => d.MaLoaiThanhToanNavigation).Include(d => d.MaUsNavigation).Include(d => d.MaXeNavigation)
+                                    .Where(x => x.MaXeNavigation.MaNguoiDang == UserDao.UserId && x.Huy == false && x.Status == true && x.DenNgay < DateTime.Now).ToListAsync());
+            }
+
+            return View(await _context.DonHang.Include(d => d.MaLoaiThanhToanNavigation).Include(d => d.MaUsNavigation).Include(d => d.MaXeNavigation)
+                                    .Where(x => x.MaXeNavigation.MaNguoiDang == UserDao.UserId).ToListAsync());
+
         }
 
        
