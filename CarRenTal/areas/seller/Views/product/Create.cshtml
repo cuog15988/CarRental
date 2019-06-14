@@ -1,0 +1,160 @@
+﻿@model CarRenTal.Models.Xe
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/areas/seller/Views/Shared/_SallerAdmin.cshtml";
+}
+@section scripts
+{
+
+    <script src="~/js/tinymce/tinymce.min.js"></script>
+    <script>tinymce.init({ selector: 'textarea' });</script>
+    <script type="text/javascript">
+        //Insert default item "Select" in dropdownlist on load
+
+        //Bind City dropdownlist
+        $("#countrylist").change(function () {
+            $("#savebutton1").prop("disabled", false)
+
+            var id = $("#countrylist").val();
+            var url = '@Url.Action("~/")' + "/Home/getHuyenbyID";
+            $.getJSON(url, { id: id }, function (data) {
+                var items = '';
+               $("#citylist").empty();
+                $.each(data, function (index, row) {
+                    $("#citylist").append("<option value='" + row.value + "'>" + row.text + "</option>")
+                });
+            });
+        });
+
+
+         $("#countrylist2").change(function () {
+            $("#savebutton2").prop("disabled", false)
+
+            var id = $("#countrylist2").val();
+            var url = '@Url.Action("~/")' + "/Home/getHangXe";
+            $.getJSON(url, { id: id }, function (data) {
+                var items = '';
+               $("#citylist2").empty();
+                $.each(data, function (index, row) {
+                    $("#citylist2").append("<option value='" + row.value + "'>" + row.text + "</option>")
+                });
+            });
+         });
+
+        function checkTextField(field) {
+    document.getElementById("error").innerText =
+                (field.value === "") ? "Field is empty." : "";
+    }
+
+
+    </script>
+
+}
+
+<style>
+    .custom-select {
+        -webkit-appearance: menulist-button;
+    }
+</style>
+
+<div class="row">
+    <div class="col-xl-10 col-lg-12 col-md-12 col-sm-12 col-12">
+
+        <div class="page-header">
+            <h2 style="font-family:Tahoma; font-weight:400">
+                Thêm sản phẩm
+            </h2>
+
+            <p class="pageheader-text"></p>
+            <div class="page-breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("product","index")">Trang chủ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a asp-action="Index">Quản lý sản phẩm</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Thêm sản phẩm</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="padding-left:20px">
+    <div class="card o-hidden border-0 col-lg-11">
+        <div class="card-header">
+            <h2 style="text-align:center; font-weight:600 ; padding-top:10px">THÊM SẢN PHẨM</h2>
+        </div>
+        <div class="card-body">
+
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="TenLoai" class="control-label">Loại xe</label>
+                    <select required id="countrylist2" class="custom-select custom-select mb-3" style="background:none !important; background-color:white !important" asp-items='@(new SelectList(ViewBag.Loaixe,"Id","TenLoai"))'>
+                        <option value="" disabled selected hidden>Loại Xe</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MaHangXe" required class="control-label">Hãng xe</label>
+                    <select id="citylist2" asp-for="MaHangXe" class="custom-select custom-select mb-3" style="background:none !important; background-color:white !important" asp-items='@(new SelectList(string.Empty,"Id","TenHang"))'>
+                        <option value="" disabled selected hidden>hãng xe</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Tenxe" class="control-label"></label>
+                    <input asp-for="Tenxe" required class="form-control" placeholder="Nhập tên xe" onblur="checkTextField(this);" />
+                    <span asp-validation-for="Tenxe" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Tên Tỉnh</label>
+                    <select id="countrylist" class="custom-select custom-select mb-3" style="background:none !important; background-color:white !important" asp-items='@(new SelectList(ViewBag.MaTinh,"Ma","TenTinh"))'>
+                        <option value="" disabled selected hidden>Chọn Tỉnh</option>
+                    </select>
+                    <span asp-validation-for="Tinh" required class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="Doi" class="control-label">Tên huyện</label>
+                    <select id="citylist" asp-for="MaHuyen" required class="custom-select custom-select mb-3" style="background:none !important; background-color:white !important" asp-items='@(new SelectList(string.Empty,"TenHuyen","TenHuyen"))'>
+                        <option value="" disabled selected hidden>Quận huyện</option>
+                    </select>
+                    <span asp-validation-for="Huyen" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Diachi" class="control-label">Địa chỉ</label>
+                    <input asp-for="Diachi" class="form-control" />
+                    <span asp-validation-for="Diachi" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Doi" class="control-label">năm sản xuất</label>
+                    <input asp-for="Doi" required class="form-control" />
+                    <span asp-validation-for="Doi" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Hinh" class="control-label">Hình</label>
+                    <input asp-for="Hinh" type="file"
+                           id="file" name="file"
+                           accept="image/png, image/jpeg" required>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="Mota" class="control-label">Mô tả</label>
+                   
+                    <textarea asp-for="Mota"></textarea>
+                    <span asp-validation-for="Mota" required class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Gia" class="control-label">Giá</label>
+                    <input asp-for="Gia" required class="form-control" />
+                    <span asp-validation-for="Gia" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,79 @@
+﻿@model CarRenTal.Models.Admin
+
+@{
+    ViewData["Title"] = "admin";
+    Layout = "~/areas/admin/Views/Shared/_adminLayout.cshtml";
+}
+
+
+<div class="col-xl-11 col-lg-10 col-md-10 col-sm-12 col-12">
+    <div class="card">
+        <div class="card-header card-header-primary">
+            <h4 class="card-title">Tài khoản quản trị viên</h4>
+            <span class="card-category">Thêm tài khoản</span>
+           
+        </div>
+
+
+        <div class="card-body">
+            <div class="col-md-11">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">UserName</label>
+                                <input asp-for="UserName" type="text" class="form-control" required>
+                                <p class="text-danger">@ViewBag.TrungUser</p>
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">passwords</label>
+                                <input asp-for="PassWord" type="password" class="form-control" required />
+                                <span asp-validation-for="PassWord" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Họ tên</label>
+                                <input asp-for="HoTen" class="form-control" required/>
+                                <span asp-validation-for="HoTen" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Nhập lại mật khẩu</label>
+                                <input asp-for="PassWord" class="form-control" required/>
+                                <span asp-validation-for="PassWord" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="DiaChi" class="control-label"></label>
+                        <input asp-for="DiaChi" class="form-control" required />
+                        <span asp-validation-for="DiaChi" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NgaySinh" class="control-label"></label>
+                        <input asp-for="NgaySinh" class="form-control" type="date" />
+                        <span asp-validation-for="NgaySinh" class="text-danger"></span>
+                    </div>
+                   
+                   
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

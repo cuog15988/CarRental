@@ -35,6 +35,14 @@ namespace CarRenTal.Controllers
             return Json(citylist);
 
         }
+
+        public JsonResult getHangXe(int id)
+        {
+            var citylist1 = new SelectList(_context.HangXe.Where(c => c.MaLoaiXe == id), "Id", "TenHang");
+            return Json(citylist1);
+
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Index(Search hangXe)

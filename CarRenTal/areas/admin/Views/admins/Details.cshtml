@@ -1,0 +1,100 @@
+﻿@model CarRenTal.Models.Admin
+
+@{
+    ViewData["Title"] = "admin";
+    Layout = "~/areas/admin/Views/Shared/_adminLayout.cshtml";
+}
+
+<style>
+    .row input{
+        background-color:transparent !important;
+    }
+    .form-group input{
+        background-color:transparent !important;
+    }
+</style>
+    <div class="col-xl-11 col-lg-10 col-md-10 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <div class="pull-left">
+                    <h4 class="card-title">Tài khoản quản trị viên</h4>
+                    <span class="card-category">Thông tin tài khoản</span>
+                </div>
+                <div class="pull-right">
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">Edit</a>
+                    @if (Model.Status == true)
+                    {
+                        <a class="btn btn-danger" href="@Url.Action("khoataikhoan","admins", new { id=Model.Id})">
+                            Lock
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-danger" href="@Url.Action("khoataikhoan","admins", new { id=Model.Id})">
+                            UnLock
+                        </a>
+                    }
+                </div>
+
+            </div>
+
+
+            <div class="card-body">
+                <div class="col-md-11">
+                  
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">UserName</label>
+                                    <input asp-for="UserName" type="text" class="form-control" readonly>
+                                    <p class="text-danger">@ViewBag.TrungUser</p>
+                                    <span asp-validation-for="UserName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Ngày nhập</label>
+                                    <input asp-for="NgayNhap" type="date" class="form-control" readonly />
+                                    <span asp-validation-for="NgayNhap" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Họ tên</label>
+                                    <input asp-for="HoTen" class="form-control" readonly />
+                                    <span asp-validation-for="HoTen" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Loại tài khoản</label>
+                                    <input asp-for="GroudId" class="form-control" readonly />
+                                    <span asp-validation-for="PassWord" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="DiaChi" class="control-label"></label>
+                            <input asp-for="DiaChi" class="form-control" readonly />
+                            <span asp-validation-for="DiaChi" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="NgaySinh" class="control-label"></label>
+                            <input asp-for="NgaySinh" class="form-control" type="date" readonly/>
+                            <span asp-validation-for="NgaySinh" class="text-danger" ></span>
+                        </div>
+
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

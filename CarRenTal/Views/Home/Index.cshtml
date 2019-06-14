@@ -72,14 +72,13 @@
                             <select id="citylist" asp-for="Huyen" class="custom-select custom-select mb-3" required="" style="background:none !important; background-color:white !important" asp-items='@(new SelectList(string.Empty,"TenHuyen","TenHuyen"))'>
                                 <option value="" disabled selected hidden>Quận huyện</option>
                             </select>
-                            <p style="color:red">@ViewData["loi3"]</p>
                             <span asp-validation-for="Huyen" class="text-danger"></span>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-md-6 ">
                                 <div class="input-group dates-wrap">
-                                    <input asp-for="ngaynhan" id="datepicker" class="dates form-control" placeholder="Ngày nhận xe" type="text">
+                                    <input asp-for="ngaynhan" id="datepicker" class="dates form-control" value="@String.Format("{0:MM/dd/yyyy}",DateTime.Now)" placeholder="Ngày nhận xe" type="text">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
                                     </div>
@@ -87,7 +86,7 @@
                             </div>
                             <div class="col-md-6 wrap-right">
                                 <div class="input-group dates-wrap">
-                                    <input asp-for="ngaytra" id="datepicker2" class="dates form-control" placeholder="Ngày nhận xe" type="text">
+                                    <input asp-for="ngaytra" id="datepicker2" class="dates form-control" value="@String.Format("{0:MM/dd/yyyy}",DateTime.Now.AddDays(3))"  placeholder="Ngày nhận xe" type="text">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
                                     </div>
@@ -115,9 +114,9 @@
         <div class="container">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-8 pb-40 header-text">
-                    <h1>What Services we offer to our clients</h1>
+                    <h1>Dịch vụ cho khách hàng </h1>
                     <p>
-                        Who are in extremely love with eco friendly system.
+                        Rental Car hệ thống website tiện ích, thân thiện
                     </p>
                 </div>
             </div>
@@ -193,11 +192,11 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10">
-                    <h1 class="text-white">Experience Great Support</h1>
+                    <h1 class="text-white">Liên hệ hỗ trợ</h1>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+                        Rental car website cung cấp giải pháp phương tiện đi lại cho mọi người với ưu tiên khách hàng lên hàng đầu
                     </p>
-                    <a class="callaction-btn text-uppercase" href="#">Reach Our Support Team</a>
+                    <a class="callaction-btn text-uppercase" href="/HomThuLienHes">Reach Our Support Team</a>
                 </div>
             </div>
         </div>
@@ -209,8 +208,8 @@
             <div class="row d-flex justify-content-center">
                 <div class="menu-content pb-70 col-lg-8">
                     <div class="title text-center">
-                        <h1 class="mb-10">Latest From Our Blog</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua.</p>
+                        <h1 class="mb-10">bài viết mới</h1>
+                        <p></p>
                     </div>
                 </div>
             </div>

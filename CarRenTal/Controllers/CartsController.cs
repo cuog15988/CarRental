@@ -63,41 +63,6 @@ namespace CarRenTal.Controllers
             return Redirect(referer1);
         }
 
-        public IActionResult saveCart(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-
-            var xe = _context.Xe.SingleOrDefault(x => x.Id == id);
-            Cart c = new Cart();
-            if (xe == null)
-            {
-                return NotFound();
-            }
-
-            var cart = _context.Cart.SingleOrDefault(x => x.Maxe == id && x.Ma==CommonConstants.UserID);
-            if (cart == null)
-            {
-
-                if (ModelState.IsValid)
-                {
-                    c.Ma = CommonConstants.UserID;
-                    c.Manguoidang = xe.MaNguoiDang;
-                    c.Maxe = xe.Id;
-                    c.Gia = xe.Gia;
-                    c.Tenxe = xe.Tenxe;
-
-                    _context.Add(c);
-                    _context.SaveChangesAsync();
-                    string referer1 = Request.Headers["Referer"].ToString();
-                    return Redirect(referer1);
-                }
-            }
-            return Redirect(Request.Headers["Referer"].ToString());
-        }
 
     }
 }

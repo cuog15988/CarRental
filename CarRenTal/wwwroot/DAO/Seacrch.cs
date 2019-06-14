@@ -18,5 +18,7 @@ namespace CarRenTal.wwwroot.DAO
         public static double daydiff;
         public static double tongtien;
 
+        public static int mahang;
+
     }
 }

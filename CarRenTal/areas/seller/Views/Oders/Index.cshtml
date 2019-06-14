@@ -1,0 +1,147 @@
+﻿@model IEnumerable<CarRenTal.Models.DonHang>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/areas/seller/Views/Shared/_SallerAdmin.cshtml";
+}
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+            <div class="page-header">
+                <h2 style="font-family:Tahoma; font-weight:400">Quản lý Đơn hàng </h2>
+
+                <p class="pageheader-text"></p>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="@Url.Action("product","index")" class="breadcrumb-link">Trang chủ</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Quản lý đơn hàng</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="row">
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- recent orders  -->
+    <!-- ============================================================== -->
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <h5 class="card-header" style="font-size:18px">Sản phẩm của bạn</h5>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table id="example" class="table table-bordered table-condensed" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.NgayLap)
+                                </th>
+
+
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Songay)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Status)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TongTien)
+                                </th>
+
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NgayLap)
+                                </td>
+
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Songay)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TongTien)
+                                </td>
+                                <td>
+                                    @if (item.Huy == true)
+                                    {
+                                        <label style="color:orangered">Khách hàng đã huỷ</label>
+                                    }
+                                    else
+                                     if (item.Status == true)
+                                    {
+                                        if (DateTime.Now > item.DenNgay)
+                                        {
+                                            <label style="">đơn hàng đã hoàn thành</label>
+                                        }
+                                        else
+                                       if (DateTime.Now >= item.TuNgay && DateTime.Now <= item.DenNgay)
+                                        {
+                                            <label style="color:blue">đơn hàng đang tiến hành</label>
+                                        }
+                                        else
+                                        {
+                                            <label style="color:blue">đơn hàng chưa tiến hành</label>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <label style="color:#ae627c">chưa xác nhận đơn hàng</label>
+                                    }
+                                </td>
+
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<style>
+    #example td {
+        color: #333;
+    }
+
+    #example tbody {
+        color: #333;
+        font-weight: 600;
+    }
+</style>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                "order": [[0, "desc"]]
+            });
+        });
+
+
+        $(document).ready(function () {
+            $('.table table-striped table-bordered').DataTable();
+        });
+    </script>
+}
+
+

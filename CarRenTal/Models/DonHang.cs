@@ -17,6 +17,8 @@ namespace CarRenTal.Models
         public int? Songay { get; set; }
         public int? TongTien { get; set; }
         public int? Giamgia { get; set; }
+        public bool? Huy { get; set; }
+        public bool? Xacnhan { get; set; }
 
         public virtual HinhThucThanhToan MaLoaiThanhToanNavigation { get; set; }
         public virtual Users MaUsNavigation { get; set; }

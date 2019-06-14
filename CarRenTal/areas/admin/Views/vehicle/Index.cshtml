@@ -1,0 +1,186 @@
+﻿@model IEnumerable<CarRenTal.Models.Xe>
+
+@{
+    ViewData["Title"] = "Xe";
+    Layout = "~/areas/admin/Views/Shared/_adminLayout.cshtml";
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                "order": [[0, "desc"]]
+            });
+        });
+
+
+        $(document).ready(function () {
+            $('.table table-striped table-bordered').DataTable();
+        });
+    </script>
+}
+<style>
+    .table table-bordered table-condensed td {
+        color: #000000 !important;
+    }
+
+    .card-category {
+        text-decoration: underline;
+        color: #9c27b0;
+    }
+</style>
+
+
+
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="card-header card-header-primary" style="">
+        <h4 class="card-title" style="color:#161414">User Profile</h4>
+        @if (ViewBag.Loai == 0 || ViewBag.Loai==null)
+        {
+            <a href="/admin/Users" class="card-category text-danger" style="text-decoration:none">Tất cả phương tiện     |</a>
+
+        }
+        else
+        {
+            <a href="/admin/vehicle" class="card-category text-primary" style="text-decoration:none">Tất cả phương tiện     |</a>
+
+        }
+        @if (ViewBag.Loai == 1)
+        {
+            <a href="/admin/vehicle?showdo=1" class="card-category text-danger" style="text-decoration:none">Phương tiện chưa xác nhận    |</a>
+        }
+        else
+        {
+            <a href="/admin/vehicle?showdo=1" class="card-category text-primary" style="text-decoration:none">Phương tiện chưa xác nhận    |</a>
+
+        }
+        @if (ViewBag.Loai == 2)
+        {
+            <a href="/admin/vehicle?showdo=2" class="card-category text-danger" style="text-decoration:none">Phương tiện đã được duyệt    |</a>
+
+        }
+        else
+        {
+            <a href="/admin/vehicle?showdo=2" class="card-category text-primary" style="text-decoration:none">Phương tiện đã được duyệt    |</a>
+
+        }
+        @if (ViewBag.Loai == 3)
+        {
+            <a href="/admin/vehicle?showdo=3" class="card-category text-danger" style="text-decoration:none">Phương tiện đang tạm khoá    |</a>
+
+        }
+        else
+        {
+            <a href="/admin/vehicle?showdo=3" class="card-category text-primary" style="text-decoration:none">Phương tiện đang tạm khoá    |</a>
+
+        }
+
+    </div>
+
+    @if (ViewBag.status == null)
+    {
+
+    }
+    else
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert" style="background-color:#fff3cd; color:#856404">
+            <strong>Thông báo!</strong> @ViewBag.status
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    <div class="card" style="">
+
+        <h5 class="card-header text-primary" style="font-size:18px; font-weight:bold">@ViewBag.Content</h5>
+        <hr />
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table id="example" class="table table-bordered table-hover" style="width:100%">
+                    <thead class="text-primary">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NgayNhap)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TenNguoiDang)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TenLoai)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Tinh)
+                            </th>
+
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.Tenxe)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TenHang)
+                            </th>
+
+
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </th>
+
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NgayNhap)
+                            </td>
+                            <td>
+
+                                <a href="/admin/Users/details/@item.MaNguoiDang">
+                                    @Html.DisplayFor(modelItem => item.MaNguoiDangNavigation.UserName)
+                                </a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TenLoai)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Tinh)
+                            </td>
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Tenxe)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TenHang)
+                            </td>
+
+                            <td>
+                                @if(item.Status== true)
+                                {
+                                <p class="" style="color:blue">
+                                    Action
+                                </p>
+                                }
+                                else
+                                {
+                                    <p class="" style="color:#ff0000">
+                                        Phương tiện chưa được duyệt
+                                    </p>
+                                }
+                            </td>
+
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,160 @@
+﻿@model IEnumerable<CarRenTal.Models.Admin>
+
+@{
+    ViewData["Title"] = "admin";
+    Layout = "~/areas/admin/Views/Shared/_adminLayout.cshtml";
+}
+
+
+
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="card-header card-header-primary" style="">
+
+        <h4 class="card-title" style="color:#161414">User Profile</h4>
+
+        @if (ViewBag.Loai == 0 || ViewBag.Loai == null)
+        {
+            <a class="card-category text-danger" style="text-decoration:none">Tất cả tài khoản     |</a>
+
+        }
+        else
+        {
+            <a href="./admins?showdo=0" class="card-category text-primary" style="text-decoration:none">Tất cả tài khoản     |</a>
+
+        }
+
+        @if (ViewBag.Loai == 1)
+        {
+            <a class="card-category text-danger" style="text-decoration:none">Tài khoản đang bị khoá     |</a>
+
+        }
+        else
+        {
+            <a href="./admins?showdo=1" class="card-category text-primary" style="text-decoration:none">Tài khoản đang bị khoá     |</a>
+
+        }
+
+        @if (ViewBag.Loai == 2)
+        {
+            <a class="card-category text-danger" style="text-decoration:none">Tài khoản đang hoạt động     </a>
+
+        }
+        else
+        {
+              <a href="./admins?showdo=2" class="card-category text-primary" style="text-decoration:none">Tài khoản đang hoạt động     </a>
+
+        }
+
+    </div>
+    <div class="card" style="">
+
+        <div >
+            <h5 class="card-header text-primary pull-left" style="font-size:22px; font-weight:bold; padding-top:20px">@ViewBag.Content</h5>
+
+            <a asp-action="Create" class="text pull-right" style="margin:20px; font-size:25px">+</a>
+
+        </div>
+
+
+        <hr />
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table id="example" class="table table-bordered table-hover" style="width:100%">
+                    <thead class="text-primary">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NgayNhap)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserName)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.HoTen)
+                            </th>
+
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.DiaChi)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </th>
+                         
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NgayNhap)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserName)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HoTen)
+                                </td>
+
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DiaChi)
+                                </td>
+
+                            
+                                <td>
+                                    @if (item.Status == true)
+                                    {
+                                        <label class="" style="color:blue">Active</label>
+                                    }
+                                    else
+                                    {
+                                        <p class="text-danger">Locked</p>
+
+                                    }
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+
+<p>
+    <i class="material-icons">dashboard</i>
+    <a asp-action="Create">Thêm tài khoản</a>
+</p>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                "order": [[0, "desc"]]
+            });
+        });
+
+
+        $(document).ready(function () {
+            $('.table table-striped table-bordered').DataTable();
+        });
+    </script>
+}
+<style>
+    .table table-bordered table-condensed td {
+        color: #000000 !important;
+    }
+
+    .card-category {
+        text-decoration: underline;
+        color: #9c27b0;
+    }
+</style>

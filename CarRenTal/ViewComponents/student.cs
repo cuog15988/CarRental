@@ -28,6 +28,7 @@ namespace CarRenTal.ViewComponents
             ViewData["Xe"] = _context.Xe.SingleOrDefault(x => x.Id == maxe);
             var s = await _context.Users.FirstOrDefaultAsync(x=>x.Id==id);
             return View(s);
+            
         }
     }
 }

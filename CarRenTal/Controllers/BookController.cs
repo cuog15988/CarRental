@@ -24,30 +24,10 @@ namespace CarRenTal.Controllers
         // GET: Book
         public async Task<IActionResult> Index()
         {
-            var rentalCarContext = _context.DonHang.Include(d => d.MaLoaiThanhToanNavigation).Include(d => d.MaUsNavigation).Include(d => d.MaXeNavigation);
-            return View(await rentalCarContext.ToListAsync());
+            return  NotFound();
         }
 
         // GET: Book/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var donHang = await _context.DonHang
-                .Include(d => d.MaLoaiThanhToanNavigation)
-                .Include(d => d.MaUsNavigation)
-                .Include(d => d.MaXeNavigation)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (donHang == null)
-            {
-                return NotFound();
-            }
-
-            return View(donHang);
-        }
 
 
         public IActionResult Xe(int id)
@@ -107,118 +87,36 @@ namespace CarRenTal.Controllers
             ViewData["Id"] = id;
             return View();
         }
-
-        // POST: Book/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-       
-        //public  IActionResult Create(DonHang donHang, int id)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        donHang.MaXe = id;
-        //        donHang.NgayLap = DateTime.Now;
-        //        donHang.TuNgay = Seacrch.ngaynhan;
-        //        donHang.DenNgay = Seacrch.ngaytra;
-        //        donHang.MaUs = CommonConstants.UserID;
-        //        _context.Add(donHang);
-        //        _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["MaLoaiThanhToan"] = new SelectList(_context.HinhThucThanhToan, "Id", "Id", donHang.MaLoaiThanhToan);
-        //    ViewData["MaUs"] = new SelectList(_context.Users, "Id", "Id", donHang.MaUs);
-        //    ViewData["MaXe"] = new SelectList(_context.Xe, "Id", "Id", donHang.MaXe);
-        //    return View(donHang);
-        //}
-
-        // GET: Book/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult getBook( int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var donHang = await _context.DonHang.FindAsync(id);
-            if (donHang == null)
-            {
-                return NotFound();
-            }
-            ViewData["MaLoaiThanhToan"] = new SelectList(_context.HinhThucThanhToan, "Id", "Id", donHang.MaLoaiThanhToan);
-            ViewData["MaUs"] = new SelectList(_context.Users, "Id", "Id", donHang.MaUs);
-            ViewData["MaXe"] = new SelectList(_context.Xe, "Id", "Id", donHang.MaXe);
-            return View(donHang);
-        }
-
-        // POST: Book/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,MaXe,MaUs,MaLoaiThanhToan,NgayLap,TuNgay,DenNgay,TinhTrangThanhToan,Status,Songay,TongTien,Giamgia")] DonHang donHang)
-        {
-            if (id != donHang.Id)
-            {
-                return NotFound();
-            }
-
+            DonHang donHang = new DonHang();
+            var xe = _context.Xe.SingleOrDefault(x => x.Id == id);
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(donHang);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!DonHangExists(donHang.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                
+                donHang.MaXe = id;
+                donHang.NgayLap = DateTime.Now;
+                donHang.TuNgay = Seacrch.ngaynhan;
+                donHang.DenNgay = Seacrch.ngaytra;
+                donHang.MaUs = CommonConstants.UserID;
+                donHang.Songay = Convert.ToInt32(Seacrch.daydiff);
+                donHang.TongTien = Convert.ToInt32(Seacrch.daydiff * xe.Gia + 2500000);
+                donHang.Status = false;
+
+                _context.Add(donHang);
+                _context.SaveChanges();
+
+                return RedirectToAction(nameof(CustomerOder));
             }
-            ViewData["MaLoaiThanhToan"] = new SelectList(_context.HinhThucThanhToan, "Id", "Id", donHang.MaLoaiThanhToan);
-            ViewData["MaUs"] = new SelectList(_context.Users, "Id", "Id", donHang.MaUs);
-            ViewData["MaXe"] = new SelectList(_context.Xe, "Id", "Id", donHang.MaXe);
-            return View(donHang);
+
+            return NotFound();
         }
 
-        // GET: Book/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult CustomerOder()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var donHang = await _context.DonHang
-                .Include(d => d.MaLoaiThanhToanNavigation)
-                .Include(d => d.MaUsNavigation)
-                .Include(d => d.MaXeNavigation)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (donHang == null)
-            {
-                return NotFound();
-            }
-
-            return View(donHang);
+            return View();
         }
-
-        // POST: Book/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var donHang = await _context.DonHang.FindAsync(id);
-            _context.DonHang.Remove(donHang);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+   
 
         private bool DonHangExists(int id)
         {

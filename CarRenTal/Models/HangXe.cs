@@ -8,6 +8,7 @@ namespace CarRenTal.Models
         public HangXe()
         {
             TenXe = new HashSet<TenXe>();
+            Xe = new HashSet<Xe>();
         }
 
         public int Id { get; set; }
@@ -16,5 +17,6 @@ namespace CarRenTal.Models
 
         public virtual LoaiXe MaLoaiXeNavigation { get; set; }
         public virtual ICollection<TenXe> TenXe { get; set; }
+        public virtual ICollection<Xe> Xe { get; set; }
     }
 }

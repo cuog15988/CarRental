@@ -136,6 +136,8 @@ namespace CarRenTal.Models
 
                 entity.Property(e => e.Giamgia).HasColumnName("giamgia");
 
+                entity.Property(e => e.Huy).HasColumnName("huy");
+
                 entity.Property(e => e.MaUs).HasColumnName("MaUS");
 
                 entity.Property(e => e.NgayLap).HasColumnType("datetime");
@@ -143,6 +145,8 @@ namespace CarRenTal.Models
                 entity.Property(e => e.Songay).HasColumnName("songay");
 
                 entity.Property(e => e.TuNgay).HasColumnType("datetime");
+
+                entity.Property(e => e.Xacnhan).HasColumnName("xacnhan");
 
                 entity.HasOne(d => d.MaLoaiThanhToanNavigation)
                     .WithMany(p => p.DonHang)
@@ -357,6 +361,8 @@ namespace CarRenTal.Models
 
                 entity.Property(e => e.NgayNhap).HasColumnType("datetime");
 
+                entity.Property(e => e.Status).HasColumnName("status");
+
                 entity.Property(e => e.TenHang).HasMaxLength(300);
 
                 entity.Property(e => e.TenLoai).HasMaxLength(300);
@@ -369,6 +375,16 @@ namespace CarRenTal.Models
 
                 entity.Property(e => e.Tinh).HasMaxLength(100);
 
+                entity.HasOne(d => d.MaHangXeNavigation)
+                    .WithMany(p => p.Xe)
+                    .HasForeignKey(d => d.MaHangXe)
+                    .HasConstraintName("FK__Xe__MaHangXe__74794A92");
+
+                entity.HasOne(d => d.MaHuyenNavigation)
+                    .WithMany(p => p.Xe)
+                    .HasForeignKey(d => d.MaHuyen)
+                    .HasConstraintName("FK__Xe__MaHuyen__73852659");
+
                 entity.HasOne(d => d.MaNguoiDangNavigation)
                     .WithMany(p => p.Xe)
                     .HasForeignKey(d => d.MaNguoiDang)
@@ -377,7 +393,7 @@ namespace CarRenTal.Models
                 entity.HasOne(d => d.MaTenXeNavigation)
                     .WithMany(p => p.Xe)
                     .HasForeignKey(d => d.MaTenXe)
-                    .HasConstraintName("FK_Xe_hangXe");
+                    .HasConstraintName("FK__Xe__MaTenXe__756D6ECB");
             });
         }
     }

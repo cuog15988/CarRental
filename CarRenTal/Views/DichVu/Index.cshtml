@@ -1,12 +1,18 @@
 ﻿@model IEnumerable<CarRenTal.Models.Xe>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "kết quả tìm kiếm";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
 @{
 
 }
+
+<style>
+    .form-check a {
+        color: black;
+    }
+</style>
 <!-- Start model Area -->
 <section class="model-area section-gap" id="cars">
     <div class="container">
@@ -25,18 +31,92 @@
                     <h4 class="mt-20">Hãng xe</h4> <br />
                     <!-- Material unchecked -->
                     <div>
-                        @Html.Partial("SXTenXe", null)
+                        @{
+                            int sa = 1000;
+                        }
+                        @foreach (var item in ViewBag.TenHang)
+                        {
+                            if (sa != item.MaHangXe)
+                            {
+                                if (CarRenTal.wwwroot.DAO.Seacrch.mahang == item.MaHangXe)
+                                {
+
+
+                                    sa = item.MaHangXe;
+
+                                    <div class="form-check">
+
+                                        <input type="radio" class="form-check-input"  checked>
+                                        <label class="form-check-label">@item.TenHang</label>
+                                    </div>
+                                }
+                                else
+                                {
+                                      sa = item.MaHangXe;
+                                    <div class="form-check">
+
+                                        <input type="radio" class="form-check-input"  >
+                                        <a href="@Url.Action("index","DichVu", new { mahang=item.MaHangXe})">
+                                            <label class="form-check-label">@item.TenHang</label>
+                                        </a>
+                                    </div>
+                                }
+
+                            }
+
+                        }
+
+
+
 
                     </div>
-                    <h4 class="mt-20">Sắp xếp</h4> <br />
+                    <h4 class="mt-20">Huyện</h4> <br />
                     <!-- Material unchecked -->
                     <div>
                     </div>
 
-                    @Html.Partial("SXTinh", null)
+                    @{
+                        int s = 10000;
+                    }
+                    @foreach (var item in ViewBag.tinh)
+                    {
+                        if (s != item.MaHuyen)
+                        {
+                            if (item.MaHuyen == Convert.ToInt32(CarRenTal.wwwroot.DAO.Seacrch.Huyen))
+                            {
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" name="groupOfMaterialRadios" checked>
 
 
-                    <h4 class="mt-20">Sắp xếp</h4> <br />
+                                    <label class="form-check-label">@item.MaHuyenNavigation.TenHuyen</label>
+
+
+                                </div>
+                                s = item.MaHuyenNavigation.Id;
+
+                            }
+                            else
+                            {
+                                <div class="form-check">
+
+                                    <input type="radio" class="form-check-input" name="groupOfMaterialRadios">
+                                    <a href="@Url.Action("thaydoihuyen","DichVu", new { id=item.MaHuyen})">
+                                        <label class="form-check-label">@item.MaHuyenNavigation.TenHuyen</label>
+                                    </a>
+                                </div>
+                                s = item.MaHuyenNavigation.Id;
+                            }
+
+                        }
+                        else
+                        {
+
+                        }
+
+                    }
+
+
+                    @*<h4 class="mt-20">Sắp xếp</h4> <br />
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="1" name="groupOfMaterialRadios2" checked>
                         <label class="form-check-label" for="1">Option 1</label>
@@ -52,7 +132,7 @@
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="m3" name="groupOfMaterialRadios2">
                         <label class="form-check-label" for="m3">option 3</label>
-                    </div>
+                    </div>*@
                 </div>
 
                 <div class="col-lg-10 model-right">
@@ -82,7 +162,7 @@
                                     </p>
                                     @if (CarRenTal.DAO.Common.CommonConstants.UserName == null)
                                     {
-                                       
+
                                         <a type="button" class="btn btn-secondary" data-toggle="modal" data-target="#staticModal" href="#">Save this car</a>
 
                                         //mediumModal
@@ -110,12 +190,12 @@
                                     }
                                     else
                                     {
-                                        <a class="btn btn-secondary" href="@Url.Action("saveCart", "Carts", new { id = item.Id })">Save this car</a>
+                                        <a class="btn btn-secondary" href="@Url.Action("saveCart", "DichVu", new { id = item.Id })">Save this car</a>
 
                                     }
 
 
-                                <a class="btn btn-warning" href="">Book This Car Now </a>
+                                    <a class="btn btn-warning" href="">Book This Car Now </a>
 
                                 </div>
                             </div>
@@ -123,12 +203,12 @@
 
                     }
 
-                    </div>
-
                 </div>
+
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 
 

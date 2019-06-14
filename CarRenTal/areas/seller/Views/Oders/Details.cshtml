@@ -1,0 +1,350 @@
+﻿@model CarRenTal.Models.DonHang
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/areas/seller/Views/Shared/_SallerAdmin.cshtml";
+}
+
+@section top
+{
+    <link href="~/css/usercss.css" rel="stylesheet" />
+}
+
+
+
+<style>
+    .card {
+        border-radius: 0rem;
+    }
+    .card-text{
+        color:#212121;
+        font-size:14px !important;
+    }
+
+    .mt-4, .my-4 {
+        margin-top: 0rem !important;
+    }
+
+    .detail-info {
+        padding: 8px 12px;
+        min-height: 50px;
+        background-color: #fff;
+    }
+
+    body {
+        font-family: Arial;
+    }
+
+    .phukien {
+        margin: -15px;
+    }
+
+    .soluong input {
+        width: 50px;
+        margin: 15px;
+    }
+
+    .sanpham p {
+        font-size: 30px;
+    }
+
+    .form {
+        position: relative;
+    }
+
+    .chon input {
+        position: absolute;
+        align-items: center;
+        top: 0;
+        left: 0;
+    }
+
+    .input-group-text h6 {
+        padding: 5px 0px 0px 5px;
+    }
+
+    .input-group-text {
+        background-color: #ffffff;
+        border: none;
+        padding: 0px;
+    }
+
+    #gia {
+        font-size: 22px;
+        line-height: 28px;
+        color: #f57224;
+        font-weight: 500;
+        margin-bottom: 4px;
+    }
+
+    #mota {
+        display: block;
+        width: 100%;
+        max-height: 32px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-left: 20px;
+        font-size: 14px;
+        color: #212121;
+        line-height: 16px;
+    }
+
+    #mota2 {
+        font-size: 12px;
+        color: #757575;
+        padding-left: 20px
+    }
+
+    #thongbao {
+        font-size: 12px;
+        color: rgb(255, 51, 12);
+        margin-bottom: 4px;
+        padding-left: 8px
+    }
+
+    #capsule {
+        font-size: 12px;
+        padding: 4px 12px;
+        display: inline-block;
+        border-radius: 24px;
+        background-color: #eff0f5;
+        max-width: 150px;
+    }
+
+    .detail-info .detail-info-left {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .detail-info .order-number {
+        margin-bottom: 4px;
+        height: 16px;
+        line-height: 16px;
+    }
+
+    .text.light-gray {
+        color: #9e9e9e;
+    }
+
+    .text.desc {
+        font-size: 12px;
+    }
+
+    .detail-info .detail-right-info {
+        height: 32px;
+        line-height: 32px;
+    }
+
+    .detail-info .detail-info-total-title {
+        color: #9e9e9e;
+    }
+
+    .detail-info .detail-info-total-title, .detail-info .detail-info-total-value {
+        font-size: 18px;
+    }
+
+    .detail-info .detail-info-total-value {
+        font-weight: 500;
+    }
+
+    .card-title {
+        font-size: 15px;
+    }
+
+    .card-text {
+        font-size: 12px;
+        margin-bottom: 0rem;
+    }
+</style>
+
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+        <div class="page-header">
+            <h2 style="font-family:Tahoma; font-weight:400">Quản lý sản phẩm </h2>
+
+            <p class="pageheader-text"></p>
+            <div class="page-breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("product","index")" class="breadcrumb-link">Trang chủ</a></li>
+                        <a asp-action="Index" class="breadcrumb-item active" aria-current="page">Quản lý đơn hàng</a>
+                        <li class="breadcrumb-item active" aria-current="page">Thông tin đơn hàng</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+
+    <div class="col-xl-11" style="padding-bottom:20px ">
+
+        <div class="detail-info">
+            <div class="container" style="padding-bottom:10px; padding-top:10px">
+                @if (Model.Status == false)
+                {
+                    if (Model.Huy == false)
+                    {
+                        if (DateTime.Now < Model.TuNgay)
+                        {
+
+                            <button onclick="location.href='@Url.Action("getStatus","Oders", new { id=Model.Id})'" class="btn btn-primary" style="float:right; padding-bottom:5px"> xác nhận</button>
+                        }
+
+                    }
+                }
+                else
+                {
+                    if (Model.Huy == false)
+                    {
+                        if (DateTime.Now < Model.TuNgay)
+                        {
+
+                            <button onclick="location.href='@Url.Action("getStatus","Oders", new { id=Model.Id})'" class="btn btn-danger" style="float:right; padding-bottom:5px"> Huỷ xác nhận</button>
+                        }
+
+                    }
+                }
+
+                <p class="order-number" data-spm-anchor-id="a2o4n.order_details.0.i3.3cff705bBDecpr">Đơn hàng&nbsp;#@Model.Id</p>
+                <p class="text desc light-gray">Đặt ngày @Model.NgayLap</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-xl-11" style="padding-bottom:40px ">
+        <div class="card o-hidden border-0 shadow-lg col-lg-12 my-4">
+            <div class="card-body" style="padding-left:0px">
+                <!-- Nested Row within Card Body -->
+
+                <div class="row" style="padding-left:24px">
+                    <div class="phukien">
+                        <div class="input-group-prepend">
+                            <div class="">
+                                <p style="font-size:14px;color: #212121;margin-right:8px; margin-bottom: -4px !important;padding-top: 1px">Mã xe #@Model.MaXeNavigation.Id</p>
+                                <span class="text desc light-gray">Đăng bởi </span>
+                                <span class="text desc light-gray" style="color:#1a9cb7!important;">@Model.MaXeNavigation.MaNguoiDangNavigation.HoTen</span>
+
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                    <hr />
+
+                    <div class="col-lg-12">
+                        <div class="form row">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                </div>
+                            </div>
+                            <div class="sanpham d-flex col-8" style="padding-left: 0px">
+                                <img src="@Model.MaXeNavigation.Hinh" alt="" width="80" height="80">
+                                <div>
+                                    <p id="mota" style="margin:5px;padding-left:18px">Xe @Model.MaXeNavigation.Tenxe</p>
+                                    <p id="mota2">@Model.MaXeNavigation.Mota</p>
+                                    <p id="mota2">từ ngày : @Model.TuNgay</p>
+                                    <p id="mota2">Đến ngày : @Model.DenNgay</p>
+                                </div>
+
+                            </div>
+
+                            <div class="gia col-4" style=" padding:15px;text-align:left; padding-left:100px">
+
+
+                                @if (Model.Huy == true)
+                                {
+                                    <p style="color:red">đơn hàng bị huỷ</p>
+                                }
+                                else
+                                if (Model.Status == true)
+                                {
+                                    if (DateTime.Now > Model.DenNgay)
+                                    {
+                                        <label style="color:blue">đơn hàng đã hoàn thành</label>
+                                    }
+                                    else
+                                    if (DateTime.Now >= Model.TuNgay && DateTime.Now <= Model.DenNgay)
+                                    {
+                                        <label style="color:blue">đơn hàng đang tiến hành</label>
+                                    }
+                                    else
+                                    {
+                                        <label style="color:#808080">đơn hàng chưa tiến hành</label>
+                                    }
+                                }
+                                else
+                                {
+                                
+                                }
+                            </div>
+
+                        </div>
+                        <br />
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class=" row col-xl-11 model-right" style="margin-top: -12px;    padding-left: 0px;">
+            <div class="col-md-6" style="float:left">
+                <div class="card" style="width:100%">
+                    <div class="card-body">
+                        <h5 class="card-title">Địa chỉ nhận xe</h5>
+                        <h6 class="card-text">@Model.MaXeNavigation.MaNguoiDangNavigation.HoTen</h6>
+                        <span class="card-text">@Model.MaXeNavigation.Huyen</span>
+                        <span class="card-text">@Model.MaXeNavigation.Tinh</span>
+                        <br />
+                        <hr />
+                        <h5 class="card-title">Địa chỉ người thuê</h5>
+                        <h6 class="card-text">@Model.MaUsNavigation.HoTen</h6>
+                        <span class="card-text">@Model.MaUsNavigation.DiaChi</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-6" style=" padding-left:10px;float:right">
+                <div class="card" style="width:637px;padding-right:0px">
+                    <div class="card-body">
+                        <h5 class="card-title">Tổng cộng</h5>
+                        <span class="card-text"> Giá thuê </span>
+                        <span class="card-text" style="float:right">@String.Format("{0:N0}", Model.MaXeNavigation.Gia) đ</span>
+                        <br />
+                        <span class="card-text">tiền cọc</span>
+                        <span class="card-text" style="float:right">1.500.000 đ</span>
+                        <br />
+                        <span class="card-text">Số ngày</span>
+                        <span class="card-text" style="float:right">7 ngày</span>
+                        <hr />
+                        <span class="card-text" style="color:#1a9cb7;font-size:16px!important">Tổng cộng</span>
+                        <span class="card-text" style="float:right;color:orangered !important">@String.Format("{0:N0}", Model.MaXeNavigation.Gia * 7 + 1500000) đ</span>
+                        <p class="card-text" style="font-style:italic">thanh toán bằng hình thức sau khi nhận xe</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

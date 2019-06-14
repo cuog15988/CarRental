@@ -1,0 +1,162 @@
+﻿@model CarRenTal.Models.Xe
+
+@{
+    ViewData["Title"] = "vehicle";
+    Layout = "~/areas/admin/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-11">
+                @if (Model.Status == true)
+                {
+
+                }
+
+                else
+                if (Model.Status == null)
+                {
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert" style="background-color:#fff3cd; color:#856404">
+                        <strong>Thông báo!</strong> Phương tiện này đã bị khoá
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+                else
+                {
+                <div class="alert alert-warning alert-dismissible fade show" role="alert" style="background-color:#fff3cd; color:#856404">
+                    <strong>Thông báo!</strong> Phương tiện chưa được xác nhận
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                }
+                <div class="card">
+                    <div class="card-header card-header-primary" style="background: linear-gradient(60deg, #d0d4dc, #767176)!important;">
+                        <h4 class="card-title" style="color:#161414">Vehicle</h4>
+                        <span class="card-category">Rental Car admin controls</span>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Ngày nhập</label>
+                                    <input asp-for="NgayNhap" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Người đăng</label>
+                                    <input asp-for="MaNguoiDangNavigation.UserName" type="text" class="form-control" style="background-color:transparent" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Tên xe</label>
+                                    <input asp-for="LoaiXe" type="email" class="form-control" style="background-color:transparent" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Tên xe</label>
+                                    <input asp-for="Tenxe" type="text" class="form-control" style="background-color:transparent" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">giá</label>
+                                    <input value="@Model.Gia đ" type="text" class="form-control" style="background-color:transparent" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Tỉnh</label>
+                                    <input asp-for="Tinh" type="text" class="form-control" style="background-color:transparent" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Huyện</label>
+                                    <input asp-for="Huyen" type="text" class="form-control" style="background-color:transparent" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">địa chỉ nhận</label>
+                                    <input asp-for="Diachi" type="text" class="form-control" style="background-color:transparent" readonly />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">City</label>
+                                    <input asp-for="Tenxe" type="text" class="form-control" style="background-color:transparent" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Ngày nhập</label>
+                                    <input asp-for="NgayNhap" type="text" class="form-control" style="background-color:transparent" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Postal Code</label>
+                                    <input type="text" class="form-control" style="background-color:transparent" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>About </label>
+                                    <div class="form-group">
+                                        <label class="form-control" rows="5" value="">@Html.Raw(Model.Mota)</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Hình  </label>
+                                    <img class="form-control" src="@Model.Hinh" style="height:250px" />
+                                </div>
+                            </div>
+                        </div>
+                        @if (Model.Status == true)
+                        {
+
+                            <a class="btn btn-primary pull-right text-white" href="@Url.Action("onoffVehcle", "vehicle", new { id = Model.Id})">Huỷ xác nhận</a>
+                        }
+                        else
+                     if (Model.Status == null)
+                        {
+                            <span><a href="@Url.Action("onoffVehcle", "vehicle", new { id = Model.Id,khoa=0 })" class="btn btn-danger pull-right" style="float:right">Mở khoá và xác nhận</a></span>
+
+                        }
+                        else
+                        {
+                            <span><a href="@Url.Action("onoffVehcle", "vehicle", new { id = Model.Id })" class="btn btn-danger pull-right" style="float:right">Mở phương tiện</a></span>
+                            <a href="@Url.Action("onoffVehcle", "vehicle", new { id = Model.Id ,khoa=1})" class="btn btn-primary pull-right text-white">Không xác nhận</a>
+
+                        }
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -34,7 +34,8 @@ namespace CarRenTal.Areas.User.Controllers
             }
             try
             {
-                var rentalCarContext = _context.DonHang.Include(d => d.MaLoaiThanhToanNavigation).Include(d => d.MaUsNavigation).Include(d => d.MaXeNavigation).Include(e => e.MaXeNavigation.MaTenXeNavigation).Include(f => f.MaXeNavigation.MaNguoiDangNavigation).Where(x => x.MaUs == id);
+                var rentalCarContext = _context.DonHang.Include(d => d.MaLoaiThanhToanNavigation).Include(d => d.MaUsNavigation).Include(d => d.MaXeNavigation).Include(e => e.MaXeNavigation.MaHuyenNavigation)
+                    .Include(e=>e.MaXeNavigation.MaHangXeNavigation).Include(f => f.MaXeNavigation.MaNguoiDangNavigation).Where(x => x.MaUs == id).OrderByDescending(x=>x.NgayLap);
                 return View(await rentalCarContext.ToListAsync());
 
             }
@@ -66,121 +67,120 @@ namespace CarRenTal.Areas.User.Controllers
         }
 
         // GET: User/Customer/Create
-        public IActionResult Create()
-        {
-            ViewData["MaLoaiThanhToan"] = new SelectList(_context.HinhThucThanhToan, "Id", "Id");
-            ViewData["MaUs"] = new SelectList(_context.Users, "Id", "Id");
-            ViewData["MaXe"] = new SelectList(_context.Xe, "Id", "Id");
-            return View();
-        }
+        //public IActionResult Create()
+        //{
+        //    ViewData["MaLoaiThanhToan"] = new SelectList(_context.HinhThucThanhToan, "Id", "Id");
+        //    ViewData["MaUs"] = new SelectList(_context.Users, "Id", "Id");
+        //    ViewData["MaXe"] = new SelectList(_context.Xe, "Id", "Id");
+        //    return View();
+        //}
 
         // POST: User/Customer/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,MaXe,MaUs,MaLoaiThanhToan,NgayLap,TuNgay,DenNgay,TinhTrangThanhToan,Status")] DonHang donHang)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(donHang);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(oders));
-            }
-            ViewData["MaLoaiThanhToan"] = new SelectList(_context.HinhThucThanhToan, "Id", "Id", donHang.MaLoaiThanhToan);
-            ViewData["MaUs"] = new SelectList(_context.Users, "Id", "Id", donHang.MaUs);
-            ViewData["MaXe"] = new SelectList(_context.Xe, "Id", "Id", donHang.MaXe);
-            return View(donHang);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("Id,MaXe,MaUs,MaLoaiThanhToan,NgayLap,TuNgay,DenNgay,TinhTrangThanhToan,Status")] DonHang donHang)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(donHang);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(oders));
+        //    }
+        //    ViewData["MaLoaiThanhToan"] = new SelectList(_context.HinhThucThanhToan, "Id", "Id", donHang.MaLoaiThanhToan);
+        //    ViewData["MaUs"] = new SelectList(_context.Users, "Id", "Id", donHang.MaUs);
+        //    ViewData["MaXe"] = new SelectList(_context.Xe, "Id", "Id", donHang.MaXe);
+        //    return View(donHang);
+        //}
 
         // GET: User/Customer/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var donHang = await _context.DonHang.FindAsync(id);
-            if (donHang == null)
-            {
-                return NotFound();
-            }
-            ViewData["MaLoaiThanhToan"] = new SelectList(_context.HinhThucThanhToan, "Id", "Id", donHang.MaLoaiThanhToan);
-            ViewData["MaUs"] = new SelectList(_context.Users, "Id", "Id", donHang.MaUs);
-            ViewData["MaXe"] = new SelectList(_context.Xe, "Id", "Id", donHang.MaXe);
-            return View(donHang);
-        }
+        //    var donHang = await _context.DonHang.FindAsync(id);
+        //    if (donHang == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    ViewData["MaLoaiThanhToan"] = new SelectList(_context.HinhThucThanhToan, "Id", "Id", donHang.MaLoaiThanhToan);
+        //    ViewData["MaUs"] = new SelectList(_context.Users, "Id", "Id", donHang.MaUs);
+        //    ViewData["MaXe"] = new SelectList(_context.Xe, "Id", "Id", donHang.MaXe);
+        //    return View(donHang);
+        //}
 
         // POST: User/Customer/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,MaXe,MaUs,MaLoaiThanhToan,NgayLap,TuNgay,DenNgay,TinhTrangThanhToan,Status")] DonHang donHang)
-        {
-            if (id != donHang.Id)
-            {
-                return NotFound();
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Edit(int id, [Bind("Id,MaXe,MaUs,MaLoaiThanhToan,NgayLap,TuNgay,DenNgay,TinhTrangThanhToan,Status")] DonHang donHang)
+        //{
+        //    if (id != donHang.Id)
+        //    {
+        //        return NotFound();
+        //    }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(donHang);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!DonHangExists(donHang.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(oders));
-            }
-            ViewData["MaLoaiThanhToan"] = new SelectList(_context.HinhThucThanhToan, "Id", "Id", donHang.MaLoaiThanhToan);
-            ViewData["MaUs"] = new SelectList(_context.Users, "Id", "Id", donHang.MaUs);
-            ViewData["MaXe"] = new SelectList(_context.Xe, "Id", "Id", donHang.MaXe);
-            return View(donHang);
-        }
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            _context.Update(donHang);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //        catch (DbUpdateConcurrencyException)
+        //        {
+        //            if (!DonHangExists(donHang.Id))
+        //            {
+        //                return NotFound();
+        //            }
+        //            else
+        //            {
+        //                throw;
+        //            }
+        //        }
+        //        return RedirectToAction(nameof(oders));
+        //    }
+        //    ViewData["MaLoaiThanhToan"] = new SelectList(_context.HinhThucThanhToan, "Id", "Id", donHang.MaLoaiThanhToan);
+        //    ViewData["MaUs"] = new SelectList(_context.Users, "Id", "Id", donHang.MaUs);
+        //    ViewData["MaXe"] = new SelectList(_context.Xe, "Id", "Id", donHang.MaXe);
+        //    return View(donHang);
+        //}
 
         // GET: User/Customer/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var donHang = await _context.DonHang
-                .Include(d => d.MaLoaiThanhToanNavigation)
-                .Include(d => d.MaUsNavigation)
-                .Include(d => d.MaXeNavigation)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (donHang == null)
-            {
-                return NotFound();
-            }
+        //    var donHang = await _context.DonHang
+        //        .Include(d => d.MaLoaiThanhToanNavigation)
+        //        .Include(d => d.MaUsNavigation)
+        //        .Include(d => d.MaXeNavigation)
+        //        .FirstOrDefaultAsync(m => m.Id == id);
+        //    if (donHang == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(donHang);
-        }
+        //    return View(donHang);
+        //}
 
         // POST: User/Customer/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var donHang = await _context.DonHang.FindAsync(id);
-            _context.DonHang.Remove(donHang);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(oders));
-        }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var donHang = await _context.DonHang.FindAsync(id);
+        //    _context.DonHang.Remove(donHang);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(oders));
+        //}
 
         private bool DonHangExists(int id)
         {

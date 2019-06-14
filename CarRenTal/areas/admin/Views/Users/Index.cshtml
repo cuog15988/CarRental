@@ -1,0 +1,151 @@
+﻿@model IEnumerable<CarRenTal.Models.Users>
+
+@{
+    ViewData["Title"] = "users";
+    Layout = "~/areas/admin/Views/Shared/_adminLayout.cshtml";
+}
+<style>
+    .table table-bordered table-condensed td{
+        color:#000000 !important;
+    }
+   .card-category
+   {
+       text-decoration:underline;
+       color:#9c27b0;
+   }
+</style>
+
+
+
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="card-header card-header-primary" style="">
+        <h4 class="card-title" style="color:#161414">User Profile</h4>
+        @if (ViewBag.Loai == 0)
+        {
+            <a href="/admin/Users" class="card-category text-danger" style="text-decoration:none">Tất cả tài khoản     |</a>
+            <a href="/admin/Users?showdo=1" class="card-category text-primary" style="text-decoration:none">Danh sách tài khoản bị khoá    |</a>
+            <a href="/admin/Users?showdo=2" class="card-category text-primary" style="text-decoration:none">Tài khoản bán hàng    |</a>
+            <a href="/admin/Users?showdo=1" class="card-category text-primary" style="text-decoration:none">Tài khoản bị cấm</a>
+        }
+        else
+  if (ViewBag.Loai == 1)
+        {
+            <a href="/admin/Users" class="card-category text-primary" style="text-decoration:none">Tất cả tài khoản     |</a>
+            <a href="/admin/Users?showdo=1" class="card-category text-danger" style="text-decoration:none">Danh sách tài khoản bị khoá    |</a>
+            <a href="/admin/Users?showdo=2" class="card-category text-primary" style="text-decoration:none">Tài khoản bán hàng    |</a>
+            <a href="/admin/Users?showdo=1" class="card-category text-primary" style="text-decoration:none">Tài khoản bị cấm</a>
+        }
+        else
+  if (ViewBag.Loai == 2)
+        {
+            <a href="/admin/Users" class="card-category text-primary" style="text-decoration:none">Tất cả tài khoản     |</a>
+            <a href="/admin/Users?showdo=1" class="card-category text-primary" style="text-decoration:none">Danh sách tài khoản bị khoá    |</a>
+            <a href="/admin/Users?showdo=2" class="card-category text-danger" style="text-decoration:none">Tài khoản bán hàng    |</a>
+            <a href="/admin/Users?showdo=1" class="card-category text-primary" style="text-decoration:none">Tài khoản bị cấm</a>
+        }
+
+    </div>
+
+    @if (ViewBag.status == null)
+    {
+
+    }
+    else
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert" style="background-color:#fff3cd; color:#856404">
+            <strong>Thông báo!</strong> @ViewBag.status
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    <div class="card" style="">
+
+        <h5 class="card-header text-primary" style="font-size:18px; font-weight:bold">@ViewBag.Content</h5>
+        <hr />
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table id="example" class="table table-bordered table-hover" style="width:100%">
+                    <thead class="text-primary">
+                        <tr>
+                            <th style="font-weight:400">
+                                Ngày nhập
+                            </th>
+                            <th style="font-weight:400">
+                                UserName
+                            </th>
+
+                            <th style="font-weight:400">
+                                Họ tên
+                            </th>
+                            <th style="font-weight:400">
+                                Ngày sinh
+                            </th>
+
+                            <th style="font-weight:400">
+                                Email
+                            </th>
+                            <th style="font-weight:400">
+                                Số điện thoại
+                            </th>
+                            <th>
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NgayNhap)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserName)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HoTen)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NgaySinh)
+                                </td>
+
+
+
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Phone)
+                                </td>
+
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                "order": [[0, "desc"]]
+            });
+        });
+
+
+        $(document).ready(function () {
+            $('.table table-striped table-bordered').DataTable();
+        });
+    </script>
+}

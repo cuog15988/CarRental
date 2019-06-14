@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CarRenTal.wwwroot.DAO;
 using CarRenTal.DAO;
 using Syncfusion.EJ2.Navigations;
+using CarRenTal.DAO.Common;
 
 namespace CarRenTal.Controllers
 {
@@ -25,20 +26,115 @@ namespace CarRenTal.Controllers
             return View();
         }
 
-        public IActionResult Index()
+        public IActionResult saveCart(int? id)
         {
-            Link._link = Request.Headers["Referer"].ToString();
-            int a = Convert.ToInt32(Seacrch.LoaiXe);
-            var loaixe = _context.LoaiXe.Where(x => x.Id == a).SingleOrDefault();
-            var tinh = _context.Tinh.Where(x => x.Ma == Convert.ToInt32(Seacrch.Tinh)).SingleOrDefault();
-            var huyen = _context.Huyen.Where(x => x.Id == Convert.ToInt32(Seacrch.Huyen)).SingleOrDefault();
-            var ren = _context.Xe.Include(x => x.MaNguoiDangNavigation).Include(x => x.MaTenXeNavigation).Where(x => x.TenLoai == loaixe.TenLoai && x.Tinh == tinh.TenTinh && x.Huyen == huyen.TenHuyen).ToList(); ;
-            if (ren.Count >= 1)
+            if (id == null)
             {
-                return View(ren);
+                return NotFound();
+            }
+
+
+            var xe = _context.Xe.SingleOrDefault(x => x.Id == id);
+            Cart c = new Cart();
+            if (xe == null)
+            {
+                return NotFound();
+            }
+
+            var cart = _context.Cart.SingleOrDefault(x => x.Maxe == id && x.Ma == CommonConstants.UserID);
+            if (cart == null)
+            {
+
+                if (ModelState.IsValid)
+                {
+                    c.Ma = CommonConstants.UserID;
+                    c.Manguoidang = xe.MaNguoiDang;
+                    c.Maxe = xe.Id;
+                    c.Gia = xe.Gia;
+                    c.Tenxe = xe.Tenxe;
+
+                }
+                _context.Cart.Add(c);
+                _context.SaveChanges();
+                
             }
             else
+            {
+                ViewData["Loi"] = "Đã lưu xe trước đó rồi";
+                return Redirect(Request.Headers["Referer"].ToString());
+            }
+
+            string referer1 = Request.Headers["Referer"].ToString();
+            return Redirect(referer1);
+        }
+
+        public IActionResult thaydoihuyen(int? id)
+        {
+            if(id==null)
+            {
+                return NotFound();
+            }
+
+            if(ModelState.IsValid)
+            {
+                Seacrch.Huyen = id.ToString();
+                
+            }
+            string referer1 = Request.Headers["Referer"].ToString();
+
+            return Redirect(referer1);
+
+        }
+
+        public IActionResult Index(int? mahang)
+        {
+            try
+            {
+
+            ViewData["tinh"] = _context.Xe.Include(x => x.MaHuyenNavigation).Include(x => x.MaHuyenNavigation.MaTinhNavigation)
+                .Where(x => x.MaHuyenNavigation.MaTinh == Convert.ToInt32(Seacrch.Tinh)).OrderByDescending(x=>x.MaHuyen).ToList();
+
+            ViewData["TenHang"] =_context.Xe.Include(x=>x.MaHangXeNavigation)
+                    .Include(x=>x.MaHangXeNavigation.MaLoaiXeNavigation)
+                    .Where(x => x.MaHuyenNavigation.MaTinh == Convert.ToInt32(Seacrch.Tinh)).OrderByDescending(x => x.MaHangXe).ToList();
+
+                Link._link = Request.Headers["Referer"].ToString();
+            int a = Convert.ToInt32(Seacrch.LoaiXe);
+            var loaixe = _context.LoaiXe.Where(x => x.Id == a).SingleOrDefault();
+         
+                if(mahang==null)
+                {
+                    var ren = _context.Xe.Include(x => x.MaNguoiDangNavigation)
+                .Include(x => x.MaHuyenNavigation)
+                .Include(x => x.MaHangXeNavigation)
+                .Where(x => x.TenLoai == loaixe.TenLoai && x.MaHuyen == Convert.ToInt32(Seacrch.Huyen)).ToList();
+                    if (ren.Count >= 1)
+                    {
+                        return View(ren);
+                    }
+                    else
+                        return View("error");
+                }
+                else
+                {
+                    Seacrch.mahang = Convert.ToInt32(mahang);
+                    var ren = _context.Xe.Include(x => x.MaNguoiDangNavigation)
+                .Include(x => x.MaHuyenNavigation)
+                .Include(x => x.MaHangXeNavigation)
+                .Where(x => x.TenLoai == loaixe.TenLoai && x.MaHuyen == Convert.ToInt32(Seacrch.Huyen) && x.MaHangXe==mahang).ToList();
+                    if (ren.Count >= 1)
+                    {
+                        return View(ren);
+                    }
+                    else
+                        return View("error");
+                }
+           
+            }
+            catch
+            {
                 return View("error");
+            }
         }
         //chi tiết xe
         public async Task<IActionResult> Detail(int? id)
@@ -51,7 +147,7 @@ namespace CarRenTal.Controllers
 
             var xe = await _context.Xe
                 .Include(x => x.MaNguoiDangNavigation)
-                .Include(x => x.MaTenXeNavigation)
+                .Include(x => x.MaHangXeNavigation)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (xe == null)
             {
@@ -73,12 +169,12 @@ namespace CarRenTal.Controllers
         //load ds sắp xếp
         public PartialViewResult SXTenXe()
         {
+            
             return PartialView();
         }
 
         public PartialViewResult SXTinh()
         {
-            var tinh = _context.Tinh.Where(x => x.Ma == Convert.ToInt32(Seacrch.Tinh)).FirstOrDefault();
             return PartialView();
         }
 
