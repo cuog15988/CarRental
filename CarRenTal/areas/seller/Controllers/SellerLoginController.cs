@@ -64,7 +64,7 @@ namespace CarRenTal.Areas.seller.Controllers
                     UserDao.UserId = user.Id;
                     UserDao.name = user.UserName;
                     
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "product");
 
                 }
                 else if (result == 0)
@@ -91,6 +91,12 @@ namespace CarRenTal.Areas.seller.Controllers
             }
             return View("Index");
         }
-
+        public ActionResult Logout()
+        {
+            UserDao.name = null;
+            UserDao.UserId = 0;
+            string referer1 = Request.Headers["Referer"].ToString();
+            return Redirect(referer1);
+        }
     }
 }

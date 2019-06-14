@@ -143,12 +143,15 @@
                             <div class="row align-items-center single-model item">
 
                                 <div class="col-lg-4 model-left">
-                                    <img id="img-Sanpham" class="img-fluid" src="@item.Hinh" alt="" style="min-width:100%" />
-                                    <img src="" />
+                                    <a href="/DichVu/Detail/@item.Id)">
+                                        <img id="img-Sanpham" class="img-fluid" src="@item.Hinh" alt="" style="min-width:100%" />
+                                    </a>
                                 </div>
                                 <div class="col-lg-8 model-right">
                                     <div class="title justify-content-between d-flex">
-                                        <h4 class="mt-20">@item.Tenxe</h4>
+                                        <a href="@Url.Action("Detail","DichVu",new { id=item.Id})">
+                                            <h4 class="mt-20">@item.Tenxe</h4>
+                                        </a>
                                         <h2>@item.Gia VNĐ<span>/day</span></h2>
                                     </div>
                                     <p>
@@ -164,7 +167,7 @@
                                     {
 
                                         <a type="button" class="btn btn-secondary" data-toggle="modal" data-target="#staticModal" href="#">Save this car</a>
-
+                                        <a class="btn btn-warning" data-toggle="modal" data-target="#staticModal" href="#">Book This Car Now </a>
                                         //mediumModal
                                         <div class="modal fade" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-lg" role="document">
@@ -191,11 +194,11 @@
                                     else
                                     {
                                         <a class="btn btn-secondary" href="@Url.Action("saveCart", "DichVu", new { id = item.Id })">Save this car</a>
+                                        <a class="btn btn-warning" href="@Url.Action("Create","Book",new {id=item.Id})">Book This Car Now </a>
 
                                     }
 
 
-                                    <a class="btn btn-warning" href="">Book This Car Now </a>
 
                                 </div>
                             </div>
