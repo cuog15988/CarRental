@@ -251,14 +251,14 @@
                                 <label class="text-danger">Sản phẩm chưa được duyệt</label>
                             }
                             else
-                          if (Model.Moban == true)
+                            if (Model.Moban == true)
                             {
-                                <button class="btn btn-success" onclick="location.href='@Url.Action("changeOnOff","product",new { id=Model.Id})'">Ready</button>
+                             <button class="btn btn-success" onclick="location.href='@Url.Action("changeOnOff","product",new { id=Model.Id})'">Ready</button>
 
                             }
                             else
                             { 
-                                <button class="btn btn-danger" onclick="location.href='@Url.Action("changeOnOff","product",new { id=Model.Id})'">Not Ready</button>
+                              <button class="btn btn-danger" onclick="location.href='@Url.Action("changeOnOff","product",new { id=Model.Id})'">Not Ready</button>
                             }
                         </li>
                     </ul>

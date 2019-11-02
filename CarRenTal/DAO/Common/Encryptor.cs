@@ -29,5 +29,10 @@ namespace CarRenTal.DAO.Common
 
             return strBuilder.ToString();
         }
+
+        public static string MD5Hash(object password)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

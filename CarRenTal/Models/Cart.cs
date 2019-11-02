@@ -12,6 +12,9 @@ namespace CarRenTal.Models
         public int? Gia { get; set; }
         public int? Manguoidang { get; set; }
 
+        public string DiaChi { get; set; }
+        public string Images { get; set; }
+
         public virtual Users MaNavigation { get; set; }
         public virtual Xe MaxeNavigation { get; set; }
     }

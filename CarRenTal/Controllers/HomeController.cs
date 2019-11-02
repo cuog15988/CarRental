@@ -88,6 +88,11 @@ namespace CarRenTal.Controllers
 
         }
 
+        public JsonResult getOder(int id)
+        {
+            List<DonHang> StateList = _context.DonHang.Include(x=>x.MaXeNavigation).Where(x => x.MaUs == id).ToList();
+            return Json(StateList);
+        }
 
 
         public IActionResult Privacy()

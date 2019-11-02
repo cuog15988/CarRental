@@ -14,11 +14,14 @@ namespace CarRenTal.Models
         public DateTime? DenNgay { get; set; }
         public bool? TinhTrangThanhToan { get; set; }
         public bool? Status { get; set; }
+        public bool? Readed { get; set; }
         public int? Songay { get; set; }
         public int? TongTien { get; set; }
         public int? Giamgia { get; set; }
         public bool? Huy { get; set; }
         public bool? Xacnhan { get; set; }
+        public string TenXe { get; set; }
+        public string DiaChi { get; set; }
 
         public virtual HinhThucThanhToan MaLoaiThanhToanNavigation { get; set; }
         public virtual Users MaUsNavigation { get; set; }

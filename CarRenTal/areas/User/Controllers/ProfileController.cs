@@ -99,7 +99,7 @@ namespace CarRenTal.Areas.User.Controllers
                         throw;
                     }
                 }
-                string url = "https://localhost:44300/User/Profile/Details?id=" + id;
+                string url = "/User/Profile/Details?id=" + id;
                 return Redirect(url);
             }
             return View(users);

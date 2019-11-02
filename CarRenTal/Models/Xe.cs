@@ -31,6 +31,10 @@ namespace CarRenTal.Models
         public int? MaHangXe { get; set; }
         public int? MaTenXe { get; set; }
         public string Diachi { get; set; }
+        public string DiaChiNhan { get; set; }
+        public string BienSo { get; set; }
+        public string SoKM { get; set; }
+        public bool? BaoHiem { get; set; }
 
         public virtual HangXe MaHangXeNavigation { get; set; }
         public virtual Huyen MaHuyenNavigation { get; set; }
@@ -38,5 +42,6 @@ namespace CarRenTal.Models
         public virtual TenXe MaTenXeNavigation { get; set; }
         public virtual ICollection<Cart> Cart { get; set; }
         public virtual ICollection<DonHang> DonHang { get; set; }
+        public virtual ICollection<Images> Images { get; set; }
     }
 }

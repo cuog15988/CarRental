@@ -349,7 +349,7 @@ namespace CarRenTal.Areas.seller.Controllers
                     }
                     _context.Update(s);
 
-                     _context.SaveChangesAsync();
+                     _context.SaveChanges();
                 }
             }
             catch
@@ -397,5 +397,26 @@ namespace CarRenTal.Areas.seller.Controllers
         {
             return _context.Xe.Any(e => e.Id == id);
         }
+
+        public async Task<IActionResult> ChuaDuyet()
+        {
+
+            var rentalCarContext = _context.Xe.Include(x => x.MaNguoiDangNavigation)
+                .Include(x => x.MaHangXeNavigation)
+                .Include(x => x.MaHuyenNavigation.MaTinhNavigation)
+                .Include(x => x.MaHangXeNavigation.MaLoaiXeNavigation).Where(x => x.MaNguoiDang == UserDao.UserId && x.Status==false).OrderByDescending(x => x.NgayNhap);
+            return View(await rentalCarContext.ToListAsync());
+        }
+
+        public async Task<IActionResult> ChuaKichHoat()
+        {
+
+            var rentalCarContext = _context.Xe.Include(x => x.MaNguoiDangNavigation)
+                .Include(x => x.MaHangXeNavigation)
+                .Include(x => x.MaHuyenNavigation.MaTinhNavigation)
+                .Include(x => x.MaHangXeNavigation.MaLoaiXeNavigation).Where(x => x.MaNguoiDang == UserDao.UserId && x.Status == true && x.Moban==false).OrderByDescending(x => x.NgayNhap);
+            return View(await rentalCarContext.ToListAsync());
+        }
+
     }
 }

@@ -20,6 +20,7 @@ namespace CarRenTal.Models
         public virtual DbSet<ChiTietThanhToan> ChiTietThanhToan { get; set; }
         public virtual DbSet<DonHang> DonHang { get; set; }
         public virtual DbSet<Footer> Footer { get; set; }
+        public virtual DbSet<ChatList> ChatList { get; set; }
         public virtual DbSet<HangXe> HangXe { get; set; }
         public virtual DbSet<Header> Header { get; set; }
         public virtual DbSet<HinhThucThanhToan> HinhThucThanhToan { get; set; }
@@ -33,6 +34,7 @@ namespace CarRenTal.Models
         public virtual DbSet<Tinh> Tinh { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Xe> Xe { get; set; }
+        public virtual DbSet<Images> Images { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -67,7 +69,43 @@ namespace CarRenTal.Models
 
                 entity.Property(e => e.UserName).HasMaxLength(51);
             });
+            modelBuilder.Entity<Header>(entity =>
+            {
+                entity.ToTable("header");
 
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Images)
+                    .HasMaxLength(1000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Noidung).HasColumnName("noidung");
+
+                entity.Property(e => e.TieuDe).HasMaxLength(300);
+            });
+            modelBuilder.Entity<Images>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.XeId).HasColumnName("XeID");
+
+                entity.HasOne(d => d.Xe)
+                    .WithMany(p => p.Images)
+                    .HasForeignKey(d => d.XeId)
+                    .HasConstraintName("FK__Images__XeID__160F4887");
+            });
+            modelBuilder.Entity<Footer>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Images)
+                    .HasMaxLength(1000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Noidung).HasColumnName("noidung");
+
+                entity.Property(e => e.TieuDe).HasMaxLength(300);
+            });
             modelBuilder.Entity<Cart>(entity =>
             {
                 entity.ToTable("cart");
@@ -97,6 +135,37 @@ namespace CarRenTal.Models
                     .HasForeignKey(d => d.Maxe)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_cart_xe");
+            });
+
+            modelBuilder.Entity<ChatList>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Date)
+                    .HasColumnName("date")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.FromUser).HasColumnName("fromUser");
+
+                entity.Property(e => e.LastMs).HasColumnName("lastMs");
+
+                entity.Property(e => e.MsFrom).HasColumnName("msFrom");
+
+                entity.Property(e => e.MyUser).HasColumnName("myUser");
+
+                entity.Property(e => e.Status).HasColumnName("status");
+            });
+            modelBuilder.Entity<ChatList>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Date)
+                    .HasColumnName("date")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.FromUser).HasColumnName("fromUser");
+
+                entity.Property(e => e.MyUser).HasColumnName("myUser");
             });
 
             modelBuilder.Entity<ChiTietThanhToan>(entity =>

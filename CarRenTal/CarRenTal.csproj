@@ -22,6 +22,8 @@
 
 
   <ItemGroup>
+    <PackageReference Include="DevExtreme.AspNet.Core" Version="19.1.4" />
+    <PackageReference Include="DevExtreme.AspNet.Data" Version="2.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.4" />
@@ -30,7 +32,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="17.1.0.44" />
     <PackageReference Include="System.ComponentModel" Version="4.3.0" />
@@ -48,6 +50,7 @@
     <Folder Include="Areas\admin\Data\" />
     <Folder Include="Areas\admin\Models\" />
     <Folder Include="Areas\seller\Data\" />
+    <Folder Include="wwwroot\images\MainImg\" />
     <Folder Include="wwwroot\images\x5\" />
     <Folder Include="wwwroot\images\x4\" />
     <Folder Include="wwwroot\images\x3\" />

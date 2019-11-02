@@ -52,6 +52,8 @@ namespace CarRenTal.Controllers
                     c.Maxe = xe.Id;
                     c.Gia = xe.Gia;
                     c.Tenxe = xe.Tenxe;
+                    c.DiaChi = xe.Diachi;
+                    c.Images = xe.Hinh;
 
                 }
                 _context.Cart.Add(c);
@@ -149,6 +151,7 @@ namespace CarRenTal.Controllers
                 .Include(x => x.MaNguoiDangNavigation)
                 .Include(x => x.MaHangXeNavigation)
                 .FirstOrDefaultAsync(m => m.Id == id);
+            ViewBag.Images = _context.Images.Where(x => x.XeId == id).ToList();
             if (xe == null)
             {
                 return NotFound();
