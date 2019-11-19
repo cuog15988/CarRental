@@ -48,6 +48,10 @@ namespace CarRenTal.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutImages(int id, [FromForm(Name = "file")] IFormFile file, string loai)
         {
+            if(file==null)
+            {
+                return NotFound();
+            }
             var ima = _context.Images.Find(id);
             string src;
             var image = new Images();
@@ -61,6 +65,10 @@ namespace CarRenTal.Controllers
             if (file != null)
             {
                 string path_Root = _env.WebRootPath;
+                if(path_Root == null)
+                {
+                    return NotFound();
+                }
 
                 string path_to_Images = path_Root + "\\Images\\"+ date + file.FileName;
 

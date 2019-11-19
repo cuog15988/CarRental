@@ -23,18 +23,21 @@ namespace API2.Controllers.User
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<ChatList>> GetChatList(int id)
-        { 
-            var chatlist =  _context.ChatList.Where(x => x.MyUser == id || x.FromUser == id).OrderByDescending(x => x.Date).ToList();
+        {
+            if (id == null)
+            { return NotFound(); }
+
+            var chatlist = _context.ChatList.Where(x => x.MyUser == id || x.FromUser == id).OrderByDescending(x => x.Date).ToList();
             if (chatlist.Count == 0)
             {
                 return NotFound();
             }
-           
+
             else
             {
                 foreach (var item in chatlist)
                 {
-                    if(id == item.MyUser)
+                    if (id == item.MyUser)
                     {
                         var user = _context.Users.Find(item.FromUser);
                         item.Name = user.HoTen;
@@ -58,9 +61,10 @@ namespace API2.Controllers.User
             {
                 return NotFound();
             }
+
             else
             {
-                if(chat.MyUser != chatlist.MsFrom)
+                if (chat.MyUser != chatlist.MsFrom)
                 {
                     chatlist.Status = false;
                     _context.ChatList.Update(chatlist);
@@ -68,7 +72,7 @@ namespace API2.Controllers.User
                     return Ok(chatlist);
                 }
                 else
-                    {
+                {
                     return Ok(chatlist);
                 }
             }
@@ -88,6 +92,10 @@ namespace API2.Controllers.User
         [HttpPost]
         public async Task<ActionResult<ChatList>> PostDonHang(ChatList chat)
         {
+            if(chat.MyUser == chat.FromUser)
+            {
+                return NotFound();
+            }
             try
             {
                 chat.MyUser = Convert.ToInt32(chat.MyUser);
@@ -95,17 +103,17 @@ namespace API2.Controllers.User
             }
             catch
             {
-            } 
+            }
 
-            var li = await _context.ChatList.Where(x=>x.MyUser== chat.MyUser && x.FromUser == chat.FromUser || x.MyUser == chat.FromUser && x.FromUser == chat.MyUser).SingleAsync();
-            if(li == null)
+            var li = await _context.ChatList.Where(x => x.MyUser == chat.MyUser && x.FromUser == chat.FromUser || x.MyUser == chat.FromUser && x.FromUser == chat.MyUser).SingleOrDefaultAsync();
+            if (li == null)
             {
                 //tạo mục liên hệ mới
                 chat.Date = DateTime.Now;
                 _context.ChatList.Add(chat);
-                  _context.SaveChanges();
+                _context.SaveChanges();
                 return chat;
-                
+
             }
             else
             {
@@ -117,7 +125,7 @@ namespace API2.Controllers.User
                 _context.SaveChanges();
                 return li;
             }
-            
+
         }
 
         // GET: api/ChatList
