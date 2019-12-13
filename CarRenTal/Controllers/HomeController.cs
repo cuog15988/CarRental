@@ -25,7 +25,7 @@ namespace CarRenTal.Controllers
         public IActionResult Index()
         {
             ViewData["MaLoaiXe"] = new SelectList(_context.LoaiXe, "Id", "TenLoai");
-            ViewBag.Tinh = _context.Tinh.ToList();
+            ViewBag.Tinh = _context.Tinh.Where(x=>x.TenTinh== "Hà nội" || x.TenTinh == "TP HCM").ToList();
             return View();
         }
        

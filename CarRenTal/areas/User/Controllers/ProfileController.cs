@@ -46,8 +46,33 @@ namespace CarRenTal.Areas.User.Controllers
 
             return View(users);
         }
+        [HttpGet]
+        public async Task<IActionResult> ChangPasswords()
+        {
+            return View();
 
-
+        }
+        [HttpPost]
+        public async Task<IActionResult> ChangPasswords(string pass1, string pass2)
+        {
+            int id = CommonConstants.UserID;
+            var users = await _context.Users.FindAsync(id);
+            if(users == null )
+            {
+                return NotFound();
+            }
+            if(pass1 != pass2)
+            {
+                ViewBag.Recall = "Mật khẩu không trùng nhau";
+            }
+            else
+            {
+                string url = "/User/Profile/Details?id=" + id;
+                return Redirect(url);
+            }
+            return View();
+            
+        }
 
         //GET: User/Profile/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -76,6 +101,7 @@ namespace CarRenTal.Areas.User.Controllers
             u.NgaySinh = users.NgaySinh;
             u.Email = users.Email;
             u.Phone = users.Phone;
+            u.HoTen = users.HoTen;
             if (id != users.Id)
             {
                 return NotFound();

@@ -24,7 +24,7 @@ namespace CarRenTal.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Tinh>>> GetTinh()
         {
-            return await _context.Tinh.Where(x=> x.Ma == 0 || x.TenTinh=="Hà Nội" || x.TenTinh=="Đà Lạt" || x.TenTinh =="Hải Phòng" || x.TenTinh == "Hồ Chí Minh" ).ToListAsync();
+            return await _context.Tinh.Where(x=>x.TenTinh=="Hà Nội"  || x.TenTinh == "TP HCM").ToListAsync();
         }
 
         // GET: api/Tinhs/5

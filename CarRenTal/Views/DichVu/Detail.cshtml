@@ -1,6 +1,7 @@
 ﻿@using Syncfusion.EJ2
 
 @{
+    ViewData["Title"] = "Thông tin xe";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
     var contentOne = "#Thongtin";
 
@@ -51,7 +52,7 @@
             </div>
             <div class="col-lg-7 model-right">
                 <div class="title justify-content-between d-flex">
-                    <h2>@Model.Gia VNĐ<span>/day</span></h2>
+                    <h2>@string.Format("{0:#,##0}", Model.Gia) VNĐ<span>/day</span></h2>
                 </div>
                 <p>
                     @Html.Raw(Model.Mota)
@@ -60,10 +61,10 @@
                     hãng xe          : @Model.TenHang <br>
                     Ngày đăng        : @Model.NgayNhap <br>
                     Người đăng       : @Model.TenNguoiDang <br>
-                    Giá thuê         : @Model.Gia <br>
+                    Giá thuê         : @string.Format("{0:#,##0}", Model.Gia)<br>
                     Biển số          : @Model.BienSo <br>
-                    Bảo hiểm xe      : Có <br>
-                    Số km            : 25000 km <br>
+                        Bảo hiểm xe      : Có <br>
+                    Số km            : @string.Format("{0:#,##0}", Model.SoKM) <br>
                 </p>
 
             </div>

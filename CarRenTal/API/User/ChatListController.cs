@@ -43,7 +43,7 @@ namespace CarRenTal.Controllers.User
                     }
                     else
                     {
-                        var user = _context.Users.Find(id);
+                        var user = _context.Users.Find(item.MyUser);
                         item.Name = user.HoTen;
                     }
                 }

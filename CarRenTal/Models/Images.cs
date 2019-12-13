@@ -8,7 +8,8 @@ namespace CarRenTal.Models
         public int Id { get; set; }
         public int? XeId { get; set; }
         public string Src { get; set; }
-
+          public int? Num { get; set; }
+        public int? Count { get; set; }
         public virtual Xe Xe { get; set; }
     }
 }

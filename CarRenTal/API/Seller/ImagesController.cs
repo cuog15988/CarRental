@@ -26,12 +26,14 @@ namespace CarRenTal.Controllers.Seller
         {
             var im =  _context.Images.Where(x => x.XeId == id).ToList();
             var xe = _context.Xe.Find(id);
-
+            int Count = im.Count + 1;
             List<Images> ima = new List<Images>();
-            ima.Add(new Images { Src = xe.Hinh });
+            ima.Add(new Images { Src = xe.Hinh,Num = 1, Count = Count });
+            int i = 1;
             foreach (var item in im)
             {
-                ima.Add(new Images { Id = item.Id, Src = item.Src, XeId = item.XeId });
+                i += 1;
+                ima.Add(new Images { Id = item.Id, Src = item.Src, XeId = item.XeId, Num = i,Count= Count }) ;
             }
             return ima;
         }
