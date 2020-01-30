@@ -19,7 +19,7 @@
         <div class="row d-flex justify-content-center pb-40">
             <div class="col-md-8 pb-40 header-text">
                 <h1 class="text-center pb-10">Choose your Desired Car Model</h1>
-                <p class="text-center">
+                <p class="text-center" id="Text">
                     Who are in extremely love with eco friendly system.
                 </p>
             </div>
@@ -27,7 +27,7 @@
         <div>
             <div class="row align-items single-model item">
 
-                <div class="col-lg-2 model-left" style="padding-top:50px">
+                <div class="col-lg-2 model-left" id="TabChosen">
                     <h4 class="mt-20">Hãng xe</h4> <br />
                     <!-- Material unchecked -->
                     <div>
@@ -148,11 +148,11 @@
                                     </a>
                                 </div>
                                 <div class="col-lg-8 model-right">
-                                    <div class="title justify-content-between d-flex">
+                                    <div class="title justify-content-between d-flex" style="justify-content:center;">
                                         <a href="@Url.Action("Detail","DichVu",new { id=item.Id})">
-                                            <h4 class="mt-20">@item.Tenxe</h4>
+                                            <h3 id="CarName">@item.Tenxe</h3>
                                         </a>
-                                        <h2>@item.Gia VNĐ<span>/day</span></h2>
+                                        <h2 id="Discount">@item.Gia VNĐ<span>/day</span></h2>
                                     </div>
                                     <p>
                                         @item.Mota
@@ -215,4 +215,4 @@
 
 
 
-
+<link href="~/admin/response/DichVu/StyleSheet.css" rel="stylesheet" />

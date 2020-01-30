@@ -151,3 +151,10 @@
         font-family: Roboto-Medium;
     }
 
+@media(max-width: 768px) {
+    #none {
+        display: none
+    }
+}
+
+

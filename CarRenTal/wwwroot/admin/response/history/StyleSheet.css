@@ -1,0 +1,42 @@
+﻿body {
+}
+#rightTab {
+    padding-top: 80px;
+    padding-bottom: 40px
+}
+#leftTab {
+    padding-top: 100px;
+}
+@media(max-width: 768px){
+    #leftTab {
+        display: none
+    }
+    #rightTab {
+        padding-top: 15px;
+        padding-bottom: 0px
+    }
+    #cot1 {
+        padding-right: 0px;
+        padding-left: 6px;
+    }
+
+    #cot2 {
+        margin-left: -10px;
+    }
+    #col8 {
+        padding-right: 0;
+        padding-left: 0;
+    }
+    #mota2 {
+        overflow : hidden; text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+    #MainDiv{
+        padding-left:6px;
+        padding-right:6px
+    }
+
+
+}

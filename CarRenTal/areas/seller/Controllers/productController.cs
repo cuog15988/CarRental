@@ -213,7 +213,7 @@ namespace CarRenTal.Areas.seller.Controllers
             ViewData["xo"] = s;
 
             ViewData["MaLoaiXe"] = new SelectList(_context.LoaiXe, "Id", "TenLoai");
-            ViewBag.Tinh = _context.Tinh.ToList();
+            ViewBag.Tinh = _context.Tinh.Where(x=>x.Ma== 62 || x.Ma== 63 || x.Ma == 0).ToList();
             ViewBag.Loaixe = _context.LoaiXe.ToList();
 
             ViewData["MaNguoiDang"] = new SelectList(_context.Users, "Id", "Id", xe.MaNguoiDang);
@@ -239,7 +239,7 @@ namespace CarRenTal.Areas.seller.Controllers
                 try
                 {
                     var sa = _context.Xe.Find(id);
-                    if (xe.MaHuyen != sa.MaHuyen && xe.MaHuyen != null)
+                    if (xe.MaHuyen != sa.MaHuyen && xe.MaHuyen != null || xe.MaHuyen == 57)
                     {
                         sa.MaHuyen = xe.MaHuyen;
                         sa.Huyen = _context.Huyen.Find(xe.MaHuyen).TenHuyen;

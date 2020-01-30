@@ -1,4 +1,5 @@
-﻿@model IEnumerable<CarRenTal.Models.DonHang>
+﻿<div>
+    @model IEnumerable<CarRenTal.Models.DonHang>
 
 @{
     ViewData["Title"] = "Đơn hàng";
@@ -91,12 +92,12 @@
     }
 </style>
 
-
-<div class="container" style="    margin-bottom: 100px;">
+<link href="~/admin/response/history/StyleSheet.css" rel="stylesheet" />
+<div class="container" style=" margin-bottom: 100px;">
 
     <div class="row align-items single-model item">
 
-        <div class="col-XL-2 model-left" style="padding-top:120px">
+        <div class="col-XL-2 model-left" id="leftTab">
             <p style="font-size:14px;font-family:Roboto-Regular; color:#424242">xin chào, @CarRenTal.DAO.Common.CommonConstants.UserName</p>
             <ul class="nav-container">
                 <li class="item" id="My-Orders">
@@ -129,43 +130,45 @@
 
             </ul>
         </div>
-        <div class="col-xl-10 model-right" style="padding-top:100px;padding-bottom:40px ">
+        <div class="col-xl-10 model-right" id="rightTab">
             <a class="breadcrumb">Đơn hàng của tôi</a>
 
             @foreach (var item in Model)
             {
-                <div class="card o-hidden border-0 shadow-lg col-lg-12 my-4">
+                <div class="card o-hidden border-0 shadow-lg col-lg-12 my-4" id="MainDiv">
                     <div class="card-body">
                         <!-- Nested Row within Card Body -->
 
                         <div class="container">
                             <div class="phukien row">
-                                <div class="input-group-prepend">
-                                    <div class="">
-                                        <p style="font-size:14px;color: #212121;margin-right:8px; margin-bottom: -4px !important;padding-top: 1px">Đơn hàng #@item.Id</p>
-                                        <p style="font-size:11px ; padding-top:0px !important;color:#757575; margin-bottom:0.5rem;">ngày thuê : @item.TuNgay  Đến ngày : @item.DenNgay</p>
+                                <div class="" style="width:100%">
+                                    <p id="cot2" style="font-size:14px;color: #212121;margin-right:8px; margin-bottom: -4px !important;padding-top: 1px">Đơn hàng #@item.Id</p>
+                                    <div class="row">
+                                        <div class="col-9" id="cot1">
+                                            <p style="font-size:11px ; padding-top:0px !important;color:#757575; margin-bottom:0.5rem;">ngày thuê : @item.TuNgay  Đến ngày : @item.DenNgay</p>
 
+                                        </div>
+                                        <div class="col-3" id="cot1">
+                                            <a href="/User/Customer/Details?id=@item.Id" style="    text-decoration: none;">
+                                                <p style="float:right ;color: rgb(26, 156, 183); font-size:14px;padding-top:3px">QUẢN LÝ</p>
+                                            </a>
+                                        </div>
                                     </div>
 
                                 </div>
 
-                                <div class="col-12">
-                                    <a href="/User/Customer/Details?id=@item.Id" style="    text-decoration: none;">
-                                        <p style="float:right ;color: rgb(26, 156, 183); font-size:14px;padding-top:3px">QUẢN LÝ</p>
-                                    </a>
-                                </div>
 
                             </div>
 
                             <hr />
 
-                            <div class="col-lg-11">
+                            <div class="col-lg-12">
                                 <div class="form row">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                         </div>
                                     </div>
-                                    <div class="sanpham d-flex col-8">
+                                    <div class="sanpham d-flex col-12" id="col8">
                                         <a href="/User/Customer/Details?id=@item.Id" style="    text-decoration: none;">
                                             <img src="@item.MaXeNavigation.Hinh" alt="" width="80" height="80">
                                         </a>
@@ -173,6 +176,7 @@
                                             <a href="/User/Customer/Details?id=@item.Id" style="    text-decoration: none;">
                                                 <p id="mota" style="margin:5px;padding-left:18px">Xe @item.MaXeNavigation.Tenxe</p>
                                                 <p id="mota2">@item.MaXeNavigation.Mota</p>
+
                                             </a>
 
                                             <p id="thongbao"></p>
@@ -180,14 +184,14 @@
 
                                     </div>
 
-                                    <div class="gia col-4" style=" padding:15px;text-align:left; padding-left:100px">
+                                    <div class="gia col-12" style=" padding:15px;text-align:left; padding-left:100px">
                                         @if (item.Huy == true)
                                         {
                                             <p id="capsule">Đã huỷ đơn hàng</p>
 
                                         }
                                         else
-                              if (item.Status == true)
+                             if (item.Status == true)
                                         {
                                             if (DateTime.Now > item.DenNgay)
                                             {
@@ -248,3 +252,4 @@
 
 
 
+</div>

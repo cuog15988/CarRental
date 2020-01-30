@@ -1,0 +1,54 @@
+﻿
+/*aaaaaaaaaaaaaaaaa*/
+#top {
+    padding-top: 100px;
+    padding-bottom: 40px
+}
+
+#card-item {
+    text-align: left;
+    padding-left: 100px
+}
+
+@media(max-width: 768px) {
+    .card-body {
+        flex: 1 1 auto;
+        padding-top: 2rem;
+        padding: 1rem;
+    }
+    #col-5 {
+        padding-left: 0px;
+        padding-right: 0px
+    }
+    #container {
+        padding-right: 0px;
+        padding-left: 2px;
+    }
+    #none {
+        display: none;
+        margin-bottom: 10px;
+    }
+
+    .gia col-5 {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+
+    container {
+        padding-left: 0px
+    }
+
+    .section-gap {
+        padding-top: 0px
+    }
+
+    #top {
+        padding-top: 10px;
+        padding-bottom: 10px
+    }
+
+    #card-item {
+        text-align: left;
+        padding-left: 10px
+    }
+}

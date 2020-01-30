@@ -51,6 +51,7 @@
     <Folder Include="Areas\admin\Data\" />
     <Folder Include="Areas\admin\Models\" />
     <Folder Include="Areas\seller\Data\" />
+    <Folder Include="wwwroot\admin\js\DichVu\" />
     <Folder Include="wwwroot\images\MainImg\" />
     <Folder Include="wwwroot\images\x5\" />
     <Folder Include="wwwroot\images\x4\" />
